@@ -11,10 +11,55 @@
     "url": "git+https://github.com/oslabs-beta/MetriQL.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Diana Li, Eric Rodgers, Raymond Huang, Rehema Armorer, Alfonso Zamarripa",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/oslabs-beta/MetriQL/issues"
   },
-  "homepage": "https://github.com/oslabs-beta/MetriQL#readme"
+  "homepage": "https://github.com/oslabs-beta/MetriQL#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@hot-loader/react-dom": "^17.0.2",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.13",
+    "babel-jest": "^27.5.1",
+    "babel-loader": "^8.2.3",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.0",
+    "eslint": "^8.10.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.5.1",
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.15",
+    "sass": "^1.49.9",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.2.7",
+    "typescript": "^4.6.2",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-hot-middleware": "^2.25.1"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "fontsource-roboto": "^4.0.0",
+    "graphql": "^16.3.0",
+    "next": "^12.1.0",
+    "pg": "^8.7.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hot-loader": "^4.13.0"
+  }
 }
