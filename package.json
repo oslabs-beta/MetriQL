@@ -1,0 +1,20 @@
+{
+  "name": "metriql",
+  "version": "1.0.0",
+  "description": "A GraphQL Migration Tool",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/MetriQL.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/MetriQL/issues"
+  },
+  "homepage": "https://github.com/oslabs-beta/MetriQL#readme"
+}
