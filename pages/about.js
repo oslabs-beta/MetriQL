@@ -1,11 +1,9 @@
-import Head from 'next/head';
+import Meta from '../client/components/Meta';
 
 function AboutPage () {
   return (
     <div>
-        <Head>
-            <titile>About</titile>
-        </Head>
+      <Meta title='About' />
         <h1>About the Team</h1>
     </div>
   )

@@ -1,13 +1,11 @@
-import Head from 'next/head';
-import Schema from '../components/Schema'
-import Metric from '../components/Metric'
+import Schema from '../client/components/Schema'
+import Metric from '../client/components/Metric'
+import Meta from '../client/components/Meta'
 
 function MainPage () {
   return (
     <div>
-        <Head>
-            <titile>Main Stuff</titile>
-        </Head>
+      <Meta title='Work Space' />
         <h1>add metric logic here</h1>
         <Schema />
         <Metric />

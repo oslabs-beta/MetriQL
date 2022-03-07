@@ -1,9 +1,11 @@
 import Nav from './Nav'
-// import styles from '../styles/App.module.css';
+import Meta from './Meta'
+// import styles from '../../styles/App.module.css';
 
 function App({ children }) {
   return (
     <>
+    <Meta />
     <Nav />
     <div>
         <main>

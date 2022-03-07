@@ -1,4 +1,4 @@
-import App from '../components/App';
+import App from '../client/components/App';
 
 function MyApp({ Component, pageProps }) {
     return (
