@@ -4,7 +4,7 @@
   "description": "A GraphQL Migration Tool",
   "main": "webpack.config.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev & nodemon server/server.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -51,7 +51,9 @@
     "body-parser": "^1.19.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
     "dotenv": "^16.0.0",
+    "express": "^4.17.3",
     "fontsource-roboto": "^4.0.0",
     "graphql": "^16.3.0",
     "next": "^12.1.0",
