@@ -7,7 +7,7 @@ function Result() {
     return (
       <>
         <CodeMirror
-          value = {'Schema Goes Here'}
+          value = {'Result from query goes here'}
           autoFocus={true}
           height='30rem'
           theme={oneDark}
