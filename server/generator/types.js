@@ -1,14 +1,14 @@
 const { pascalCase } = require('pascal-case');
 const toCamelCase = require('camelcase');
 const { singular } = require('pluralize');
-const helper = require('./helper')
+const { queryHelper, mutationHelper} = require('./helper')
 
 const types = {};
 
 types.queries = (tableName, tableData) => {
   const { primaryKey, foreignKeys, columns } =  tableData
   const tableNameSingular = singular(tableName);
-  const primaryKeyType = helper.typeSet(columns[primaryKey].dataType);
+  const primaryKeyType = queryHelper.typeSet(columns[primaryKey].dataType);
   let byID = toCamelCase(tableNameSingular);
 
   return (
@@ -16,4 +16,15 @@ types.queries = (tableName, tableData) => {
     `${byID}(${primaryKey}: ${primaryKeyType}!): ${pascalCase(tableNameSingular)}!\n`
   );
 
-}
+};
+
+types.mutations = (tableName, tableData) => {
+  const {primaryKey, foreignKeys, columns} = tableData;
+
+  return (
+    mutationHelper.create(tableName, primaryKey, foreignKeys, columns) +
+    mutationHelper.update(tableName, primaryKey, foreignKeys, columns) +
+    mutationHelper.destroy(tableName, primaryKey)
+  );
+};
+
