@@ -4,9 +4,16 @@ const postgreSQLController = require('./controllers/postgreSQLController');
 
 router.get('/schema',
     postgreSQLController.table,
-    // postgreSQLController.schemaGenerator,
+    postgreSQLController.schemaGenerator,
     (req, res) => {
-        res.status(200).json(res.locals.SQLtables)
+        res.status(200).json({schema: res.locals.schema})
+    })
+
+    router.post('/schema-user',
+    postgreSQLController.table,
+    postgreSQLController.schemaGenerator,
+    (req, res) => {
+        res.status(200).json({schema: res.locals.schema})
     })
 
 

@@ -1,5 +1,5 @@
-const types = require('./types');
-const queryHelper = require('./helper');
+const generateTypes = require('./generateTypes');
+const { queryHelper, isReferenceTable } = require('./helper');
 
 const schema = {};
 
@@ -10,13 +10,18 @@ schema.typeGenerator = (SQLtables) => {
     for (const tableName in SQLtables) {
         const tableData = SQLtables[tableName];
         const { foreignKeys, columns } = tableData;
-        if (!foreignKeys || !helper.isReferenceTable(foreignKeys, columns)) {
-            queryType += types.queries(tableName, tableData); //done
-            mutationType += types.mutations(tableName, tableData);
-            customType += types.custom(tableName, tables);
+        if (!foreignKeys || !isReferenceTable(foreignKeys, columns)) {
+            queryType += generateTypes.queries(tableName, tableData); 
+            mutationType += generateTypes.mutations(tableName, tableData);
+            customType += generateTypes.custom(tableName, SQLtables);
         }
     }
-    //types compiler
+    const types =
+        `${'const typeDefs = `\n' + '  type Query {\n'}${queryType}  }\n\n` +
+        `  type Mutation {${mutationType}  }\n\n` +
+        `${customType}\`;\n\n`;
 
-    //return to controller
+    return types;
 }
+
+module.exports = schema

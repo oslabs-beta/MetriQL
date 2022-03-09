@@ -1,11 +1,11 @@
 const { pascalCase } = require('pascal-case');
 const toCamelCase = require('camelcase');
 const { singular } = require('pluralize');
-const { queryHelper, mutationHelper} = require('./helper')
+const { queryHelper, mutationHelper, customHelper} = require('./helper')
 
-const types = {};
+const generateTypes = {};
 
-types.queries = (tableName, tableData) => {
+generateTypes.queries = (tableName, tableData) => {
   const { primaryKey, foreignKeys, columns } =  tableData
   const tableNameSingular = singular(tableName);
   const primaryKeyType = queryHelper.typeSet(columns[primaryKey].dataType);
@@ -18,13 +18,27 @@ types.queries = (tableName, tableData) => {
 
 };
 
-types.mutations = (tableName, tableData) => {
+generateTypes.mutations = (tableName, tableData) => {
   const {primaryKey, foreignKeys, columns} = tableData;
 
   return (
     mutationHelper.create(tableName, primaryKey, foreignKeys, columns) +
     mutationHelper.update(tableName, primaryKey, foreignKeys, columns) +
-    mutationHelper.destroy(tableName, primaryKey)
+    mutationHelper.delete(tableName, primaryKey)
   );
 };
 
+generateTypes.custom = (tableName, tables) => {
+  const { primaryKey, foreignKeys, columns } = tables[tableName];
+  const primaryKeyType = queryHelper.typeSet(columns[primaryKey].dataType);
+  return `${
+    `  type ${pascalCase(singular(tableName))} {\n` +
+    `    ${primaryKey}: ${primaryKeyType}`
+  }${customHelper.getColumns(
+    primaryKey,
+    foreignKeys,
+    columns
+  )}${customHelper.getRelationships(tableName, tables)}\n }\n\n`;
+}
+
+module.exports = generateTypes;
