@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const postgreSQLController = require('./controllers/postgreSQLController');
 
-router.get('/',
+router.get('/schema',
     postgreSQLController.table,
-    // console.log(res.locals.schema),
+    // postgreSQLController.schemaGenerator,
     (req, res) => {
-        res.status(200).json(res.locals.schema)
+        res.status(200).json(res.locals.SQLtables)
     })
 
 

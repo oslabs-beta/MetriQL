@@ -3,6 +3,7 @@ const CryptoJS = require("crypto-js");
 require('dotenv').config();
 const fs = require('fs')
 const pgQuery = fs.readFileSync('server/query/tables.sql', 'utf8')
+const schema = require('../generator/schema')
 
 const PG_URI_STARWARS = process.env.PG_URI_STARWARS;
 
@@ -22,12 +23,29 @@ postgreSQLController.table = async (req, res, next) => {
     const db = new Pool({ connectionString: postURI });
     try {
         const result = await db.query(pgQuery);
-        res.locals.schema = result.rows[0].tables;
+        res.locals.SQLtables = result.rows[0].tables;
         next();
     } catch (err) {
         return next({
             log: `Error occurred in postgreSQLController.getSchema ERROR: ${err}`,
-            message: { err: 'Error occured in postgreSQLController.getSchema. Check server log for more detail'},      
+            message: { err: 'Error occured in postgreSQLController.getSchema. Check server log for more detail' },
+        })
+    }
+}
+
+postgreSQLController.schemaGenerator = async (req, res, next) => {
+    const { SQLtables } = res.locals;
+    try {
+        const {
+            types,
+            mutationTypeCount,
+        } = schema.typeGenerator(SQLtables);
+
+        //more code
+    } catch (err) {
+        return next({
+            log: `Error occurred in postgreSQLController.schemaGenerator ERROR: ${err}`,
+            message: { err: 'Error occured in postgreSQLControllers.schemaGenerator. Check server log for more detail' },
         })
     }
 }

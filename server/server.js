@@ -23,8 +23,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/', router)
 
-
-
 app.use('*', (req, res) => res.status(404).send('Wrong Page'));
 
 app.use((err, req, res, next) => {
