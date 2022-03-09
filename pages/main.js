@@ -4,17 +4,20 @@ import Meta from '../client/components/Meta';
 import QueryInput from '../client/components/QueryInput';
 import Result from '../client/components/Result';
 import SideBar from '../client/components/SideBar';
+import classes from '../styles/Main.module.css'
 
-function MainPage () {
+function MainPage() {
   return (
-    <div>
+    <div className={classes.main}>
       <Meta title='Work Space' />
-        <h1>add metric logic here</h1>
-        <SideBar />
-        <Schema />
-        <Metric />
+      {/* <Schema /> */}
+      <div className={classes.body}>
         <QueryInput />
-        <Result />
+        <div className={classes.results}>
+          <Metric />
+          <Result />
+        </div>
+      </div>
     </div>
   )
 }
