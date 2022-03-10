@@ -5,6 +5,7 @@ const fs = require('fs')
 const pgQuery = fs.readFileSync('server/query/tables.sql', 'utf8')
 const schema = require('../generator/schema.js')
 
+
 const PG_URI_STARWARS = process.env.PG_URI_STARWARS;
 
 const decryptURI = (encryptedUserURI) => {
