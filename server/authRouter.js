@@ -3,7 +3,7 @@ const passport = require('passport');
 
 const authRouter = express.Router();
 
-// auth login
+// auth login //
 authRouter.get('/login', (req, res) => {
     res.render('login')
 })
