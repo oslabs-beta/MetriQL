@@ -49,6 +49,7 @@
     "@material-ui/icons": "^4.11.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.2",
+    "camelcase": "^6.3.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
@@ -57,7 +58,9 @@
     "fontsource-roboto": "^4.0.0",
     "graphql": "^16.3.0",
     "next": "^12.1.0",
+    "pascal-case": "^3.1.2",
     "pg": "^8.7.3",
+    "pluralize": "^8.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-loader": "^4.13.0"

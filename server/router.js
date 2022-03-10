@@ -2,12 +2,23 @@ const express = require('express');
 const router = express.Router();
 const postgreSQLController = require('./controllers/postgreSQLController');
 
-router.get('/',
+//our starwars demo 
+router.get('/schema',
     postgreSQLController.table,
-    // console.log(res.locals.schema),
+    postgreSQLController.schemaGenerator,
     (req, res) => {
-        res.status(200).json(res.locals.schema)
-    })
+        res.status(200).json({schema: res.locals.schema})
+    }
+)
+
+ //user provided uri
+router.post('/schema-user',
+    postgreSQLController.table,
+    postgreSQLController.schemaGenerator,
+    (req, res) => {
+        res.status(200).json({schema: res.locals.schema})
+    }
+)
 
 
 module.exports = router;
