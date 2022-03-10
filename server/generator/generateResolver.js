@@ -11,6 +11,7 @@ generateResolver.queries = (tableName, tableData) => {
     return `\n${queryPK}\n${queryAll}`;
 }
 
+
 generateResolver.mutations = (tableName, tableData) => {
     const { primaryKey, columns } = tableData;
     const createMut = mutationHelper.createMut(
