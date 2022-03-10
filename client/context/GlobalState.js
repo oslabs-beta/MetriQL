@@ -7,18 +7,9 @@ import globalReducer from './global-reducer'
 import { LOGIN, LOGOUT } from './global-actions'
 
 const GlobalState = ({ children }) => {
-    // declare a default state
-    const initialState = {
-        isLoggedIn: false,
-        username: '',
-        password: ''
-    }
-
-    // useReducer takes our reducer function and the initial state, and returns the new state and a dispatch function
-    const [state, dispatch] = useReducer(globalReducer, initialState);
 
     // Here we define top-level functions that we will pass to App via our context provider
-    //Log In
+    // Log In
     const login = (username, password) => {
         dispatch({
             type: LOGIN,
@@ -26,15 +17,27 @@ const GlobalState = ({ children }) => {
         })
     }
 
-    //Log Out
+    // Log Out
     const logout = () => {
         dispatch({
             type: LOGOUT,
         })
     }
 
+    // declare a default state, including the functions you defined
+    const initialState = {
+        isLoggedIn: false,
+        username: '',
+        password: '',
+        login,
+        logout
+    }
+    
+    // useReducer takes our reducer function and the initial state, and returns the new state and a dispatch function
+    const [state, dispatch] = useReducer(globalReducer, initialState);
+
     return (
-        <GlobalContext.Provider value={{state, login, logout}}>
+        <GlobalContext.Provider value={{state}}>
             <GlobalDispatch.Provider value={{dispatch}}>
                 { children }
             </GlobalDispatch.Provider>
