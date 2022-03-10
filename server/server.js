@@ -48,7 +48,7 @@ app.use(cookieSession({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('*', (req, res) => res.status(404).send('Wrong Page'));
+app.use('*', (req, res) => res.status(404).send('Wrong Page, something went wrong'));
 
 app.use((err, req, res, next) => {
     const defaultErr = {
