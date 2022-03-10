@@ -1,10 +1,24 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const router = require('./router')
+const router = require('./router');
+const authRouter = require('./authRouter');
+const profileRouter = require('./profileRouter');
+const passportSetup = require('./config/passport-setup');
+const mongoose = require('mongoose');
+require('dotenv').config();
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+
+const userController = require('./controllers/userController');
 
 const app = express();
 const PORT = 3001;
+
+mongoose.connect(process.env.MONGO_URI);
+mongoose.connection.once('open', () => {
+  console.log('Connected to Database');
+})
 
 // set up CORS for Cross-Origin-Resource-Sharing
 app.use(cors());
@@ -23,7 +37,18 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/', router)
 
-app.use('*', (req, res) => res.status(404).send('Wrong Page, somethings not right'));
+app.use('/auth', authRouter)
+app.use('/profile', profileRouter)
+
+app.use(cookieSession({
+  maxAge: 7*24*60*60*1000,
+  keys: [process.env.SESSION_KEY]
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use('*', (req, res) => res.status(404).send('Wrong Page, something went wrong'));
 
 app.use((err, req, res, next) => {
     const defaultErr = {
