@@ -24,4 +24,4 @@ schema.typeGenerator = (SQLtables) => {
     return types;
 }
 
-module.exports = schema
+module.exports = schema;
