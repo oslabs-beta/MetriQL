@@ -18,14 +18,13 @@ const postgreSQLController = {};
 postgreSQLController.table = async (req, res, next) => {
     let postURI;
 
-    // req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
-    req.body.uri ? (postURI = (req.body.uri)) : (postURI = PG_URI_STARWARS)
+    req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
+    // req.body.uri ? (postURI = (req.body.uri)) : (postURI = PG_URI_STARWARS)
 //post test:"uri" "uri"
     const db = new Pool({ connectionString: postURI });
     try {
         const result = await db.query(pgQuery);
         res.locals.SQLtables = result.rows[0].tables;
-        console.log('tables first')
         next();
     } catch (err) {
         return next({
@@ -39,9 +38,9 @@ postgreSQLController.schemaGenerator =  (req, res, next) => {
     const { SQLtables } = res.locals;
     try {
         const types = schema.typeGenerator(SQLtables);
-        res.locals.schema = types;
-        console.log('this should be second')
-        return next();
+        const resolvers = schema.resolverGenerator(SQLtables);
+        res.locals.schema = { types, resolvers };
+        next();
     } catch (err) {
         return next({
             log: `Error occurred in postgreSQLController.schemaGenerator ERROR: ${err}`,
