@@ -17,7 +17,6 @@ function MainPage() {
   return (
     <div className={classes.main}>
       <Meta title='Work Space' />
-      {/* <Schema /> */}
       <div className={classes.body}>
         <QueryContext.Provider
           value={{

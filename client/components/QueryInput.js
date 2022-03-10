@@ -4,6 +4,10 @@ import { useState, useContext } from 'react'
 import classes from '../../styles/QueryInput.module.css'
 import { QueryContext } from '../context/global-context';
 // import dynamic from 'next/dynamic';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import Schema from './Schema';
 
 
 //https://dev.to/glowtoad123/using-codemirror-in-nextjs-without-the-navigator-error-opi
@@ -43,10 +47,37 @@ function QueryInput() {
     })
   }
 
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+    '& .MuiDialogContent-root': {
+      padding: theme.spacing(2),
+    },
+    '& .MuiDialogActions-root': {
+      padding: theme.spacing(1),
+    },
+  }));
+
   return (
     <div>
       <div className={classes.heading}>
-        <p>Query Input</p>
+        <p className={classes.title}>Query Input</p>
+        <Button variant="outlined" onClick={handleClickOpen}>Veiw Schema/Resolver</Button>
+        <BootstrapDialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+        >
+          <Schema />
+        </BootstrapDialog>
+
         <div >
           <button
             type='button'
