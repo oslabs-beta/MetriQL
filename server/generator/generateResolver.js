@@ -10,7 +10,7 @@ generateResolver.queries = (tableName, tableData) => {
     const queryAll = queryHelper.queryAll(tableName);
     return `\n${queryPK}\n${queryAll}`;
 }
-
+ 
 
 generateResolver.mutations = (tableName, tableData) => {
     const { primaryKey, columns } = tableData;

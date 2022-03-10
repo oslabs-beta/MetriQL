@@ -32,7 +32,7 @@ postgreSQLController.table = async (req, res, next) => {
             message: { err: 'Error occured in postgreSQLController.getSchema. Check server log for more detail' },
         })
     }
-}
+} 
 
 postgreSQLController.schemaGenerator =  (req, res, next) => {
     const { SQLtables } = res.locals;
@@ -45,7 +45,7 @@ postgreSQLController.schemaGenerator =  (req, res, next) => {
         return next({
             log: `Error occurred in postgreSQLController.schemaGenerator ERROR: ${err}`,
             message: { err: `Error occured in postgreSQLControllers.schemaGenerator. Check server log for more detail. ${err}` },
-        })
+git         })
     }
 }
 

@@ -4,6 +4,7 @@ const { isReferenceTable } = require('./helper');
 
 const schema = {};
 
+
 schema.typeGenerator = (SQLtables) => {
     let queryType = '';
     let mutationType = '';

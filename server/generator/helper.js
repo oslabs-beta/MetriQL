@@ -11,7 +11,7 @@ const isReferenceTable = (foreignKeys, columns) => {
 };
 
 // console.log(typeof queryHelper.isReferenceTable);
-
+ 
 queryHelper.typeSet = (str) => {
   switch (str) {
     case 'character varying':
@@ -386,6 +386,7 @@ customHelper.manyToMany = (
             .catch(err => new Error(err));
         }, `;
 };
+
 
 customHelper.foreignKeyCheck = (
   tableName,
