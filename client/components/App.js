@@ -10,6 +10,7 @@ function App({ children }) {
 
   return (
     <>
+    {/* <Nav /> */}
     <Meta />
     <SideBar />
     <div>
