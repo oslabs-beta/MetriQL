@@ -10,7 +10,6 @@ function Result() {
 
   const {codeState, codeDispatch} = useContext(SchemaContext)
 
-  console.log(codeState);
     return (
       <>
         <CodeMirror

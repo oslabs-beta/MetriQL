@@ -26,6 +26,7 @@ const samplePlaceholder = `{
     name
   }
 }`
+
 function QueryInput() {
   const [query, setQuery] = useState(samplePlaceholder);
   const {codeDispatch} = useContext(QueryContext)
