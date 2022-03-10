@@ -16,7 +16,7 @@ function UserProfile() {
         if (isLoggedIn) {
             logout();
         } else {
-            router.push(process.env.NODE_ENV === 'development' ? `http://localhost:${PORT}/auth/github` : `https://giraffeql.io/auth/github`)
+            router.push(process.env.NODE_ENV === 'development' ? `http://localhost:${PORT}/auth/github` : `https://metriql.io/auth/github`)
         }
     }
 

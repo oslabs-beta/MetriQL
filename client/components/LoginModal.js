@@ -39,7 +39,7 @@ function LoginModal() {
         <h2>Welcome to MetricQL</h2>
 
         {/* check girafffeql/components/index/LoginModal line 21 for Link element redirect method... */}
-        <Link href={process.env.NODE_ENV === 'development' ? `http://localhost:${PORT}/auth/github` : `https://giraffeql.io/auth/github`}>
+        <Link href={process.env.NODE_ENV === 'development' ? `http://localhost:${PORT}/auth/github` : `https://metriql.io/auth/github`}>
             <button>Sign in with Github</button>
         </Link>
 
