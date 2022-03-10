@@ -1,5 +1,5 @@
 const { Pool } = require("pg");
-// const CryptoJS = require("crypto-js");
+const CryptoJS = require("crypto-js");
 require('dotenv').config();
 const fs = require('fs')
 const pgQuery = fs.readFileSync('server/query/tables.sql', 'utf8')
@@ -7,11 +7,11 @@ const schema = require('../generator/schema.js')
 
 const PG_URI_STARWARS = process.env.PG_URI_STARWARS;
 
-// const decryptURI = (encryptedUserURI) => {
-//     const data = CryptoJS.AES.decrypt(encryptedUserURI, process.env.SECRETKEY);
-//     const decryptedURI = data.toString(CryptoJS.enc.Utf8);
-//     return decryptedURI;
-// }
+const decryptURI = (encryptedUserURI) => {
+    const data = CryptoJS.AES.decrypt(encryptedUserURI, process.env.SECRETKEY);
+    const decryptedURI = data.toString(CryptoJS.enc.Utf8);
+    return decryptedURI;
+}
 
 const postgreSQLController = {};
 
