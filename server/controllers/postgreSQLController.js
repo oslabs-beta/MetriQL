@@ -25,7 +25,6 @@ postgreSQLController.table = async (req, res, next) => {
     try {
         const result = await db.query(pgQuery);
         res.locals.SQLtables = result.rows[0].tables;
-        console.log('tables first')
         next();
     } catch (err) {
         return next({
@@ -41,8 +40,7 @@ postgreSQLController.schemaGenerator =  (req, res, next) => {
         const types = schema.typeGenerator(SQLtables);
         const resolvers = schema.resolverGenerator(SQLtables);
         res.locals.schema = { types, resolvers };
-        console.log('this should be second')
-        return next();
+        next();
     } catch (err) {
         return next({
             log: `Error occurred in postgreSQLController.schemaGenerator ERROR: ${err}`,

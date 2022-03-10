@@ -1,6 +1,6 @@
 const generateTypes = require('./generateTypes');
 const generateResolver = require('./generateResolver')
-const { queryHelper, isReferenceTable } = require('./helper');
+const { isReferenceTable } = require('./helper');
 
 const schema = {};
 
