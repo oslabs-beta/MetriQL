@@ -2,7 +2,7 @@
 
 // const ForwardExtensionsLink = new ApolloLink((operation, forward) =>
 //   forward(operation).map(response => {
-//     
+//     NEED FUNCTION TO PROPERLY ALTER DATA
 //     }
 //     return response;
 //   })
