@@ -9,5 +9,4 @@ router.get('/',
         res.status(200).json(res.locals.schema)
     })
 
-
 module.exports = router;
