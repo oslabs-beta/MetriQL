@@ -18,6 +18,9 @@ generateTypes.queries = (tableName, tableData) => {
 
 };
 
+//people: [Person!] //you want people(plural), you're going to get an array of every person
+// person(_id: 'Int'!): Person! //you want one person, you need an id that has to be an interger and you get person back
+
 generateTypes.mutations = (tableName, tableData) => {
   const {primaryKey, foreignKeys, columns} = tableData;
 
