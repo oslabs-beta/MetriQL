@@ -1,7 +1,7 @@
 function HomePage() {
     return (
     <div>
-      <h1>Welcome to MetriQL!</h1>
+      <h1>Welcome to MetriQL</h1>
     </div>
     )
   }

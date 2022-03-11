@@ -1,7 +1,9 @@
+import classes from '../../styles/Metric.module.css'
+
 function Metric() {
     return (
-      <div>
-          <h3>Metric logic here</h3>
+      <div className={classes.metric}>
+          Metric logic here
       </div>
     )
   }
