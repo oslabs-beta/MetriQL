@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const postgreSQLController = require('./controllers/postgreSQLController');
+const generateResolver = require('./generator/generatorResolver')
 
 //our starwars demo 
 router.get('/schema',
