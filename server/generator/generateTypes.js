@@ -12,8 +12,8 @@ generateTypes.queries = (tableName, tableData) => {
   let byID = toCamelCase(tableNameSingular);
 
   return (
-    `${toCamelCase(tableName)}: [${pascalCase(tableNameSingular)}!]!\n` + 
-    `${byID}(${primaryKey}: ${primaryKeyType}!): ${pascalCase(tableNameSingular)}!\n`
+    `    ${toCamelCase(tableName)}: [${pascalCase(tableNameSingular)}!]!\n` + 
+    `    ${byID}(${primaryKey}: ${primaryKeyType}!): ${pascalCase(tableNameSingular)}!\n`
   );
 
 };
