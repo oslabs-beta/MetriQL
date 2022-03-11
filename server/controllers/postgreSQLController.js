@@ -4,6 +4,10 @@ require('dotenv').config();
 const fs = require('fs')
 const pgQuery = fs.readFileSync('server/query/tables.sql', 'utf8')
 const schema = require('../generator/schema.js')
+const { schemaImport, schemaExport } = require('../generator/helper')
+const path = require('path');
+
+
 
 const PG_URI_STARWARS = process.env.PG_URI_STARWARS;
 
@@ -16,39 +20,80 @@ const decryptURI = (encryptedUserURI) => {
 const postgreSQLController = {};
 
 postgreSQLController.table = async (req, res, next) => {
+
     let postURI;
 
+    req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
+    // let postURI = req.body.uri;
+    let postURI = "postgres://hgokvgqx:8y0x9A3vgaIFSSCZMLDieF-LgoWlh_mi@castor.db.elephantsql.com/hgokvgqx"
     // req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
-    req.body.uri ? (postURI = (req.body.uri)) : (postURI = PG_URI_STARWARS)
+    // req.body.uri ? (postURI = (req.body.uri)) : (postURI = PG_URI_STARWARS)
 //post test:"uri" "uri"
+
+res.locals.URI = postURI;
     const db = new Pool({ connectionString: postURI });
     try {
         const result = await db.query(pgQuery);
         res.locals.SQLtables = result.rows[0].tables;
-        console.log('tables first')
         next();
     } catch (err) {
         return next({
             log: `Error occurred in postgreSQLController.getSchema ERROR: ${err}`,
-            message: { err: 'Error occured in postgreSQLController.getSchema. Check server log for more detail' },
+            message: { err: `Error occured in postgreSQLController.getSchema. Check server log for more detail ${err}` },
         })
     }
-}
+} 
 
 postgreSQLController.schemaGenerator =  (req, res, next) => {
     const { SQLtables } = res.locals;
     try {
         const types = schema.typeGenerator(SQLtables);
-        res.locals.schema = types;
-        console.log('this should be second')
-        return next();
+        const resolvers = schema.resolverGenerator(SQLtables);
+        res.locals.schema = { types, resolvers };
+        next();
     } catch (err) {
         return next({
             log: `Error occurred in postgreSQLController.schemaGenerator ERROR: ${err}`,
-            message: { err: `Error occured in postgreSQLControllers.schemaGenerator. Check server log for more detail. ${err}` },
+            message: { err: `Error occured in postgreSQLControllers.schemaGenerator. Check server log for more detail. ${err}` } 
         })
     }
 }
+
+postgreSQLController.writeSchemaToFile = (req, res, next) => {
+    console.log('in write');
+    try {
+        console.log('111')
+        const { URI } = res.locals;
+        console.log( URI )
+        const schemaImportText = schemaImport(URI);
+        console.log('result')
+        const schemaExportText = schemaExport();
+        console.log('first')
+        const schemaFile =
+            schemaImportText +
+            '\n' +
+            res.locals.schema.types +
+            '\n' +
+            res.locals.schema.resolvers +
+            '\n' +
+            schemaExportText;
+
+            console.log('second')
+        fs.writeFileSync(
+            path.resolve(__dirname, '../graphQLServer/schema.js'),
+            schemaFile
+        );
+            console.log('third');
+        return next();
+    } catch (err) {
+        const errObj = {
+            log: `Error in writeSchemaToFile: ${err}`,
+            status: 400,
+            message: { err: {err} },
+        };
+        return next(errObj);
+    }
+};
 
 
 module.exports = postgreSQLController
