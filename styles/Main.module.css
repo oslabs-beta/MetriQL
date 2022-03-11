@@ -1,0 +1,13 @@
+.main{
+  display:flex;
+}
+.body {
+  display: flex;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left:10px;
+}
