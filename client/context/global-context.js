@@ -7,4 +7,8 @@ const GlobalContext = createContext();
 
 const GlobalDispatch = createContext();
 
+export const SchemaContext = createContext();
+
+export const QueryContext = createContext();
+
 export {GlobalContext, GlobalDispatch};

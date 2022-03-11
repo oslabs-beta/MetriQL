@@ -1,5 +1,6 @@
 import App from '../client/components/App';
 
+
 function MyApp({ Component, pageProps }) {
     return (
         <App>
