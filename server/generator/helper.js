@@ -67,13 +67,13 @@ const typeConversion = {
 }  //return 'Int' if undefined;
 
 mutationHelper.create = (tableName, primaryKey, foreignKeys, columns) => {
-  return `\n    ${toCamelCase(`create${singular(tableName)}`
+  return `\n    ${toCamelCase(`create_${singular(tableName)}`
   )} (\n${mutationHelper.paramType(
     primaryKey,
     foreignKeys,
     columns,
     false
-  )}): ${pascalCase(singular(tableName))}!\n;`
+  )}): ${pascalCase(singular(tableName))}!\n`
 }
 //return from .create:
 //    createPeople(
@@ -86,7 +86,7 @@ mutationHelper.create = (tableName, primaryKey, foreignKeys, columns) => {
 
 mutationHelper.update = (tableName, primaryKey, foreignKeys, columns) => {
   return `\n    ${toCamelCase(
-    `update${singular(tableName)}`
+    `update_${singular(tableName)}`
   )}(\n${mutationHelper.paramType(
     primaryKey,
     foreignKeys,
@@ -129,7 +129,7 @@ mutationHelper.paramType = (primaryKey, foreignKeys, columns, isRequired) => {
 
 mutationHelper.delete = (tableName, primaryKey) => {
   return `\n    ${toCamelCase(
-    `delete${singular(tableName)}`
+    `delete_${singular(tableName)}`
   )}(${primaryKey}: ID!): ${pascalCase(singular(tableName))}!\n`;
 }
 
@@ -405,6 +405,7 @@ customHelper.foreignKeyCheck = (
             .catch(err => new Error(err));
         }, `;
 };
+
 
 const schemaImport = (uri) => {
   return (
