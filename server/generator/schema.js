@@ -40,7 +40,7 @@ schema.resolverGenerator = (SQLtables) => {
         }
     }
     const resolvers = 
-    '\n  const resolvers = {/n' +
+    '\n  const resolvers = {\n' +
     '    Query: {' +
     `      ${queryResolver}\n` +
     '    },\n\n' +
