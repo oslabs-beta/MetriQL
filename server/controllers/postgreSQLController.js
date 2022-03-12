@@ -8,6 +8,7 @@ const { schemaImport, schemaExport } = require('../generator/helper')
 const path = require('path');
 
 
+
 const PG_URI_STARWARS = process.env.PG_URI_STARWARS;
 
 const decryptURI = (encryptedUserURI) => {
@@ -19,6 +20,10 @@ const decryptURI = (encryptedUserURI) => {
 const postgreSQLController = {};
 
 postgreSQLController.table = async (req, res, next) => {
+
+    // let postURI;
+
+    // req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
     // let postURI = req.body.uri;
     let postURI = "postgres://hgokvgqx:8y0x9A3vgaIFSSCZMLDieF-LgoWlh_mi@castor.db.elephantsql.com/hgokvgqx"
     // req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
