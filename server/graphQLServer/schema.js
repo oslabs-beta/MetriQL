@@ -15,22 +15,22 @@ db.query = (text,params, callback) => {
 
 const typeDefs = `
   type Query {
-people: [Person!]!
-person(_id: Int!): Person!
-films: [Film!]!
-film(_id: Int!): Film!
-planets: [Planet!]!
-planet(_id: Int!): Planet!
-species: [Species!]!
-species(_id: Int!): Species!
-vessels: [Vessel!]!
-vessel(_id: Int!): Vessel!
-starshipSpecs: [StarshipSpec!]!
-starshipSpec(_id: Int!): StarshipSpec!
+    people: [Person!]!
+    person(_id: Int!): Person!
+    films: [Film!]!
+    film(_id: Int!): Film!
+    planets: [Planet!]!
+    planet(_id: Int!): Planet!
+    species: [Species!]!
+    species(_id: Int!): Species!
+    vessels: [Vessel!]!
+    vessel(_id: Int!): Vessel!
+    starshipSpecs: [StarshipSpec!]!
+    starshipSpec(_id: Int!): StarshipSpec!
   }
 
   type Mutation {
-    createperson (
+    createPerson (
       gender: String,
       species_id: Int,
       homeworld_id: Int,
@@ -42,8 +42,8 @@ starshipSpec(_id: Int!): StarshipSpec!
       name: String!,
       birth_year: String,
     ): Person!
-;
-    updateperson(
+
+    updatePerson(
       gender: String,
       species_id: Int,
       homeworld_id: Int,
@@ -57,9 +57,9 @@ starshipSpec(_id: Int!): StarshipSpec!
       birth_year: String,
     ): Person!
 
-    deleteperson(_id: ID!): Person!
+    deletePerson(_id: ID!): Person!
 
-    createfilm (
+    createFilm (
       director: String!,
       opening_crawl: String!,
       episode_id: Int!,
@@ -67,8 +67,8 @@ starshipSpec(_id: Int!): StarshipSpec!
       release_date: String!,
       producer: String!,
     ): Film!
-;
-    updatefilm(
+
+    updateFilm(
       director: String!,
       opening_crawl: String!,
       episode_id: Int!,
@@ -78,9 +78,9 @@ starshipSpec(_id: Int!): StarshipSpec!
       producer: String!,
     ): Film!
 
-    deletefilm(_id: ID!): Film!
+    deleteFilm(_id: ID!): Film!
 
-    createplanet (
+    createPlanet (
       orbital_period: Int,
       climate: String,
       gravity: String,
@@ -91,8 +91,8 @@ starshipSpec(_id: Int!): StarshipSpec!
       rotation_period: Int,
       diameter: Int,
     ): Planet!
-;
-    updateplanet(
+
+    updatePlanet(
       orbital_period: Int,
       climate: String,
       gravity: String,
@@ -105,9 +105,9 @@ starshipSpec(_id: Int!): StarshipSpec!
       diameter: Int,
     ): Planet!
 
-    deleteplanet(_id: ID!): Planet!
+    deletePlanet(_id: ID!): Planet!
 
-    createspecies (
+    createSpecies (
       hair_colors: String,
       name: String!,
       classification: String,
@@ -118,8 +118,8 @@ starshipSpec(_id: Int!): StarshipSpec!
       language: String,
       homeworld_id: Int,
     ): Species!
-;
-    updatespecies(
+
+    updateSpecies(
       hair_colors: String,
       name: String!,
       classification: String,
@@ -132,9 +132,9 @@ starshipSpec(_id: Int!): StarshipSpec!
       _id: Int!,
     ): Species!
 
-    deletespecies(_id: ID!): Species!
+    deleteSpecies(_id: ID!): Species!
 
-    createvessel (
+    createVessel (
       cost_in_credits: Int,
       length: String,
       vessel_type: String!,
@@ -148,8 +148,8 @@ starshipSpec(_id: Int!): StarshipSpec!
       cargo_capacity: String,
       consumables: String,
     ): Vessel!
-;
-    updatevessel(
+
+    updateVessel(
       cost_in_credits: Int,
       length: String,
       vessel_type: String!,
@@ -165,22 +165,22 @@ starshipSpec(_id: Int!): StarshipSpec!
       _id: Int!,
     ): Vessel!
 
-    deletevessel(_id: ID!): Vessel!
+    deleteVessel(_id: ID!): Vessel!
 
-    createstarshipSpec (
+    createStarshipSpec (
       vessel_id: Int!,
       MGLT: String,
       hyperdrive_rating: String,
     ): StarshipSpec!
-;
-    updatestarshipSpec(
+
+    updateStarshipSpec(
       _id: Int!,
       vessel_id: Int!,
       MGLT: String,
       hyperdrive_rating: String,
     ): StarshipSpec!
 
-    deletestarshipSpec(_id: ID!): StarshipSpec!
+    deleteStarshipSpec(_id: ID!): StarshipSpec!
   }
 
   type Person {
