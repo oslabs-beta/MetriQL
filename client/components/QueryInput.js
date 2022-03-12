@@ -49,7 +49,7 @@ function QueryInput() {
       body: JSON.stringify({query:`${queryInput}`, variables: {} })
     };
    const start = performance.now();
-    await fetch("http://localhost:3001/schema", requestOptions) //notsure if that's the right link lol but it works for testing
+    await fetch("http://localhost:3001/schema", requestOptions) //create toggle between /schema and schema-user
       .then((res) => res.json());
    const end = performance.now(); 
 
