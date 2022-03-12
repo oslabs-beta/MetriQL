@@ -274,7 +274,8 @@ starshipSpec(_id: Int!): StarshipSpec!
 
 
 
-  const resolvers = {/n    Query: {      
+  const resolvers = {
+    Query: {      
 
         person: (parent, args) => {
           const query = 'SELECT * FROM people WHERE _id = $1';

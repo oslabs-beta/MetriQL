@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //import plug-ins from chart.js 
 import {
   Chart as ChartJS,
@@ -78,14 +77,6 @@ function Metric() {
       <div>
           <h3>Metric logic here</h3>
             <Line height={20} width={40} options={options} data={data}/>
-=======
-import classes from '../../styles/Metric.module.css'
-
-function Metric() {
-    return (
-      <div className={classes.metric}>
-          Metric logic here
->>>>>>> 2b0cbecac7e9db84fa74de535c351b17b7335eb2
       </div>
     )
   }

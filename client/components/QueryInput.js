@@ -28,25 +28,44 @@ const samplePlaceholder = `{
 }`
 
 function QueryInput() {
-  const [query, setQuery] = useState(samplePlaceholder);
-  const {codeDispatch} = useContext(QueryContext)
+  //change query to queryInput to not use graphql keyword 
+  const [queryInput, setQuery] = useState(samplePlaceholder);
+  const {codeDispatch} = useContext(QueryContext);
 
-  const queryChangeHandler = (query) => {
-    setQuery(query);
+  const queryChangeHandler = (queryInput) => {
+    setQuery(queryInput);
   };
 
   const resetHandler = () => {
     setQuery();
   }
 
-  const submitHandler = () => {
+  const [speedArr, setSpeedArr] = useState([]);
+
+  const submitHandler = async () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({query:`${queryInput}`, variables: {} })
+    };
+   const start = performance.now();
+    await fetch("http://localhost:3001/schema", requestOptions) //notsure if that's the right link lol but it works for testing
+      .then((res) => res.json());
+   const end = performance.now(); 
+
+   const time = end - start;
+
+   setSpeedArr([...speedArr, time])
+   console.log(speedArr) // how to "prop drill" this state from child to child component, to use in metrics
+  
     codeDispatch({
       type: 'UPDATE_RESULT',
       payload: {
-        result: query
+        result: queryInput //or should it json'd outcome from fetch call??
       }
     })
   }
+  
 
   const [open, setOpen] = useState(false);
 
@@ -95,7 +114,7 @@ function QueryInput() {
 
       <CodeMirror
       className={classes.input}
-        value={query}
+        value={queryInput}
         height='50rem'
         theme='dark'
         extensions={[javascript({ jsx: true })]}
