@@ -3,16 +3,7 @@
 import { LOGIN, LOGOUT } from './global-actions'
 
 export const initialCodeState = {
-	result: `{
-	data: {
-		empireHero: {
-			name: "Luke Skywalker"
-		},
-		jediHero: {
-			name: "R2-D2"
-		}
-	}
-}`
+	result: ''
 };
 
 export const initialSpeedState = {
