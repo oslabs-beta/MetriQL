@@ -15,6 +15,11 @@ export const initialCodeState = {
 }`
 };
 
+export const initialSpeedState = {
+	// speed: [1, 2, 3, 4],
+	speed: [],
+}
+
 const globalReducer = (state, action) => {
 	switch (action.type) {
 		case LOGIN:
@@ -31,6 +36,7 @@ const globalReducer = (state, action) => {
 				username: '',
 				password: ''
 			}
+		
 		default:
 			return state;
 	}
@@ -45,5 +51,16 @@ export const codeReducer = (state, action) => {
 			};
 	}
 };
+
+export const speedReducer = (state, action) => {
+	switch(action.type) {
+		case 'UPDATE_SPEED':
+			return {
+				speed: action.payload.speed
+			}
+	}
+}
+
+
 
 export default globalReducer;

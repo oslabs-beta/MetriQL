@@ -1,6 +1,6 @@
 import { useContext, useReducer } from 'react';
-import { SchemaContext, QueryContext } from '../client/context/global-context';
-import { initialCodeState, codeReducer } from '../client/context/global-reducer';
+import { SchemaContext, QueryContext, GraphContext } from '../client/context/global-context';
+import { initialCodeState, codeReducer, initialSpeedState, speedReducer } from '../client/context/global-reducer';
 
 import Schema from '../client/components/Schema';
 import Metric from '../client/components/Metric';
@@ -12,7 +12,9 @@ import classes from '../styles/Main.module.css'
 
 function MainPage() {
 
-  const [codeState, codeDispatch] = useReducer(codeReducer, initialCodeState)
+  const [codeState, codeDispatch] = useReducer(codeReducer, initialCodeState);
+
+  const [speedState, speedUpdate] = useReducer(speedReducer, initialSpeedState);
 
   return (
     <div className={classes.main}>
@@ -20,12 +22,21 @@ function MainPage() {
       <div className={classes.body}>
         <QueryContext.Provider
           value={{
-            codeDispatch
+            codeDispatch,
+            speedUpdate, 
+            speedState
           }}>
           <QueryInput />
         </QueryContext.Provider>
+
         <div className={classes.results}>
+          <GraphContext.Provider
+            value={{
+              speedState
+            }}>
           <Metric />
+          </GraphContext.Provider>
+
           <SchemaContext.Provider
             value={{
               codeState,
