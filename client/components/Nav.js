@@ -6,24 +6,24 @@ import Link from 'next/link'
 
 function Nav() {
 
-    const { state, login, logout } = useContext(GlobalContext);
-    const { dispatch } = useContext(GlobalDispatch);
+    // const { state, login, logout } = useContext(GlobalContext);
+    // const { dispatch } = useContext(GlobalDispatch);
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    // const [username, setUsername] = useState('');
+    // const [password, setPassword] = useState('');
 
-    function onChangeHandler(e) {
-        e.preventDefault;
-        e.target.name === 'username' ? setUsername(e.target.value) : setPassword(e.target.value);
-    }
+    // function onChangeHandler(e) {
+    //     e.preventDefault;
+    //     e.target.name === 'username' ? setUsername(e.target.value) : setPassword(e.target.value);
+    // }
 
-    function onSubmitHandler(e) {
-        e.preventDefault;
-        login(username, password);
-    }
+    // function onSubmitHandler(e) {
+    //     e.preventDefault;
+    //     login(username, password);
+    // }
 
-    console.log('state ', state);
-    console.log('dispatch ', dispatch);
+    // console.log('state ', state);
+    // console.log('dispatch ', dispatch);
 
 
     return (
@@ -34,15 +34,12 @@ function Nav() {
                         <Link href='/'>Home</Link>
                     </li>
                     <li>
-                        <Link href='/about'>About</Link>
-                    </li>
-                    <li>
                         <Link href='/main'>Tool</Link>
                     </li>
                 </ul>
             </nav>
 
-            {
+            {/* {
                 state.isLoggedIn ?
                     <button onClick={() => logout()}>Log Out</button> :
                     <form>
@@ -50,7 +47,7 @@ function Nav() {
                         <input type='text' name='password' placeholder='password' onChange={onChangeHandler}></input>
                         <button type='button' onClick={onSubmitHandler}>Log In</button>
                     </form>
-            }
+            } */}
         </>
     )
 }
