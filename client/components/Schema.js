@@ -14,7 +14,7 @@ function Schema({schema}) {
   }
 
   const types = schema.types;
-  const resolvers = schema.resolvers
+  const resolvers = schema.resolvers;
   // const clickHandler = async () => {
   //   try {
   //       const result = await fetch("http://localhost:3001/schema")

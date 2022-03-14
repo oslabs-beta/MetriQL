@@ -1,18 +1,19 @@
 import React, { useContext } from 'react';
 import { URLContext } from '../context/global-context';
-
-// import CrytoJS from 'cryto-js';
-// require('dotenv').config();
+import { secret } from '../../server/generator/testPSQL';
+import cryptoJs from 'crypto-js';
 
 const URILink = () => {
 
   const { urlState, urlDispatch } = useContext(URLContext);
 
+  const url = cryptoJs.AES.encrypt(urlState.url, secret).toString();
+
   const submitHandler = async (e) => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ uri: urlState.url })
+      body: JSON.stringify({ uri: url })
     };
     const result = await fetch("http://localhost:3001/schema", requestOptions);
     const jsonData = await result.json();
