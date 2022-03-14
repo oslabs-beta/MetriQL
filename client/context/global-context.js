@@ -11,4 +11,6 @@ export const SchemaContext = createContext();
 
 export const QueryContext = createContext();
 
+export const GraphContext = createContext();
+
 export {GlobalContext, GlobalDispatch};
