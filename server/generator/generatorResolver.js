@@ -1,30 +1,31 @@
 const { singular } = require('pluralize');
 const { pascalCase } = require('pascal-case');
-const { queryHelper, mutationHelper, customHelper } = require('./helper')
+const { resolverFunc } = require('./resolverFunc')
 
 const generateResolver = {};
 
 generateResolver.queries = (tableName, tableData) => {
     const { primaryKey } = tableData;
-    const queryPK = queryHelper.queryPK(tableName, primaryKey);
-    const queryAll = queryHelper.queryAll(tableName);
-    return `\n${queryPK}\n${queryAll}`;
+    const queryPrimaryKey = resolverFunc.queryPrimaryKey(tableName, primaryKey);
+    const queryAll = resolverFunc.queryAll(tableName);
+    console.log('here')
+    return `\n${queryPrimaryKey}\n${queryAll}`;
 }
  
 
 generateResolver.mutations = (tableName, tableData) => {
     const { primaryKey, columns } = tableData;
-    const createMut = mutationHelper.createMut(
+    const createMut = resolverFunc.mutCreate(
         tableName,
         primaryKey,
         columns
     );
-    const updateMut = mutationHelper.updateMut(
+    const updateMut = resolverFunc.mutUpdate(
         tableName,
         primaryKey,
         columns
     );
-    const deleteMut = mutationHelper.deleteMut(
+    const deleteMut = resolverFunc.mutDelete(
         tableName,
         primaryKey
     );
@@ -37,7 +38,7 @@ generateResolver.custom = (tableName, SQLtables) => {
     const queryName = pascalCase(singular(tableName));
     let relationshipTypes = '';
 
-    relationshipTypes += customHelper.determineRelationships(
+    relationshipTypes += resolverFunc.determineRelationships(
         tableName,
         SQLtables
     );

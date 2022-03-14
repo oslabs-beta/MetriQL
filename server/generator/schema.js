@@ -1,6 +1,6 @@
 const generateTypes = require('./generateTypes');
 const generateResolver = require('./generatorResolver')
-const { isReferenceTable } = require('./helper');
+const { isReferenceTable } = require('./resolverFunc');
 
 const schema = {};
 
@@ -34,8 +34,11 @@ schema.resolverGenerator = (SQLtables) => {
         const tableData = SQLtables[tableName]
         const { foreignKeys, columns } = tableData; 
         if (!foreignKeys || !isReferenceTable(foreignKeys, columns)) {
+            console.log('2.1')
             queryResolver += generateResolver.queries(tableName, tableData); 
+            console.log('2.2')
             mutationResolver += generateResolver.mutations(tableName, tableData);
+            console.log('2.3')
             customResolver += generateResolver.custom(tableName, SQLtables);
         }
     }
