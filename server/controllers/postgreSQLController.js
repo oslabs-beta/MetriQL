@@ -1,11 +1,11 @@
 const { Pool } = require("pg");
 const CryptoJS = require("crypto-js");
-require('dotenv').config();
 const fs = require('fs')
 const pgQuery = fs.readFileSync('server/query/tables.sql', 'utf8')
 const schema = require('../generator/schema.js')
 const { schemaImport, schemaExport } = require('./schemaFunc')
 const path = require('path');
+require('dotenv').config();
 
 
 
@@ -20,12 +20,11 @@ const decryptURI = (encryptedUserURI) => {
 const postgreSQLController = {};
 
 postgreSQLController.table = async (req, res, next) => {
+    // let postURI;
 
-    let postURI;
-
-    req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
+    // req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
     // let postURI = req.body.uri;
-    // let postURI = "postgres://hgokvgqx:8y0x9A3vgaIFSSCZMLDieF-LgoWlh_mi@castor.db.elephantsql.com/hgokvgqx"
+    let postURI = "postgres://hgokvgqx:8y0x9A3vgaIFSSCZMLDieF-LgoWlh_mi@castor.db.elephantsql.com/hgokvgqx"
     // req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
     // req.body.uri ? (postURI = (req.body.uri)) : (postURI = PG_URI_STARWARS)
 //post test:"uri" "uri"
