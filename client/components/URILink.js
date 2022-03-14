@@ -3,7 +3,10 @@ import { URLContext } from '../context/global-context';
 import { secret } from '../../server/generator/testPSQL';
 import cryptoJs from 'crypto-js';
 
-const URILink = () => {
+import Button from '@mui/material/Button';
+import DialogTitle from '@mui/material/DialogTitle';
+
+const URILink = ({closeHandler}) => {
 
   const { urlState, urlDispatch } = useContext(URLContext);
 
@@ -24,6 +27,7 @@ const URILink = () => {
         resolvers: jsonData.schema.resolvers
       }
     });
+    return closeHandler();
   };
 
   const sampleHandler = async (e) => {
@@ -40,6 +44,7 @@ const URILink = () => {
         resolvers: jsonData.schema.resolvers
       }
     });
+    return closeHandler();
   };
 
   const urlChangeHandler = (value) => {
@@ -53,16 +58,21 @@ const URILink = () => {
 
   return (
     <div>
-      <input
+      <DialogTitle>Submit URI</DialogTitle>
+        <input
+        label="DatabaseLink"
         value={urlState.url}
         type='text'
         placeholder='Your Database Link'
         onChange={(event) => urlChangeHandler(event.target.value)}
-      />
-      <button onClick={submitHandler}>Submit</button> 
-      <button onClick={sampleHandler}>Use Sample</button>
+      ></input>
+      <br/>
+      <Button variant="contained" onClick={submitHandler}>Submit</Button> 
+      <br/>
+      <br/>
+      <Button variant="contained" onClick={sampleHandler}>Use Sample</Button>
     </div>
   )
-}
+};
 
 export default URILink;
