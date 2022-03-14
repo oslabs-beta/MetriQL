@@ -13,4 +13,6 @@ export const QueryContext = createContext();
 
 export const GraphContext = createContext();
 
+export const URLContext = createContext();
+
 export {GlobalContext, GlobalDispatch};
