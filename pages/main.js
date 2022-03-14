@@ -34,7 +34,8 @@ function MainPage() {
           value={{
             codeDispatch,
             speedUpdate,
-            speedState
+            speedState,
+            urlState
           }}>
           <QueryInput />
         </QueryContext.Provider>

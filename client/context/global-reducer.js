@@ -21,7 +21,9 @@ export const initialSpeedState = {
 }
 
 export const initialURLState = {
-	url: ''
+	url: '',
+	types: '',
+	resolvers: ''
 }
 
 const globalReducer = (state, action) => {
@@ -49,7 +51,6 @@ const globalReducer = (state, action) => {
 export const codeReducer = (state, action) => {
 	switch (action.type) {
 		case 'UPDATE_RESULT':
-			console.log('reducer', action.payload);
 			return {
 				result: action.payload.result
 			};
@@ -69,9 +70,16 @@ export const urlReducer = (state, action) => {
 	switch (action.type) {
 		case 'UPDATE_URL':
 			return {
+				...state,
 				url: action.payload.url
 	}
-	}
+		case 'UPDATE_SCHEMA':
+			return {
+				...state,
+				types: action.payload.types,
+				resolvers: action.payload.resolvers
+			}
+		}
 }
 
 

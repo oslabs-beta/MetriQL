@@ -34,7 +34,8 @@ const samplePlaceholder = `query {
 function QueryInput() {
   //change query to queryInput to not use graphql keyword 
   const [queryInput, setQuery] = useState(samplePlaceholder);
-  const {codeDispatch, speedUpdate, speedState} = useContext(QueryContext);
+  const {codeDispatch, speedUpdate, speedState, urlState} = useContext(QueryContext);
+
 
   const queryChangeHandler = (queryInput) => {
     setQuery(queryInput);
@@ -73,7 +74,7 @@ function QueryInput() {
     codeDispatch({
       type: 'UPDATE_RESULT',
       payload: {
-        result: cleanResponse //or should it json'd outcome from fetch call??
+        result: cleanResponse 
       }
     })
   }
@@ -106,7 +107,7 @@ function QueryInput() {
           aria-labelledby="customized-dialog-title"
           open={open}
         >
-          <Schema />
+          <Schema schema = {urlState}/>
         </BootstrapDialog>
 
         <div >

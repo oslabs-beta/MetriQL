@@ -19,12 +19,12 @@ const decryptURI = (encryptedUserURI) => {
 
 const postgreSQLController = {};
 
-postgreSQLController.table = async (req, res, next) => {
-    // let postURI;
 
-    // req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
+postgreSQLController.table = async (req, res, next) => {
+    let postURI;
+// postURI = decryptURI(req.body.uri)
+    req.body.uri ? (postURI = req.body.uri) : (postURI = PG_URI_STARWARS)
     // let postURI = req.body.uri;
-    let postURI = "postgres://hgokvgqx:8y0x9A3vgaIFSSCZMLDieF-LgoWlh_mi@castor.db.elephantsql.com/hgokvgqx"
     // req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
     // req.body.uri ? (postURI = (req.body.uri)) : (postURI = PG_URI_STARWARS)
 //post test:"uri" "uri"
@@ -59,7 +59,6 @@ postgreSQLController.schemaGenerator =  (req, res, next) => {
 }
 
 postgreSQLController.writeSchemaToFile = (req, res, next) => {
-    console.log('in write');
     try {
         console.log('111')
         const { URI } = res.locals;
