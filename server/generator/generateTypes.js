@@ -10,6 +10,7 @@ generateTypes.queries = (tableName, tableData) => {
   const tableNameSingular = singular(tableName);
   const primaryKeyType = typesFunc.typeSet(columns[primaryKey].dataType);
   let byID = toCamelCase(tableNameSingular);
+  if (tableNameSingular === tableName) byID += 'ByID'
 
   return (
     `    ${toCamelCase(tableName)}: [${pascalCase(tableNameSingular)}!]!\n` + 
