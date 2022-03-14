@@ -11,7 +11,7 @@ const GlobalState = ({ children }) => {
     const initialState = {
         isLoggedIn: false,
         username: '',
-        password: ''
+        password: '',
     }
 
     // useReducer takes our reducer function and the initial state, and returns the new state and a dispatch function
