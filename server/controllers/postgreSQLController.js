@@ -4,7 +4,7 @@ require('dotenv').config();
 const fs = require('fs')
 const pgQuery = fs.readFileSync('server/query/tables.sql', 'utf8')
 const schema = require('../generator/schema.js')
-const { schemaImport, schemaExport } = require('../generator/helper')
+const { schemaImport, schemaExport } = require('./schemaFunc')
 const path = require('path');
 
 
@@ -15,17 +15,17 @@ const decryptURI = (encryptedUserURI) => {
     const data = CryptoJS.AES.decrypt(encryptedUserURI, process.env.SECRETKEY);
     const decryptedURI = data.toString(CryptoJS.enc.Utf8);
     return decryptedURI;
-}
+};
 
 const postgreSQLController = {};
 
 postgreSQLController.table = async (req, res, next) => {
 
-    // let postURI;
+    let postURI;
 
-    // req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
+    req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
     // let postURI = req.body.uri;
-    let postURI = "postgres://hgokvgqx:8y0x9A3vgaIFSSCZMLDieF-LgoWlh_mi@castor.db.elephantsql.com/hgokvgqx"
+    // let postURI = "postgres://hgokvgqx:8y0x9A3vgaIFSSCZMLDieF-LgoWlh_mi@castor.db.elephantsql.com/hgokvgqx"
     // req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
     // req.body.uri ? (postURI = (req.body.uri)) : (postURI = PG_URI_STARWARS)
 //post test:"uri" "uri"
