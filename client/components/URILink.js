@@ -69,8 +69,9 @@ const URILink = ({closeHandler}) => {
   return (
     <div className = {classes.modal}>
       <Box 
+        className='w-screen'
       textAlign='center'
-      style={{width: '40vw', height: '26vw'}}
+      // style={{width: '40vw', height: '26vw'}}
       >
       <DialogTitle>Submit URI</DialogTitle>
         <TextField
