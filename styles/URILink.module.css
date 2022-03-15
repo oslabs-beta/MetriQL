@@ -1,0 +1,19 @@
+.modal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.InputURI {
+    width: 90%;
+};
+
+/* .box {
+    display: flex;
+    justify-content: center;
+} */
+
+/* .sample {
+    display: flex;
+    justify-content: center;
+} */
