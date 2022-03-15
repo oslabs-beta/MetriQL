@@ -3,21 +3,18 @@
 import { LOGIN, LOGOUT } from './global-actions'
 
 export const initialCodeState = {
-	result:`{
-	data: {
-		empireHero: {
-			name: "Luke Skywalker"
-		},
-		jediHero: {
-			name: "R2-D2"
-		}
-	}
-}`
+	result: ''
 };
 
 export const initialSpeedState = {
 	// speed: [1, 2, 3, 4],
 	speed: [],
+}
+
+export const initialURLState = {
+	url: '',
+	types: '',
+	resolvers: ''
 }
 
 const globalReducer = (state, action) => {
@@ -36,7 +33,7 @@ const globalReducer = (state, action) => {
 				username: '',
 				password: ''
 			}
-		
+
 		default:
 			return state;
 	}
@@ -45,7 +42,6 @@ const globalReducer = (state, action) => {
 export const codeReducer = (state, action) => {
 	switch (action.type) {
 		case 'UPDATE_RESULT':
-			console.log('reducer',action.payload);
 			return {
 				result: action.payload.result
 			};
@@ -53,7 +49,7 @@ export const codeReducer = (state, action) => {
 };
 
 export const speedReducer = (state, action) => {
-	switch(action.type) {
+	switch (action.type) {
 		case 'UPDATE_SPEED':
 			return {
 				speed: action.payload.speed
@@ -61,6 +57,21 @@ export const speedReducer = (state, action) => {
 	}
 }
 
+export const urlReducer = (state, action) => {
+	switch (action.type) {
+		case 'UPDATE_URL':
+			return {
+				...state,
+				url: action.payload.url
+	}
+		case 'UPDATE_SCHEMA':
+			return {
+				...state,
+				types: action.payload.types,
+				resolvers: action.payload.resolvers
+			}
+		}
+}
 
 
 export default globalReducer;
