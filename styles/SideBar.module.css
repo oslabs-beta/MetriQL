@@ -58,6 +58,7 @@
 }
 
 .navText a:hover{
+  cursor: pointer;
   background-color: #1a83ff;
 }
 

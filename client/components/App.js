@@ -1,6 +1,5 @@
 import Nav from './Nav'
 import Meta from './Meta'
-import SideBar from './SideBar'
 // import styles from '../../styles/App.module.css';
 
 // here we import GlobalState and wrap the entire App in it to provide our context everywhere...
@@ -12,7 +11,6 @@ function App({ children }) {
     <>
     {/* <Nav /> */}
     <Meta />
-    <SideBar />
     <div>
         <main>
             {children}
