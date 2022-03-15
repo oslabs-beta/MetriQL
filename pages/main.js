@@ -2,6 +2,7 @@ import { useContext, useReducer, useState } from 'react';
 import { SchemaContext, QueryContext, GraphContext, URLContext } from '../client/context/global-context';
 import { initialCodeState, codeReducer, initialSpeedState, speedReducer, initialURLState, urlReducer } from '../client/context/global-reducer';
 
+import SideBar from '../client/components/SideBar';
 import Metric from '../client/components/Metric';
 import Meta from '../client/components/Meta';
 import QueryInput from '../client/components/QueryInput';
@@ -10,8 +11,6 @@ import URILink from '../client/components/URILink';
 import Dialog from '@mui/material/Dialog';
 
 import classes from '../styles/Main.module.css'
-
-
 
 
 function MainPage() {
@@ -53,6 +52,7 @@ function MainPage() {
             speedState,
             urlState
           }}>
+          <SideBar openDB={handleClickOpen} />
           <QueryInput />
         </QueryContext.Provider>
 
