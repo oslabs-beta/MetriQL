@@ -40,7 +40,7 @@ function MainPage() {
           urlState,
           urlDispatch
         }}>
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog open={open}>
           <URILink closeHandler={handleClose}/>
         </Dialog>
       </URLContext.Provider>

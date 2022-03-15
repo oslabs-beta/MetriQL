@@ -2,9 +2,19 @@ import React, { useContext } from 'react';
 import { URLContext } from '../context/global-context';
 import { secret } from '../../server/generator/testPSQL';
 import cryptoJs from 'crypto-js';
+import classes from '../../styles/URILink.module.css'
 
 import Button from '@mui/material/Button';
 import DialogTitle from '@mui/material/DialogTitle';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+
+
 
 const URILink = ({closeHandler}) => {
 
@@ -57,20 +67,30 @@ const URILink = ({closeHandler}) => {
   }
 
   return (
-    <div>
+    <div className = {classes.modal}>
+      <Box 
+      textAlign='center'
+      style={{width: '40vw', height: '26vw'}}
+      >
       <DialogTitle>Submit URI</DialogTitle>
-        <input
-        label="DatabaseLink"
+        <TextField
+        label="Database Link"
         value={urlState.url}
         type='text'
         placeholder='Your Database Link'
         onChange={(event) => urlChangeHandler(event.target.value)}
-      ></input>
+        className={classes.InputURI}
+      ></TextField>
       <br/>
-      <Button variant="contained" onClick={submitHandler}>Submit</Button> 
+      <br />
+      <Button variant="contained" onClick={submitHandler} >Submit</Button> 
       <br/>
       <br/>
-      <Button variant="contained" onClick={sampleHandler}>Use Sample</Button>
+      <hr style={{width: '95%'}}/>
+      <br/>
+      <br />
+      <Button variant="contained" onClick={sampleHandler} >Use Sample</Button>
+      </Box>
     </div>
   )
 };
