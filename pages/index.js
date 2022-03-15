@@ -5,9 +5,8 @@ function HomePage() {
     return (
     <div>
       < Nav />
-      <h1>Welcome to MetriQL</h1>
+        <h1 className="text-3xl font-bold underline">Welcome to MetriQL</h1>
     </div>
- 
     )
   }
   
