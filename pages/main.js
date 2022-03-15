@@ -2,6 +2,7 @@ import { useContext, useReducer, useState } from 'react';
 import { SchemaContext, QueryContext, GraphContext, URLContext } from '../client/context/global-context';
 import { initialCodeState, codeReducer, initialSpeedState, speedReducer, initialURLState, urlReducer } from '../client/context/global-reducer';
 
+import Header from '../client/components/Header';
 import SideBar from '../client/components/SideBar';
 import Metric from '../client/components/Metric';
 import Meta from '../client/components/Meta';
@@ -33,44 +34,47 @@ function MainPage() {
 
 
   return (
-    <div className={classes.main}>
-      <Meta title='Work Space' />
-      <URLContext.Provider
-        value={{
-          urlState,
-          urlDispatch
-        }}>
-        <Dialog open={open}>
-          <URILink closeHandler={handleClose}/>
-        </Dialog>
-      </URLContext.Provider>
-      <div className={classes.body}>
-        <QueryContext.Provider
+    <div>
+      <Header />
+      <div className={classes.main}>
+        <Meta title='Work Space' />
+        <URLContext.Provider
           value={{
-            codeDispatch,
-            speedUpdate,
-            speedState,
-            urlState
+            urlState,
+            urlDispatch
           }}>
-          <SideBar openDB={handleClickOpen} />
-          <QueryInput />
-        </QueryContext.Provider>
-
-        <div className={classes.results}>
-          <GraphContext.Provider
+          <Dialog open={open}>
+            <URILink closeHandler={handleClose} />
+          </Dialog>
+        </URLContext.Provider>
+        <div className={classes.body}>
+          <QueryContext.Provider
             value={{
-              speedState
+              codeDispatch,
+              speedUpdate,
+              speedState,
+              urlState
             }}>
-            <Metric />
-          </GraphContext.Provider>
+            <SideBar openDB={handleClickOpen} />
+            <QueryInput />
+          </QueryContext.Provider>
 
-          <SchemaContext.Provider
-            value={{
-              codeState,
-              codeDispatch
-            }}>
-            <Result />
-          </SchemaContext.Provider>
+          <div className={classes.results}>
+            <GraphContext.Provider
+              value={{
+                speedState
+              }}>
+              <Metric />
+            </GraphContext.Provider>
+
+            <SchemaContext.Provider
+              value={{
+                codeState,
+                codeDispatch
+              }}>
+              <Result />
+            </SchemaContext.Provider>
+          </div>
         </div>
       </div>
     </div>
