@@ -4,17 +4,8 @@ import { secret } from '../../server/generator/testPSQL';
 import cryptoJs from 'crypto-js';
 import classes from '../../styles/URILink.module.css'
 
-import Button from '@mui/material/Button';
-import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-
-
 
 const URILink = ({ closeHandler }) => {
 
