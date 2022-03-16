@@ -54,7 +54,6 @@ function SideBar({ openDB }) {
 
   return (
     <div>
-      <FaIcons.FaBars className={classes.sidebarBar} onClick={openSidebar} />
       <nav className={showSidebar ? classes.sidebarActive : classes.sidebar}>
         <ul className={classes.sideMenu} onClick={closeSidebar} >
           <li className={classes.sidebarToggle}>
@@ -85,6 +84,7 @@ function SideBar({ openDB }) {
           </li>
         </ul>
       </nav>
+      <FaIcons.FaBars className={classes.sidebarBar} onClick={openSidebar}/>
     </div>
   )
 }
