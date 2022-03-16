@@ -25,7 +25,7 @@ const SecondFeature = (props) => {
                 {/* Subheading */}
                 <div class='font-bold text-primary-500 text-center md:text-left'> MetricQL</div>
                   {/* heading */}
-                <div class='font-black tracking-wide text-center mt-4 text-left text-3xl sm:text-4xl lg:text-5xl text-blue-900 text-center md:text-left leading-tight'> Visualize your MetriQL stuff here!</div>
+                <div class='font-black tracking-wide text-center mt-4 text-left text-3xl sm:text-4xl lg:text-5xl text-blue-900 text-center md:text-left leading-tight'> Visualize your MetricQL stuff here!</div>
                 {/* Description */}
                  <div class='mt-4 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100'> MetricQL is so cool and amazing because we all worked on it and copied and pasted hehehehe</div>
                  {/* primarybutton */}
