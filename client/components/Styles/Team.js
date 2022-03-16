@@ -10,10 +10,10 @@ const Team = (props) => {
             <div class="bg-gradient-to-br from-gray-500 to-gray-800 max-w-10xl mx-auto py-28">
                 <div class="container flex justify-center mx-auto pt-12">
                     <div>
-                        <h1 class="xl:text-4xl text-3xl text-center text-white font-bold mx-auto">Team</h1>
+                        <h1 class="xl:text-4xl text-3xl text-center text-white font-bold mx-auto">Meet the Team</h1>
                     </div>
                 </div>
-                {/* <div class = "flex items-center justify-center shrink flex-wrap">
+                <div class = "flex items-center justify-center shrink flex-wrap">
                     <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs m-8 bg-gray-200">
                         <img src="./assets/circle.png" alt="Alfonso Zamarripa" width="100" height="100" className="mb-3 w-32 h-32 rounded-full mx-auto"></img>
                         <h1 class="text-lg text-gray-700"> Alfonso Zamarripa </h1>
@@ -79,7 +79,7 @@ const Team = (props) => {
                             </Link>
                         </div>
                     </div>
-                </div> */}
+                </div>
             </div>
         </div>
     );
