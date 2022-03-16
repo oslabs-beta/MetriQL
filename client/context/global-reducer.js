@@ -1,6 +1,7 @@
 // here we create the reducer function, like in redux
 // we import our actions as variables to avoid bugs from mispelling
-import { LOGIN, LOGOUT } from './global-actions'
+import { LOGIN, LOGOUT } from './global-actions';
+import url from '../../server/generator/testPSQL';
 
 export const initialCodeState = {
 	result: ''
@@ -12,6 +13,7 @@ export const initialSpeedState = {
 }
 
 export const initialURLState = {
+	// url: url.URI,
 	url: '',
 	types: '',
 	resolvers: ''

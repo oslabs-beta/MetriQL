@@ -1,10 +1,14 @@
 const { makeExecutableSchema } = require('graphql-tools');
 const { Pool } = require('pg');
 <<<<<<< HEAD
+<<<<<<< HEAD
 const PG_URI = 'postgres://yxcpsnja:HHJUW2hbwYbmSTrvKVXLaz3VO0YRDxX1@castor.db.elephantsql.com/yxcpsnja';
 =======
 const PG_URI = 'postgres://hgokvgqx:8y0x9A3vgaIFSSCZMLDieF-LgoWlh_mi@castor.db.elephantsql.com/hgokvgqx';
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+const PG_URI = 'postgres://yxcpsnja:HHJUW2hbwYbmSTrvKVXLaz3VO0YRDxX1@castor.db.elephantsql.com/yxcpsnja';
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
 
 const pool = new Pool({
   connectionString: PG_URI
@@ -32,19 +36,28 @@ const typeDefs = `
     starshipSpecs: [StarshipSpec!]!
     starshipSpec(_id: Int!): StarshipSpec!
 <<<<<<< HEAD
+<<<<<<< HEAD
     student: [Student!]!
     studentByID(_id: Int!): Student!
 =======
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+    student: [Student!]!
+    studentByID(_id: Int!): Student!
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
   }
 
   type Mutation {
     createPerson (
 <<<<<<< HEAD
+<<<<<<< HEAD
       name: String!,
 =======
       gender: String,
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+      name: String!,
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       species_id: Int,
       homeworld_id: Int,
       height: Int,
@@ -53,6 +66,7 @@ const typeDefs = `
       skin_color: String,
       eye_color: String,
 <<<<<<< HEAD
+<<<<<<< HEAD
       birth_year: String,
       gender: String,
     ): Person!
@@ -61,12 +75,19 @@ const typeDefs = `
       name: String!,
 =======
       name: String!,
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       birth_year: String,
+      gender: String,
     ): Person!
 
     updatePerson(
+<<<<<<< HEAD
       gender: String,
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+      name: String!,
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       species_id: Int,
       homeworld_id: Int,
       height: Int,
@@ -76,12 +97,17 @@ const typeDefs = `
       skin_color: String,
       eye_color: String,
 <<<<<<< HEAD
+<<<<<<< HEAD
       birth_year: String,
       gender: String,
 =======
       name: String!,
       birth_year: String,
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+      birth_year: String,
+      gender: String,
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     ): Person!
 
     deletePerson(_id: ID!): Person!
@@ -136,14 +162,19 @@ const typeDefs = `
 
     createSpecies (
 <<<<<<< HEAD
+<<<<<<< HEAD
       eye_colors: String,
 =======
       hair_colors: String,
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+      eye_colors: String,
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       name: String!,
       classification: String,
       average_height: String,
       average_lifespan: String,
+<<<<<<< HEAD
 <<<<<<< HEAD
       hair_colors: String,
       skin_colors: String,
@@ -151,20 +182,29 @@ const typeDefs = `
       skin_colors: String,
       eye_colors: String,
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+      hair_colors: String,
+      skin_colors: String,
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       language: String,
       homeworld_id: Int,
     ): Species!
 
     updateSpecies(
 <<<<<<< HEAD
+<<<<<<< HEAD
       eye_colors: String,
 =======
       hair_colors: String,
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+      eye_colors: String,
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       name: String!,
       classification: String,
       average_height: String,
       average_lifespan: String,
+<<<<<<< HEAD
 <<<<<<< HEAD
       hair_colors: String,
       skin_colors: String,
@@ -172,18 +212,25 @@ const typeDefs = `
       language: String,
       homeworld_id: Int,
 =======
+=======
+      hair_colors: String,
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       skin_colors: String,
-      eye_colors: String,
+      _id: Int!,
       language: String,
       homeworld_id: Int,
+<<<<<<< HEAD
       _id: Int!,
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     ): Species!
 
     deleteSpecies(_id: ID!): Species!
 
     createVessel (
 <<<<<<< HEAD
+<<<<<<< HEAD
       manufacturer: String,
       name: String!,
       model: String,
@@ -196,16 +243,25 @@ const typeDefs = `
       name: String!,
       vessel_class: String!,
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+      manufacturer: String,
+      name: String!,
+      model: String,
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       max_atmosphering_speed: String,
       crew: Int,
       passengers: Int,
       cargo_capacity: String,
       consumables: String,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       cost_in_credits: Int,
       vessel_class: String!,
       vessel_type: String!,
       length: String,
+<<<<<<< HEAD
     ): Vessel!
 
     updateVessel(
@@ -213,17 +269,19 @@ const typeDefs = `
       name: String!,
       model: String,
 =======
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     ): Vessel!
 
     updateVessel(
-      cost_in_credits: Int,
-      length: String,
-      vessel_type: String!,
-      model: String,
       manufacturer: String,
       name: String!,
+<<<<<<< HEAD
       vessel_class: String!,
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+      model: String,
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       max_atmosphering_speed: String,
       crew: Int,
       passengers: Int,
@@ -231,17 +289,24 @@ const typeDefs = `
       consumables: String,
       _id: Int!,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       cost_in_credits: Int,
       vessel_class: String!,
       vessel_type: String!,
       length: String,
+<<<<<<< HEAD
 =======
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     ): Vessel!
 
     deleteVessel(_id: ID!): Vessel!
 
     createStarshipSpec (
+<<<<<<< HEAD
 <<<<<<< HEAD
       MGLT: String,
       hyperdrive_rating: String,
@@ -273,40 +338,70 @@ const typeDefs = `
     deleteStudent(_id: ID!): Student!
 =======
       vessel_id: Int!,
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
       MGLT: String,
       hyperdrive_rating: String,
+      vessel_id: Int!,
     ): StarshipSpec!
 
     updateStarshipSpec(
-      _id: Int!,
-      vessel_id: Int!,
       MGLT: String,
       hyperdrive_rating: String,
+      vessel_id: Int!,
+      _id: Int!,
     ): StarshipSpec!
 
     deleteStarshipSpec(_id: ID!): StarshipSpec!
+<<<<<<< HEAD
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+
+    createStudent (
+      first_name: String!,
+      age: Int!,
+      last_name: String!,
+    ): Student!
+
+    updateStudent(
+      first_name: String!,
+      _id: Int!,
+      age: Int!,
+      last_name: String!,
+    ): Student!
+
+    deleteStudent(_id: ID!): Student!
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
   }
 
   type Person {
     _id: Int
 <<<<<<< HEAD
+<<<<<<< HEAD
     name: String!
 =======
     gender: String
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+    name: String!
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     height: Int
     mass: String
     hair_color: String
     skin_color: String
     eye_color: String
 <<<<<<< HEAD
+<<<<<<< HEAD
     birth_year: String
     gender: String
 =======
     name: String!
     birth_year: String
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+    birth_year: String
+    gender: String
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     films: [Film]
     vessels: [Vessel]
     species: [Species]
@@ -346,14 +441,19 @@ const typeDefs = `
   type Species {
     _id: Int
 <<<<<<< HEAD
+<<<<<<< HEAD
     eye_colors: String
 =======
     hair_colors: String
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+    eye_colors: String
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     name: String!
     classification: String
     average_height: String
     average_lifespan: String
+<<<<<<< HEAD
 <<<<<<< HEAD
     hair_colors: String
     skin_colors: String
@@ -361,6 +461,10 @@ const typeDefs = `
     skin_colors: String
     eye_colors: String
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+    hair_colors: String
+    skin_colors: String
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     language: String
     people: [Person]
     films: [Film]
@@ -370,6 +474,7 @@ const typeDefs = `
   type Vessel {
     _id: Int
 <<<<<<< HEAD
+<<<<<<< HEAD
     manufacturer: String
     name: String!
     model: String
@@ -382,18 +487,29 @@ const typeDefs = `
     name: String!
     vessel_class: String!
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+    manufacturer: String
+    name: String!
+    model: String
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     max_atmosphering_speed: String
     crew: Int
     passengers: Int
     cargo_capacity: String
     consumables: String
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     cost_in_credits: Int
     vessel_class: String!
     vessel_type: String!
     length: String
+<<<<<<< HEAD
 =======
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     films: [Film]
     people: [Person]
     starshipSpecs: [StarshipSpec]
@@ -407,6 +523,9 @@ const typeDefs = `
  }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
   type Student {
     _id: Int
     first_name: String!
@@ -414,8 +533,11 @@ const typeDefs = `
     last_name: String!
  }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
 `;
 
 
@@ -513,6 +635,9 @@ const typeDefs = `
               .catch(err => new Error(err));
           },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
 
           studentByID: (parent, args) => {
             const query = 'SELECT * FROM student WHERE _id = $1';
@@ -528,13 +653,17 @@ const typeDefs = `
               .then(data => data.rows)
               .catch(err => new Error(err));
           },
+<<<<<<< HEAD
 =======
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     },
 
     Mutation: {
       
           createPerson: (parent, args) => {
+<<<<<<< HEAD
 <<<<<<< HEAD
             const query = 'INSERT INTO people(name, species_id, homeworld_id, height, mass, hair_color, skin_color, eye_color, birth_year, gender) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *';
             const values = [args.name, args.species_id, args.homeworld_id, args.height, args.mass, args.hair_color, args.skin_color, args.eye_color, args.birth_year, args.gender];
@@ -542,6 +671,10 @@ const typeDefs = `
             const query = 'INSERT INTO people(gender, species_id, homeworld_id, height, mass, hair_color, skin_color, eye_color, name, birth_year) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *';
             const values = [args.gender, args.species_id, args.homeworld_id, args.height, args.mass, args.hair_color, args.skin_color, args.eye_color, args.name, args.birth_year];
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+            const query = 'INSERT INTO people(name, species_id, homeworld_id, height, mass, hair_color, skin_color, eye_color, birth_year, gender) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *';
+            const values = [args.name, args.species_id, args.homeworld_id, args.height, args.mass, args.hair_color, args.skin_color, args.eye_color, args.birth_year, args.gender];
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
             return db.query(query, values)
               .then(data => data.rows[0])
               .catch(err => new Error(err));
@@ -549,12 +682,17 @@ const typeDefs = `
 
           updatePerson: (parent, args) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
             const query = 'UPDATE people SET name=$1, species_id=$2, homeworld_id=$3, height=$4, mass=$5, hair_color=$6, skin_color=$7, eye_color=$8, birth_year=$9, gender=$10 WHERE _id = $11 RETURNING *';
             const values = [args.name, args.species_id, args.homeworld_id, args.height, args.mass, args.hair_color, args.skin_color, args.eye_color, args.birth_year, args.gender, args._id];
 =======
             const query = 'UPDATE people SET gender=$1, species_id=$2, homeworld_id=$3, height=$4, mass=$5, hair_color=$6, skin_color=$7, eye_color=$8, name=$9, birth_year=$10 WHERE _id = $11 RETURNING *';
             const values = [args.gender, args.species_id, args.homeworld_id, args.height, args.mass, args.hair_color, args.skin_color, args.eye_color, args.name, args.birth_year, args._id];
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+            const query = 'UPDATE people SET name=$1, species_id=$2, homeworld_id=$3, height=$4, mass=$5, hair_color=$6, skin_color=$7, eye_color=$8, birth_year=$9, gender=$10 WHERE _id = $11 RETURNING *';
+            const values = [args.name, args.species_id, args.homeworld_id, args.height, args.mass, args.hair_color, args.skin_color, args.eye_color, args.birth_year, args.gender, args._id];
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
             return db.query(query, values)
               .then(data => data.rows[0])
               .catch(err => new Error(err));
@@ -618,12 +756,17 @@ const typeDefs = `
 
           createSpecies: (parent, args) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
             const query = 'INSERT INTO species(eye_colors, name, classification, average_height, average_lifespan, hair_colors, skin_colors, language, homeworld_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *';
             const values = [args.eye_colors, args.name, args.classification, args.average_height, args.average_lifespan, args.hair_colors, args.skin_colors, args.language, args.homeworld_id];
 =======
             const query = 'INSERT INTO species(hair_colors, name, classification, average_height, average_lifespan, skin_colors, eye_colors, language, homeworld_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *';
             const values = [args.hair_colors, args.name, args.classification, args.average_height, args.average_lifespan, args.skin_colors, args.eye_colors, args.language, args.homeworld_id];
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+            const query = 'INSERT INTO species(eye_colors, name, classification, average_height, average_lifespan, hair_colors, skin_colors, language, homeworld_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *';
+            const values = [args.eye_colors, args.name, args.classification, args.average_height, args.average_lifespan, args.hair_colors, args.skin_colors, args.language, args.homeworld_id];
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
             return db.query(query, values)
               .then(data => data.rows[0])
               .catch(err => new Error(err));
@@ -631,12 +774,17 @@ const typeDefs = `
 
           updateSpecies: (parent, args) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
             const query = 'UPDATE species SET eye_colors=$1, name=$2, classification=$3, average_height=$4, average_lifespan=$5, hair_colors=$6, skin_colors=$7, language=$8, homeworld_id=$9 WHERE _id = $10 RETURNING *';
             const values = [args.eye_colors, args.name, args.classification, args.average_height, args.average_lifespan, args.hair_colors, args.skin_colors, args.language, args.homeworld_id, args._id];
 =======
             const query = 'UPDATE species SET hair_colors=$1, name=$2, classification=$3, average_height=$4, average_lifespan=$5, skin_colors=$6, eye_colors=$7, language=$8, homeworld_id=$9 WHERE _id = $10 RETURNING *';
             const values = [args.hair_colors, args.name, args.classification, args.average_height, args.average_lifespan, args.skin_colors, args.eye_colors, args.language, args.homeworld_id, args._id];
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+            const query = 'UPDATE species SET eye_colors=$1, name=$2, classification=$3, average_height=$4, average_lifespan=$5, hair_colors=$6, skin_colors=$7, language=$8, homeworld_id=$9 WHERE _id = $10 RETURNING *';
+            const values = [args.eye_colors, args.name, args.classification, args.average_height, args.average_lifespan, args.hair_colors, args.skin_colors, args.language, args.homeworld_id, args._id];
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
             return db.query(query, values)
               .then(data => data.rows[0])
               .catch(err => new Error(err));
@@ -652,12 +800,17 @@ const typeDefs = `
 
           createVessel: (parent, args) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
             const query = 'INSERT INTO vessels(manufacturer, name, model, max_atmosphering_speed, crew, passengers, cargo_capacity, consumables, cost_in_credits, vessel_class, vessel_type, length) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *';
             const values = [args.manufacturer, args.name, args.model, args.max_atmosphering_speed, args.crew, args.passengers, args.cargo_capacity, args.consumables, args.cost_in_credits, args.vessel_class, args.vessel_type, args.length];
 =======
             const query = 'INSERT INTO vessels(cost_in_credits, length, vessel_type, model, manufacturer, name, vessel_class, max_atmosphering_speed, crew, passengers, cargo_capacity, consumables) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *';
             const values = [args.cost_in_credits, args.length, args.vessel_type, args.model, args.manufacturer, args.name, args.vessel_class, args.max_atmosphering_speed, args.crew, args.passengers, args.cargo_capacity, args.consumables];
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+            const query = 'INSERT INTO vessels(manufacturer, name, model, max_atmosphering_speed, crew, passengers, cargo_capacity, consumables, cost_in_credits, vessel_class, vessel_type, length) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *';
+            const values = [args.manufacturer, args.name, args.model, args.max_atmosphering_speed, args.crew, args.passengers, args.cargo_capacity, args.consumables, args.cost_in_credits, args.vessel_class, args.vessel_type, args.length];
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
             return db.query(query, values)
               .then(data => data.rows[0])
               .catch(err => new Error(err));
@@ -665,12 +818,17 @@ const typeDefs = `
 
           updateVessel: (parent, args) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
             const query = 'UPDATE vessels SET manufacturer=$1, name=$2, model=$3, max_atmosphering_speed=$4, crew=$5, passengers=$6, cargo_capacity=$7, consumables=$8, cost_in_credits=$9, vessel_class=$10, vessel_type=$11, length=$12 WHERE _id = $13 RETURNING *';
             const values = [args.manufacturer, args.name, args.model, args.max_atmosphering_speed, args.crew, args.passengers, args.cargo_capacity, args.consumables, args.cost_in_credits, args.vessel_class, args.vessel_type, args.length, args._id];
 =======
             const query = 'UPDATE vessels SET cost_in_credits=$1, length=$2, vessel_type=$3, model=$4, manufacturer=$5, name=$6, vessel_class=$7, max_atmosphering_speed=$8, crew=$9, passengers=$10, cargo_capacity=$11, consumables=$12 WHERE _id = $13 RETURNING *';
             const values = [args.cost_in_credits, args.length, args.vessel_type, args.model, args.manufacturer, args.name, args.vessel_class, args.max_atmosphering_speed, args.crew, args.passengers, args.cargo_capacity, args.consumables, args._id];
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+            const query = 'UPDATE vessels SET manufacturer=$1, name=$2, model=$3, max_atmosphering_speed=$4, crew=$5, passengers=$6, cargo_capacity=$7, consumables=$8, cost_in_credits=$9, vessel_class=$10, vessel_type=$11, length=$12 WHERE _id = $13 RETURNING *';
+            const values = [args.manufacturer, args.name, args.model, args.max_atmosphering_speed, args.crew, args.passengers, args.cargo_capacity, args.consumables, args.cost_in_credits, args.vessel_class, args.vessel_type, args.length, args._id];
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
             return db.query(query, values)
               .then(data => data.rows[0])
               .catch(err => new Error(err));
@@ -686,12 +844,17 @@ const typeDefs = `
 
           createStarshipSpec: (parent, args) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
             const query = 'INSERT INTO starship_specs(MGLT, hyperdrive_rating, vessel_id) VALUES($1, $2, $3) RETURNING *';
             const values = [args.MGLT, args.hyperdrive_rating, args.vessel_id];
 =======
             const query = 'INSERT INTO starship_specs(vessel_id, MGLT, hyperdrive_rating) VALUES($1, $2, $3) RETURNING *';
             const values = [args.vessel_id, args.MGLT, args.hyperdrive_rating];
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+            const query = 'INSERT INTO starship_specs(MGLT, hyperdrive_rating, vessel_id) VALUES($1, $2, $3) RETURNING *';
+            const values = [args.MGLT, args.hyperdrive_rating, args.vessel_id];
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
             return db.query(query, values)
               .then(data => data.rows[0])
               .catch(err => new Error(err));
@@ -699,12 +862,17 @@ const typeDefs = `
 
           updateStarshipSpec: (parent, args) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
             const query = 'UPDATE starship_specs SET MGLT=$1, hyperdrive_rating=$2, vessel_id=$3 WHERE _id = $4 RETURNING *';
             const values = [args.MGLT, args.hyperdrive_rating, args.vessel_id, args._id];
 =======
             const query = 'UPDATE starship_specs SET vessel_id=$1, MGLT=$2, hyperdrive_rating=$3 WHERE _id = $4 RETURNING *';
             const values = [args.vessel_id, args.MGLT, args.hyperdrive_rating, args._id];
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+            const query = 'UPDATE starship_specs SET MGLT=$1, hyperdrive_rating=$2, vessel_id=$3 WHERE _id = $4 RETURNING *';
+            const values = [args.MGLT, args.hyperdrive_rating, args.vessel_id, args._id];
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
             return db.query(query, values)
               .then(data => data.rows[0])
               .catch(err => new Error(err));
@@ -719,6 +887,9 @@ const typeDefs = `
           },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
           createStudent: (parent, args) => {
             const query = 'INSERT INTO student(first_name, age, last_name) VALUES($1, $2, $3) RETURNING *';
             const values = [args.first_name, args.age, args.last_name];
@@ -743,8 +914,11 @@ const typeDefs = `
               .catch(err => new Error(err));
           },
 
+<<<<<<< HEAD
 =======
 >>>>>>> 59a389c0929b5280e45f4434f4f6a792439e9c63
+=======
+>>>>>>> 0b9f658aa8916b2066db6b15ef7d0368d34c0f0f
     },
       
       Person: {
