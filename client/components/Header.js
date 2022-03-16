@@ -1,9 +1,9 @@
-import classes from '../../styles/Header.module.css'
+import Link from 'next/link'
 
 const Header = () => {
   return (
-    <div className={classes.header} id="myHeader">
-      <h2>My Header</h2>
+    <div className = ' h-20 inset-x-0 top-0 bg-header'>
+      <Link  href='/'> Go Home</Link>
     </div>
   )
 }

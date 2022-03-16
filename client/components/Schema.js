@@ -12,9 +12,9 @@ function Schema({schema, view}) {
       <div>
         {/* <button onClick={clickHandler}>CLICK!</button> */}
         <CodeMirror
-          value={viewMaterial? types : resolvers}
+          value={viewMaterial ? types : resolvers}
           height='50rem'
-          width='50rem'
+          width='35rem'
           theme='dark'
           extensions={[javascript({ jsx: true })]}
           editable={false}
