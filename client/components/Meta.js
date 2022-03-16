@@ -15,8 +15,8 @@ const Meta = ({title, keywords, description}) => {
 }
 
 Meta.defaultProps = {
-    title: 'MetriQL',
-    keywords: 'GraphQL, Open Source',
+    title: 'MetricQL',
+    keywords: 'GraphQL, Open Source, MetricQL, javascript, programming',
     description: 'GraphQL migration tool'
 }
 

@@ -7,12 +7,11 @@ import Features from '../client/components/Styles/Features';
 function HomePage() {
   return (
     <div>
-      < Nav />
-        <h1 className="text-3xl font-bold underline">Welcome to MetriQL</h1>
-        <AboutApp />
-        <SecondFeature />
-        <Features />
-        <Team />
+      <Nav />
+      <AboutApp />
+      <SecondFeature />
+      <Features />
+      <Team />
     </div>
   )
 }
