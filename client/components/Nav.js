@@ -34,7 +34,7 @@ function Nav() {
                         <Link href='/'>Home</Link>
                     </li>
                     <li>
-                        <Link href='/main'>Tool</Link>
+                        <Link href='/main?#'>Tool</Link>
                     </li>
                 </ul>
             </nav>

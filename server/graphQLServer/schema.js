@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { makeExecutableSchema } = require('graphql-tools');
 const { Pool } = require('pg');
 <<<<<<< HEAD
@@ -1068,3 +1069,5 @@ const typeDefs = `
       });
   
       module.exports = schema;
+=======
+>>>>>>> 50d4dd5962d7934db7ad9b29988c976798af6df0
