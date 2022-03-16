@@ -64,7 +64,7 @@ const URILink = ({ closeHandler }) => {
         textAlign='center'
       >
         <br/>
-      <h3 class="text-xl font-medium text-gray-900 dark:text-black">Submit URI</h3>
+      <h3 class="text-xl font-medium text-gray dark:text-black">Submit URI</h3>
       <br/>
       <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="#">
         <TextField
