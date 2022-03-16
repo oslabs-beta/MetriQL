@@ -1,11 +1,10 @@
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { useState, useContext } from 'react'
-import classes from '../../styles/QueryInput.module.css'
 import { QueryContext } from '../context/global-context';
 
-import { GraphContext } from '../context/global-context';
-import { motion, AnimatePresence } from 'framer-motion';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 // import dynamic from 'next/dynamic';
 //https://dev.to/glowtoad123/using-codemirror-in-nextjs-without-the-navigator-error-opi
@@ -32,7 +31,7 @@ const samplePlaceholder = `query {
 function QueryInput() {
   //change query to queryInput to not use graphql keyword 
   const [queryInput, setQuery] = useState(samplePlaceholder);
-  const { codeDispatch, speedUpdate, speedState} = useContext(QueryContext);
+  const { codeDispatch, speedUpdate, speedState } = useContext(QueryContext);
 
 
   const queryChangeHandler = (queryInput) => {
@@ -79,28 +78,31 @@ function QueryInput() {
 
 
   return (
-    <div>
-      <div className={classes.heading}>
-        <p className={classes.title}>Query Input</p>
+    <div className='mt-4'>
+      <div className='flex justify-between w-[40rem]'>
+        <p className=" text-slate-100 font-bold text-2xl">Query Input</p>
 
-        <div >
-          <button
-            type='button'
-            className={classes.submitBtn}
+        <Stack spacing={2} direction="row">
+          <Button
+            className='text-slate-800 bg-lime-500 hover:text-white hover:bg-lime-900'
+            variant="contained"
+            color='success'
             onClick={submitHandler}
-          >Submit</button>
-          <button
-            type='button'
-            className={classes.resetBtn}
+          >Submit</Button>
+
+          <Button
+            className='text-white bg-rose-600 hover:text-slate-800'
+            variant="outlined"
+            color="error"
             onClick={resetHandler}
-          >Reset</button>
-        </div>
+          >Reset</Button>
+        </Stack>
       </div>
 
       <CodeMirror
-        className={classes.input}
+        className='mt-3'
         value={queryInput}
-        height='50rem'
+        height='44rem'
         theme='dark'
         extensions={[javascript({ jsx: true })]}
         onChange={(e) => {

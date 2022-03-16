@@ -13,7 +13,7 @@ import {
 } from 'chart.js';
 
 //import line (to be rendered) from react-chartjs-2
-import { Line } from 'react-chartjs-2';
+import { Chart, Line } from 'react-chartjs-2';
 
 //register plugins to be applied globally (to all charts)
 ChartJS.register(
@@ -27,6 +27,7 @@ ChartJS.register(
 );
 
 
+
 //what is attached to main page rendering 
 function Metric() {
   const {speedState} = useContext(GraphContext)
@@ -38,7 +39,7 @@ function Metric() {
     responsive: true,
     plugins: {
       legend: {
-        display: false
+        display: false,
       }, 
       title: {
         display: true,
@@ -66,8 +67,7 @@ function Metric() {
   ]
 }
     return (
-      <div>
-          <h3>Metric logic here</h3>
+      <div className='pb-3'>
             <Line height={20} width={40} options={options} data={data}/>
       </div>
     )
