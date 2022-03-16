@@ -17,6 +17,7 @@ function Result() {
           value = {codeState.result}
           autoFocus={true}
           height='30rem'
+          width= '35rem'
           theme='dark'
           extensions={[javascript({ jsx: true })]}
           editable={false}

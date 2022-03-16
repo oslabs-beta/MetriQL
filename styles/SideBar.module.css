@@ -1,35 +1,38 @@
 .sidebar {
-  background-color: #060b26;
+  background-color: rgba(231, 234, 246, 0.01);
   width: 250px;
   height: 100vh;
   display: flex;
   justify-content: center;
   position: fixed;
-  top: 0;
-  left: -100%;
   transition: 850ms;
   z-index: 999;
+  left: -100%;
 }
 
 .sidebarActive{
-  background-color: #060b26;
+  background-color: rgba(231, 234, 246, 0.95);
   width: 250px;
   height: 100vh;
   display: flex;
   justify-content: center;
   position: fixed;
-  top: 0;
-  left: 0;
-  transition: 350ms;
+  transition: 550ms;
   z-index: 999;
+  padding: 20px
+
 }
 
+.sidebarBar {
+  display: flex;
+  height: 100%
+}
 .sidebarBar:hover{
   cursor: pointer;
 }
 
 .closeSide{
-  color: white;
+  color: #38598b;
 }
 
 .closeSide:hover {
@@ -47,7 +50,7 @@
 
 .navText a {
   text-decoration: none;
-  color:white;
+  color:#38598b;
   font-size: 18px;
   width: 95%;
   height: 100%; 
@@ -59,7 +62,7 @@
 
 .navText a:hover{
   cursor: pointer;
-  background-color: #1a83ff;
+  background-color: #a2a8d3;
 }
 
 .sideMenu{

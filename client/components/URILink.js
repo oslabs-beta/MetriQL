@@ -70,7 +70,7 @@ const URILink = ({closeHandler}) => {
   };
 
   return (
-    <div className = {classes.modal}>
+    <div className = {classes.modal} >
       <Box 
         sx={{
           backgroundColor: 'rgb(230, 230, 230)',
