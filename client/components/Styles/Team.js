@@ -10,7 +10,7 @@ const Team = (props) => {
             <div className="relative bg-primary-500 text-gray-100 -mb-8 -mx-8 px-8 py-20 lg:py-24">
                 <div className="container flex justify-center mx-auto pt-12">
                     <div>
-                        <h5 className="font-bold text-black">Our Team</h5>
+                        <h5 className="font-bold text-black flex justify-center">Our Team</h5>
                         <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-black text-center">Meet the Team</h1>
                     </div>
                 </div>
