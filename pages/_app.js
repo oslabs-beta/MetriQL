@@ -8,6 +8,7 @@ import {
 
 import App from '../client/components/App';
 // import { links } from './utils/links';
+import '../styles/globals.css'
 
 const link = from([
     new HttpLink({ uri: "http://localhost:3000/graphql"})
