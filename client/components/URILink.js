@@ -58,7 +58,7 @@ const URILink = ({ closeHandler }) => {
   }
 
   return (
-    <div className = {classes.modal}>
+    <div className = {classes.modal} >
       <Box 
         className='w-screen'
         textAlign='center'
