@@ -48,8 +48,23 @@ function Metric() {
       toolTip: {
         display: true, 
       }
+    },
+    scales: {
+      yAxes: [
+        {
+          gridLines: {
+            zeroLineColor: "white"
+          }
+        }
+      ],
+      xAxes: [
+        {
+          gridLines: {
+            zeroLinecolor: "white"
+          }
+        }
+      ]
     }
-  
   }
 
 //create data parameters object 
@@ -60,8 +75,8 @@ function Metric() {
       label: 'ms', 
       lineTension: 0.40,
       data: speedState.speed,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      borderColor: 'rgb(258, 34, 12)',
+      backgroundColor: 'rgba(253, 99, 132, 0.5)',
     }
   ]
 }
