@@ -3,6 +3,7 @@ import Team from '../client/components/Styles/Team';
 import AboutApp from '../client/components/Styles/MainFeature';
 import SecondFeature from '../client/components/Styles/SecondFeature';
 import Features from '../client/components/Styles/Features';
+import ThirdFeature from '../client/components/Styles/ThirdFeature';
 
 function HomePage() {
   return (
@@ -10,6 +11,7 @@ function HomePage() {
       <Nav />
       <AboutApp />
       <SecondFeature />
+      <ThirdFeature />
       <Features />
       <Team />
     </div>
