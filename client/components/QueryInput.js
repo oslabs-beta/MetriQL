@@ -81,11 +81,11 @@ function QueryInput() {
   return (
     <div className='mt-4'>
       <div className='flex justify-between w-[40rem]'>
-        <p className=" text-slate-100 font-bold text-2xl">Query Input</p>
+        <p className=" text-white1 font-bold text-2xl">Query Input</p>
 
         <Stack spacing={2} direction="row">
           <Button
-            className='text-slate-800 bg-lime-500 hover:text-white hover:bg-lime-900'
+            className='text-white1 bg-purple hover:text-white hover:bg-purple1'
             variant="contained"
             color='success'
             onClick={submitHandler}
