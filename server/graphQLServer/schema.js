@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const { makeExecutableSchema } = require('graphql-tools');
 const { Pool } = require('pg');
 const PG_URI = 'postgres://yxcpsnja:HHJUW2hbwYbmSTrvKVXLaz3VO0YRDxX1@castor.db.elephantsql.com/yxcpsnja';
@@ -727,5 +726,3 @@ const typeDefs = `
       });
   
       module.exports = schema;
-=======
->>>>>>> 50d4dd5962d7934db7ad9b29988c976798af6df0
