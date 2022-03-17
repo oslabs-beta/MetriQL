@@ -4,6 +4,7 @@ import { LOGIN, LOGOUT } from './global-actions';
 import url from '../../server/generator/testPSQL';
 
 export const initialCodeState = {
+	query:[],
 	result: ''
 };
 
@@ -45,6 +46,7 @@ export const codeReducer = (state, action) => {
 	switch (action.type) {
 		case 'UPDATE_RESULT':
 			return {
+				query:[...state.query, action.payload.query],
 				result: action.payload.result
 			};
 	}

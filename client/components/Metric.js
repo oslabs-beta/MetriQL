@@ -59,7 +59,6 @@ function Metric() {
     {
       label: 'ms', 
       lineTension: 0.40,
-      //data will be dynamic based on important function/variable; hardcoded for now 
       data: speedState.speed,
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
