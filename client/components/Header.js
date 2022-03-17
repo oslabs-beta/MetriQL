@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const Header = () => {
   return (
-    <nav class="bg-dark3 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
+    <nav class="bg-dark3 border-dark1 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
       <div class="container flex flex-wrap space-x-10 items-center mx-auto">
         <a href="/" class="flex items-center">
         
