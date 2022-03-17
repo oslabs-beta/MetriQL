@@ -11,13 +11,13 @@ const SecondFeature = (props) => {
         {/* Column*/}
         <div class='w-full max-w-md mx-auto md:max-w-none md:mx-0'>
           {/* imageColumn */}
-          <div class='md:w-6/12 flex-shrink-0 relative'>
+          <div class='md:w-9/12 flex-shrink-0 relative'>
             {/* imageLink */}
-          <img src='https://media-exp1.licdn.com/dms/image/C4D03AQE99sLMyKpDqA/profile-displayphoto-shrink_800_800/0/1517072415081?e=1652918400&v=beta&t=XG12PkGgbdZaqCIm6DrPRWECRAZyg4C4oACqk-nfusE' alt="MetricQLvisualizer" width="500" height="500" class="w-5000 h-5000 bg-contain bg-center rounded"></img>
+          <img src='/demophoto.png' alt="MetricQLvisualizer" class="w-5000 h-5000 bg-contain bg-center rounded"></img>
           </div>
         </div>
           {/* TextColumn */}
-          <div class='md:w-6/12 mt-16 md:mt-0'>
+          <div class='md:w-9/12 mt-16 md:mt-0'>
             {/* TextonLeft */}
             <div class='md:mr-12 lg:mr-16 md:order-first'>
               {/* TextContent */}
