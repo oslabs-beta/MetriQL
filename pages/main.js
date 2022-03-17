@@ -33,7 +33,7 @@ function MainPage() {
 
 
   return (
-    <div className='bg-slate-400 h-screen'>
+    <div className='bg-dark3 h-screen'>
       <Header />
       <div >
         <Meta title='Work Space' />
@@ -51,14 +51,14 @@ function MainPage() {
               codeState,
               codeDispatch
             }}>
-        <div className='flex bg-slate-300 rounded-lg w-[20rem]'>
+        <div className='flex bg-dark2 rounded-lg w-[20rem]'>
           <QueryHistory />
           </div>
           </SchemaContext.Provider>
 
 
 
-          <div className='flex bg-slate-300 p-5  rounded-lg' >
+          <div className='flex bg-dark2 p-5  rounded-lg' >
             <QueryContext.Provider
               value={{
                 codeDispatch,

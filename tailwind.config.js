@@ -18,7 +18,10 @@ module.exports = {
         'purple': '#6415FF',
         'gray': '#1a202c',
         'secondary': '#7c8ba1',
-        'blue': '#2a4365' 
+        'blue': '#2a4365',
+        'dark2': '#1D1127',
+        'dark3': '#130918',
+        'dark1': '#2B1D38'
       }
     },
   },
