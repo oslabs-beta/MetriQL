@@ -23,13 +23,11 @@ const SecondFeature = (props) => {
               {/* TextContent */}
               <div class='lg:py-8 text-center md:text-left'>
                 {/* Subheading */}
-                <div class='font-bold text-primary-500 text-center md:text-left'> MetricQL</div>
+                <div class='font-bold text-purple text-center md:text-left'> MetricQL</div>
                   {/* heading */}
-                <div class='text-4xl sm:text-5xl font-black tracking-wide text-center mt-4 font-black text-left text-3xl sm:text-4xl lg:text-5xl text-center md:text-left leading-tight'> Visualize your MetriQL stuff here!</div>
+                <div class='font-black tracking-wide text-center mt-4 text-left text-3xl sm:text-4xl lg:text-5xl text-blue text-center md:text-left leading-tight'> Visualize your MetricQL stuff here!</div>
                 {/* Description */}
-                 <div class='mt-4 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100'> MetricQL is so cool and amazing because we all worked on it and copied and pasted hehehehe</div>
-                 {/* primarybutton */}
-                 <button class='px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300 mt-8 md:mt-8 text-sm inline-block mx-auto md:mx-0 rounded-full'>Button</button>
+                 <div class='mt-4 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary'> MetricQL is so cool and amazing because we all worked on it and copied and pasted hehehehe</div>
               </div>
             </div>
           </div>
