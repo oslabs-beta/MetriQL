@@ -1,91 +1,125 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { URLContext } from '../context/global-context';
+
 import { secret } from '../../server/generator/testPSQL';
 import cryptoJs from 'crypto-js';
 import classes from '../../styles/URILink.module.css'
 
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
-const URILink = ({ closeHandler }) => {
+const URILink = ({closeHandler}) => {
 
-  const { urlState, urlDispatch } = useContext(URLContext);
+  const { urlDispatch } = useContext(URLContext);
 
-  const url = cryptoJs.AES.encrypt(urlState.url, secret).toString();
+  const [errorNoEntry, setErrorNoEntry] = useState(false); // to test if user tries to submit without entering any text
+  const [errorInvalidResponse, setErroryInvalidResponse] = useState(false); // to test if user enters invalid URL
+
+  const [newUrl, setNewUrl] = useState('')
+
+  const handleChange = e => {
+    setNewUrl(e.target.value);
+    setErrorNoEntry(false);
+    setErroryInvalidResponse(false);
+  }
 
   const submitHandler = async (e) => {
+    e.preventDefault();
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ uri: url })
     };
+    if (e.target.value === 'submitNew' || e.key === 'Enter') {
+      if (newUrl) {
+        // i think we should sanitize newUrl against SQL injections
+        let encryptedUrl = cryptoJs.AES.encrypt(newUrl, secret).toString();
+        requestOptions.body = JSON.stringify({ uri: encryptedUrl });
+        urlDispatch({
+          type: 'UPDATE_URL',
+          payload: {
+            url: encryptedUrl
+          }
+        });
+      } else {
+        setErrorNoEntry(true);
+        return; // returning so that the rest of this function does not execute
+      }
+    }
     const result = await fetch("http://localhost:3001/schema", requestOptions);
     const jsonData = await result.json();
+    console.log('schema.types ', jsonData)
+    if (!jsonData.schema) {
+      setNewUrl('');
+      setErroryInvalidResponse(true);
+    } else { 
     urlDispatch({
       type: 'UPDATE_SCHEMA',
       payload: {
         types: jsonData.schema.types,
         resolvers: jsonData.schema.resolvers
       }
-    });
+    })
     return closeHandler();
-  };
-
-  const sampleHandler = async (e) => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
     };
-    const result = await fetch("http://localhost:3001/schema", requestOptions);
-    const jsonData = await result.json();
-    urlDispatch({
-      type: 'UPDATE_SCHEMA',
-      payload: {
-        types: jsonData.schema.types,
-        resolvers: jsonData.schema.resolvers
-      }
-    });
-    return closeHandler();
   };
-
-  const urlChangeHandler = (value) => {
-    urlDispatch({
-      type: 'UPDATE_URL',
-      payload: {
-        url: value
-      }
-    });
-  }
 
   return (
     <div className = {classes.modal} >
       <Box 
+        sx={{
+          backgroundColor: 'rgb(230, 230, 230)',
+          width: 400,
+          height: 250,
+        }}
         className='w-screen'
         textAlign='center'
       >
-        <br/>
-      <h3 class="text-xl font-medium text-gray dark:text-black">Submit URI</h3>
-      <br/>
-      <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="#">
+        {errorInvalidResponse ? 
+        <DialogTitle sx={{color: 'red'}}>Please submit a valid URL</DialogTitle> :
+        <DialogTitle>Enter your Database URL</DialogTitle> }
         <TextField
-        label="Database Link"
-        value={urlState.url}
-        type='text'
-        placeholder='Your Database Link'
-        onChange={(event) => urlChangeHandler(event.target.value)}
-        className={classes.InputURI}
-      ></TextField>
-      <br/>
-      <br/>
-      <button variant="contained" onClick={submitHandler} class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button> 
-      <br/>
-      <br/>
-      <hr style={{width: '95%'}}/>
-      <br/>
-      <button 
-      class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      variant="contained" onClick={sampleHandler}>Use Sample</button>
-      </form>
+          sx={{
+            paddingBottom: 1
+          }}
+          label="Database Link"
+          type='text'
+          value={newUrl}
+          placeholder='Your Database Link'
+          onChange={handleChange}
+          className={classes.InputURI}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              submitHandler(e);
+            }}}
+          ></TextField>
+
+        <Button 
+          sx={{width: 156}}
+          variant="contained" 
+          value='submitNew' 
+          onClick={submitHandler} 
+          >Submit URL</Button>
+          <hr />
+          {errorNoEntry ? 
+            <DialogContent sx={{marginTop: -3, color: 'red', font: 'sans-serif'}}>Press "Use Default DB" to use our default database</DialogContent>:
+            <DialogContent sx={{marginTop: -3, font: 'sans-serif'}}>Press "Use Default DB" to use our default database</DialogContent>}
+
+        {/* * * * * Disable Use Default DB button if user inputs text * * * * */}
+        {/* {newUrl ? 
+          <Button sx={{width: 156, marginTop: -2}} disabled>Use Default DB</Button> : 
+          <Button sx={{width: 156, marginTop: -2}} variant="contained" value='submitDefault' onClick={submitHandler} >Use Default DB</Button> 
+        } */}
+
+        {/* * * * * Remove Use Default DB button if user inputs text * * * * */}
+        {/* {!newUrl &&
+          <Button sx={{width: 156}} variant="contained" value='submitDefault' onClick={submitHandler} >Use Default DB</Button> 
+        } */}
+
+        {/* * * * * Always see Use Default DB button  * * * * */}
+        <Button sx={{width: 156, marginTop: -2}} variant="contained" value='submitDefault' onClick={submitHandler} >Use Default DB</Button> 
       </Box>
     </div>
   )
