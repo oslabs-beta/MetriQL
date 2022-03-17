@@ -71,6 +71,7 @@ function QueryInput() {
     codeDispatch({
       type: 'UPDATE_RESULT',
       payload: {
+        query: queryInput,
         result: cleanResponse
       }
     })
@@ -91,7 +92,6 @@ function QueryInput() {
           >Submit</Button>
 
           <Button
-            className='text-white bg-rose-600 hover:text-slate-800'
             variant="outlined"
             color="error"
             onClick={resetHandler}

@@ -38,16 +38,6 @@ function MainPage() {
       <div >
         <Meta title='Work Space' />
 
-        <URLContext.Provider
-          value={{
-            urlState,
-            urlDispatch
-          }}>
-          <Dialog open={open}>
-            <URILink closeHandler={handleClose} />
-          </Dialog>
-        </URLContext.Provider>
-
         <QueryContext.Provider
           value={{
             urlState
@@ -56,9 +46,19 @@ function MainPage() {
         </QueryContext.Provider>
         <div className='flex place-content-center mt-2 justify-evenly -ml-14'>
 
+          <SchemaContext.Provider
+            value={{
+              codeState,
+              codeDispatch
+            }}>
+        <div className='flex bg-slate-300 rounded-lg w-[20rem]'>
           <QueryHistory />
+          </div>
+          </SchemaContext.Provider>
 
-          <div className='flex bg-slate-300 p-5 ml-60 rounded' >
+
+
+          <div className='flex bg-slate-300 p-5  rounded-lg' >
             <QueryContext.Provider
               value={{
                 codeDispatch,
@@ -84,6 +84,16 @@ function MainPage() {
                 }}>
                 <Result />
               </SchemaContext.Provider>
+
+              <URLContext.Provider
+                value={{
+                  urlState,
+                  urlDispatch
+                }}>
+                <Dialog open={open}>
+                  <URILink closeHandler={handleClose} />
+                </Dialog>
+              </URLContext.Provider>
 
             </div>
           </div>
