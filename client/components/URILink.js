@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import { buttonGroupClasses } from '@mui/material';
 
 const URILink = ({closeHandler}) => {
 
@@ -70,9 +71,9 @@ const URILink = ({closeHandler}) => {
     <div className = {classes.modal} >
       <Box 
         sx={{
-          backgroundColor: 'rgb(230, 230, 230)',
+          backgroundColor: '#f6f0ff',
           width: 400,
-          height: 250,
+          height: 350,
         }}
         className='w-screen'
         textAlign='center'
@@ -96,13 +97,16 @@ const URILink = ({closeHandler}) => {
             }}}
           ></TextField>
 
-        <Button 
+        <button 
           sx={{width: 156}}
           variant="contained" 
           value='submitNew' 
           onClick={submitHandler} 
-          >Submit URL</Button>
+          class='mb-6 bg-purple hover:bg-purple1 text-white font-bold py-2 px-4 rounded'
+          >Submit URL</button>
+          <br />
           <hr />
+          <br />
           {errorNoEntry ? 
             <DialogContent sx={{marginTop: -3, color: 'red', font: 'sans-serif'}}>Press "Use Default DB" to use our default database</DialogContent>:
             <DialogContent sx={{marginTop: -3, font: 'sans-serif'}}>Press "Use Default DB" to use our default database</DialogContent>}
@@ -119,7 +123,7 @@ const URILink = ({closeHandler}) => {
         } */}
 
         {/* * * * * Always see Use Default DB button  * * * * */}
-        <Button sx={{width: 156, marginTop: -2}} variant="contained" value='submitDefault' onClick={submitHandler} >Use Default DB</Button> 
+        <button sx={{width: 156}} variant="contained" value='submitDefault' onClick={submitHandler} class='bg-purple mb-6 hover:bg-purple1 text-white font-bold py-2 px-4 rounded'>Use Default DB</button> 
       </Box>
     </div>
   )

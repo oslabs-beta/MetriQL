@@ -15,17 +15,17 @@ import Stack from '@mui/material/Stack';
 //   import('codemirror-graphql/lint');
 //   import('codemirror-graphql/mode');
 // }, { ssr: false })
-const samplePlaceholder = `query {
-	people {
-	  gender
-	  height
-	  mass
-	  hair_color
-	  skin_color
-	  eye_color
-	  birth_year
-	}
-}`
+// const samplePlaceholder = `query {
+// 	people {
+// 	  gender
+// 	  height
+// 	  mass
+// 	  hair_color
+// 	  skin_color
+// 	  eye_color
+// 	  birth_year
+// 	}
+// }`
 
 
 function QueryInput() {
