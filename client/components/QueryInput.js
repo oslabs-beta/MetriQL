@@ -30,7 +30,7 @@ const samplePlaceholder = `query {
 
 function QueryInput() {
   //change query to queryInput to not use graphql keyword 
-  const [queryInput, setQuery] = useState(samplePlaceholder);
+  const [queryInput, setQuery] = useState();
   const { codeDispatch, speedUpdate, speedState } = useContext(QueryContext);
 
 
