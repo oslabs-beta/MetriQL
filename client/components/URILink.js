@@ -102,7 +102,7 @@ const URILink = ({closeHandler}) => {
           variant="contained" 
           value='submitNew' 
           onClick={submitHandler} 
-          class='mb-6 bg-purple hover:bg-purple1 text-white font-bold py-2 px-4 rounded'
+          className='mb-6 bg-purple hover:bg-purple1 text-white font-bold py-2 px-4 rounded'
           >Submit URL</button>
           <br />
           <hr />
@@ -123,7 +123,7 @@ const URILink = ({closeHandler}) => {
         } */}
 
         {/* * * * * Always see Use Default DB button  * * * * */}
-        <button sx={{width: 156}} variant="contained" value='submitDefault' onClick={submitHandler} class='bg-purple mb-6 hover:bg-purple1 text-white font-bold py-2 px-4 rounded'>Use Default DB</button> 
+        <button sx={{width: 156}} variant="contained" value='submitDefault' onClick={submitHandler} className='bg-purple mb-6 hover:bg-purple1 text-white font-bold py-2 px-4 rounded'>Use Default DB</button> 
       </Box>
     </div>
   )

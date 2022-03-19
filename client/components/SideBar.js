@@ -82,6 +82,9 @@ function SideBar({ openDB }) {
               <Schema schema={urlState} view={'resolvers'} />
             </BootstrapDialog>
           </li>
+          <li className={classes.navText}>
+            <a href='/schemaVis'>Schema Visualizer</a>
+          </li>
         </ul>
       </nav>
       <FaIcons.FaBars className={classes.sidebarBar} onClick={openSidebar}/>
