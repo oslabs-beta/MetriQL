@@ -2,14 +2,15 @@ import { useState, useContext } from 'react'
 import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 import classes from '../../styles/SideBar.module.css'
-import { QueryContext } from '../context/global-context';
+import { QueryContext, SQLContext } from '../context/global-context';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import Schema from './Schema';
+import SchemaVisual from './SchemaVisual'
 
 function SideBar({ openDB }) {
   const [showSidebar, setShowSidebar] = useState(false)
-  const { urlState } = useContext(QueryContext);
+  const { urlState, sqlState } = useContext(QueryContext);
 
   const openSidebar = () => {
     setShowSidebar(true);
@@ -42,6 +43,16 @@ function SideBar({ openDB }) {
   const handleResolverClose = () => {
     setOpenResolver(false);
   };
+
+  const [openSchemaVis, setOpenSchemaVis] = useState(false);
+
+  const handleSchemaVisOpen = () => {
+    setOpenSchemaVis(true);
+  };
+  const handleSchemaVisClose = () => {
+    setOpenSchemaVis(false);
+  };
+
   const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
       padding: theme.spacing(2),
@@ -83,7 +94,14 @@ function SideBar({ openDB }) {
             </BootstrapDialog>
           </li>
           <li className={classes.navText}>
-            <a href='/schemaVis'>Schema Visualizer</a>
+            <a onClick={handleSchemaVisOpen}>Schema Visualizer</a>
+            <BootstrapDialog
+              onClose={handleSchemaVisClose}
+              aria-labelledby="customized-dialog-title"
+              open={openSchemaVis}
+            >
+              <SchemaVisual visual={sqlState}/>
+            </BootstrapDialog>
           </li>
         </ul>
       </nav>

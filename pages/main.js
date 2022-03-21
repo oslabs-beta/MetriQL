@@ -1,6 +1,6 @@
 import { useReducer, useState } from 'react';
-import { SchemaContext, QueryContext, GraphContext, URLContext } from '../client/context/global-context';
-import { initialCodeState, codeReducer, initialSpeedState, speedReducer, initialURLState, urlReducer } from '../client/context/global-reducer';
+import { SchemaContext, QueryContext, GraphContext, URLContext, SQLContext } from '../client/context/global-context';
+import { initialCodeState, codeReducer, initialSpeedState, speedReducer, initialURLState, urlReducer, initialSQLState, sqlReducer } from '../client/context/global-reducer';
 
 import Header from '../client/components/Header';
 import SideBar from '../client/components/SideBar';
@@ -21,6 +21,8 @@ function MainPage() {
 
   const [urlState, urlDispatch] = useReducer(urlReducer, initialURLState);
 
+  const [sqlState, sqlDispatch] = useReducer(sqlReducer, initialSQLState);
+
   const [open, setOpen] = useState(true);
 
   const handleClickOpen = () => {
@@ -40,7 +42,8 @@ function MainPage() {
 
         <QueryContext.Provider
           value={{
-            urlState
+            urlState,
+            sqlState,
           }}>
           <SideBar openDB={handleClickOpen} />
         </QueryContext.Provider>
@@ -64,7 +67,9 @@ function MainPage() {
                 codeDispatch,
                 speedUpdate,
                 speedState,
-                urlState
+                urlState,
+                sqlState,
+                sqlDispatch
               }}>
               <QueryInput />
             </QueryContext.Provider>
@@ -88,7 +93,9 @@ function MainPage() {
               <URLContext.Provider
                 value={{
                   urlState,
-                  urlDispatch
+                  urlDispatch,
+                  sqlState,
+                  sqlDispatch
                 }}>
                 <Dialog open={open}>
                   <URILink closeHandler={handleClose} />

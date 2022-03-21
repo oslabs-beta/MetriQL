@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { URLContext } from '../context/global-context';
+import { URLContext, SQLContext } from '../context/global-context';
 
 import { secret } from '../../server/generator/testPSQL';
 import cryptoJs from 'crypto-js';
@@ -12,9 +12,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import { buttonGroupClasses } from '@mui/material';
 
-const URILink = ({closeHandler}) => {
+const URILink = ({ closeHandler }) => {
 
-  const { urlDispatch } = useContext(URLContext);
+  const { urlDispatch, sqlDispatch } = useContext(URLContext);
+  // const { sqlDispatch } = useContext(SQLContext);
 
   const [errorNoEntry, setErrorNoEntry] = useState(false); // to test if user tries to submit without entering any text
   const [errorInvalidResponse, setErroryInvalidResponse] = useState(false); // to test if user enters invalid URL
@@ -49,27 +50,41 @@ const URILink = ({closeHandler}) => {
         return; // returning so that the rest of this function does not execute
       }
     }
-    const result = await fetch("http://localhost:3001/schema", requestOptions);
-    const jsonData = await result.json();
-    console.log('schema.types ', jsonData)
-    if (!jsonData.schema) {
-      setNewUrl('');
-      setErroryInvalidResponse(true);
-    } else { 
-    urlDispatch({
-      type: 'UPDATE_SCHEMA',
-      payload: {
-        types: jsonData.schema.types,
-        resolvers: jsonData.schema.resolvers
+    try {
+      const result = await fetch("http://localhost:3001/schema", requestOptions);
+      const jsonData = await result.json();
+      console.log("entire object", jsonData);
+
+      if (!jsonData.schema) {
+        setNewUrl('');
+        setErroryInvalidResponse(true);
+      } else {
+        urlDispatch({
+          type: 'UPDATE_SCHEMA',
+          payload: {
+            types: jsonData.schema.types,
+            resolvers: jsonData.schema.resolvers
+          }
+        })
+
+        sqlDispatch({
+          type: 'UPDATE_D3JSON',
+          payload: {
+            visuals: jsonData.visuals,
+          }
+        })
+        console.log(jsonData.visuals)
+
+        return closeHandler();
       }
-    })
-    return closeHandler();
-    };
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
-    <div className = {classes.modal} >
-      <Box 
+    <div className={classes.modal} >
+      <Box
         sx={{
           backgroundColor: '#f6f0ff',
           width: 400,
@@ -78,9 +93,9 @@ const URILink = ({closeHandler}) => {
         className='w-screen'
         textAlign='center'
       >
-        {errorInvalidResponse ? 
-        <DialogTitle sx={{color: 'red'}}>Please submit a valid URL</DialogTitle> :
-        <DialogTitle>Enter your Database URL</DialogTitle> }
+        {errorInvalidResponse ?
+          <DialogTitle sx={{ color: 'red' }}>Please submit a valid URL</DialogTitle> :
+          <DialogTitle>Enter your Database URL</DialogTitle>}
         <TextField
           sx={{
             paddingBottom: 1
@@ -94,22 +109,23 @@ const URILink = ({closeHandler}) => {
           onKeyPress={(e) => {
             if (e.key === "Enter") {
               submitHandler(e);
-            }}}
-          ></TextField>
+            }
+          }}
+        ></TextField>
 
-        <button 
-          sx={{width: 156}}
-          variant="contained" 
-          value='submitNew' 
-          onClick={submitHandler} 
+        <button
+          sx={{ width: 156 }}
+          variant="contained"
+          value='submitNew'
+          onClick={submitHandler}
           className='mb-6 bg-purple hover:bg-purple1 text-white font-bold py-2 px-4 rounded'
-          >Submit URL</button>
-          <br />
-          <hr />
-          <br />
-          {errorNoEntry ? 
-            <DialogContent sx={{marginTop: -3, color: 'red', font: 'sans-serif'}}>Press "Use Default DB" to use our default database</DialogContent>:
-            <DialogContent sx={{marginTop: -3, font: 'sans-serif'}}>Press "Use Default DB" to use our default database</DialogContent>}
+        >Submit URL</button>
+        <br />
+        <hr />
+        <br />
+        {errorNoEntry ?
+          <DialogContent sx={{ marginTop: -3, color: 'red', font: 'sans-serif' }}>Press "Use Default DB" to use our default database</DialogContent> :
+          <DialogContent sx={{ marginTop: -3, font: 'sans-serif' }}>Press "Use Default DB" to use our default database</DialogContent>}
 
         {/* * * * * Disable Use Default DB button if user inputs text * * * * */}
         {/* {newUrl ? 
@@ -123,7 +139,7 @@ const URILink = ({closeHandler}) => {
         } */}
 
         {/* * * * * Always see Use Default DB button  * * * * */}
-        <button sx={{width: 156}} variant="contained" value='submitDefault' onClick={submitHandler} className='bg-purple mb-6 hover:bg-purple1 text-white font-bold py-2 px-4 rounded'>Use Default DB</button> 
+        <button sx={{ width: 156 }} variant="contained" value='submitDefault' onClick={submitHandler} className='bg-purple mb-6 hover:bg-purple1 text-white font-bold py-2 px-4 rounded'>Use Default DB</button>
       </Box>
     </div>
   )

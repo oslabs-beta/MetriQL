@@ -40,7 +40,7 @@ const Team = (props) => {
                             <Link className="mr-8 last:mr-0 text-gray hocus:text-purple transition duration-300" href='https://github.com/deedoodee'>
                                 <a target="_blank" className="fill-current w-6 h-6"><GithubIcon/></a>
                             </Link>                            
-                            <Link className="mr-8 last:mr-0 text-gray hocus:text-purple transition duration-300" href='https://www.linkedin.com/in/diana-li-791b96193/'>
+                            <Link className="mr-8 last:mr-0 text-gray hocus:text-purple transition duration-300" href='https://www.linkedin.com/in/dianalicarrasco/'>
                                 <a target="_blank" className="fill-current w-6 h-6"><LinkedinIcon /></a>
                             </Link>
                         </div>

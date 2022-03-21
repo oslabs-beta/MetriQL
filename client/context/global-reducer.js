@@ -20,6 +20,10 @@ export const initialURLState = {
 	resolvers: ''
 }
 
+export const initialSQLState = {
+	visuals: {}
+}
+
 const globalReducer = (state, action) => {
 	switch (action.type) {
 		case LOGIN:
@@ -77,5 +81,14 @@ export const urlReducer = (state, action) => {
 		}
 }
 
+export const sqlReducer = ( state, action ) => {
+	switch (action.type) {
+		case 'UPDATE_D3JSON':
+			return {
+				...state,
+				visuals: action.payload.visuals
+			}
+	}
+}
 
 export default globalReducer;
