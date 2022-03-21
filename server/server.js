@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/graphql',
   graphqlHTTP({
-    schema,
+   schema ,
     graphiql: true,
   })
 );
