@@ -10,7 +10,6 @@ function Schema({schema, view}) {
 
     return (
       <div>
-        {/* <button onClick={clickHandler}>CLICK!</button> */}
         <CodeMirror
           value={viewMaterial ? types : resolvers}
           height='50rem'
