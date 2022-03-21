@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import { GraphContext } from '../context/global-context';
 
 import {
@@ -31,9 +32,9 @@ ChartJS.register(
 //what is attached to main page rendering 
 function Metric() {
   const {speedState} = useContext(GraphContext)
-  // const labels = [1,2,3,4,5,6];
+
   const labels = speedState.speed.map((el, index) => { return index + 1 });
-  // console.log('inside metric', speedState.speed)
+
 
   const options = {
     responsive: true,
