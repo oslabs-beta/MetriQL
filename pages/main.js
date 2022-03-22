@@ -11,6 +11,7 @@ import Result from '../client/components/Result';
 import URILink from '../client/components/URILink';
 import QueryHistory from '../client/components/QueryHistory';
 import Dialog from '@mui/material/Dialog';
+import SchemaVisual from '../client/components/SchemaVisual'
 
 
 function MainPage() {
@@ -71,6 +72,7 @@ function MainPage() {
                 sqlState,
                 sqlDispatch
               }}>
+                
               <QueryInput />
             </QueryContext.Provider>
 
@@ -85,9 +87,13 @@ function MainPage() {
               <SchemaContext.Provider
                 value={{
                   codeState,
-                  codeDispatch
+                  codeDispatch,
+                  sqlState,
+                  sqlDispatch
+            
                 }}>
                 <Result />
+                { sqlState.visuals.name ? <SchemaVisual/> : null}
               </SchemaContext.Provider>
 
               <URLContext.Provider

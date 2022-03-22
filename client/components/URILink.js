@@ -73,7 +73,7 @@ const URILink = ({ closeHandler }) => {
             visuals: jsonData.visuals,
           }
         })
-        console.log(jsonData.visuals)
+        console.log("urllink", jsonData.visuals)
 
         return closeHandler();
       }
