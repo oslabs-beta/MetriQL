@@ -15,4 +15,6 @@ export const GraphContext = createContext();
 
 export const URLContext = createContext();
 
+export const StatusContext = createContext();
+
 export {GlobalContext, GlobalDispatch};

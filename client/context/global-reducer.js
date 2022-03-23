@@ -20,6 +20,11 @@ export const initialURLState = {
 	resolvers: ''
 }
 
+export const initialStatusState = {
+	isLoggedin: false,
+	username: ''
+}
+
 const globalReducer = (state, action) => {
 	switch (action.type) {
 		case LOGIN:
@@ -35,6 +40,11 @@ const globalReducer = (state, action) => {
 				isLoggedIn: false,
 				username: '',
 				password: ''
+			}
+		case OPEN_LOGIN:
+			return {
+				...state,
+				open: true
 			}
 
 		default:
@@ -76,6 +86,16 @@ export const urlReducer = (state, action) => {
 			}
 		}
 }
+export const statusReducer = (state, action) => {
+	switch(action.type) {
+		case 'UPDATE_STATUS':
+			return {
+				isLoggedin: action.pyaload.isLoggedin,
+				username: action.payload.username
+			}
+	}
+}
+
 
 
 export default globalReducer;

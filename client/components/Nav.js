@@ -4,27 +4,11 @@ import React, { useContext, useState } from 'react';
 // import { LOGIN, LOGOUT } from '../context/global-actions';
 // import Link from 'next/link'
 
-function Nav() {
-
-    // const { state, login, logout } = useContext(GlobalContext);
-    // const { dispatch } = useContext(GlobalDispatch);
-
-    // const [username, setUsername] = useState('');
-    // const [password, setPassword] = useState('');
-
-    // function onChangeHandler(e) {
-    //     e.preventDefault;
-    //     e.target.name === 'username' ? setUsername(e.target.value) : setPassword(e.target.value);
-    // }
-
-    // function onSubmitHandler(e) {
-    //     e.preventDefault;
-    //     login(username, password);
-    // }
-
-    // console.log('state ', state);
-    // console.log('dispatch ', dispatch);
-
+function Nav( {openModal} ) {
+ 
+    const openLoginModal = () => {
+        return openModal()
+    }
 
     return (
         <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
@@ -46,6 +30,9 @@ function Nav() {
                         </li>
                         <li>
                             <a href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Team</a>
+                        </li>
+                        <li>
+                            <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log In</a>
                         </li>
                     </ul>
                 </div>
