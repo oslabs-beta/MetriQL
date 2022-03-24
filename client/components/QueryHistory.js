@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { useContext } from 'react';
-import { SchemaContext } from '../context/global-context'
+import { useState, useContext } from "react";
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { styled } from '@mui/material/styles';
@@ -9,27 +7,20 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-const test1 = `query {
-	people {
-	  gender
-	  height
-	  mass
-	  hair_color
-	  skin_color
-	  eye_color
-	  birth_year
-	}
-}`
-const test = [test1, '2', '3', test1, '6', test1, '2', '3', test1, '6', test1]
+
+import { HistoryContext } from '../context/global-context'
 
 const QueryHistory = () => {
-  const [expanded, setExpanded] = useState('');
-  const { codeState, codeDispatch } = useContext(SchemaContext)
+
+  const { codeState, displayState, displayDispatch } = useContext(HistoryContext)
 
   const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-  };
-
+    displayDispatch({
+      type: 'UPDATE_HISTORY_DISPLAY',
+      payload: newExpanded ? panel : false
+  });
+}
+    
   const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
   ))(({ theme }) => ({
@@ -70,7 +61,7 @@ const QueryHistory = () => {
   const query = codeState.query.map((query, index) => {
     return (
       <div>
-        <Accordion className='bg-dark1 rounded-lg mt-1 justify-center' expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
+        <Accordion className='bg-dark1 rounded-lg mt-1 justify-center' expanded={displayState.history === `panel${index}`} onChange={handleChange(`panel${index}`)}>
           <AccordionSummary className='flex rounded-lg bg-dark1 w-[18rem] justify-center'>
             <Typography className='text-white1'>Query {index + 1}</Typography>
           </AccordionSummary>

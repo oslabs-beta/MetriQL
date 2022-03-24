@@ -1,18 +1,18 @@
 import React, { useContext, useEffect } from 'react';
 import * as d3 from 'd3';
 
-import { QueryContext } from '../context/global-context';
+import { URLContext } from '../context/global-context';
 
-export default function SchemaVisual() {
-	const { sqlState  } = useContext(QueryContext);
+export default function SchemaVisual({ visuals}) {
+	// const { urlState  } = useContext(URLContext);
 
-	const treeData = sqlState.visuals;
-
+	const treeData = visuals.visuals;
+    console.log("should be json", visuals.visuals)
 	function visualTree() {
 
-		let margin = { top: 40, right: 90, bottom: 30, left: 90 },
-			width = 960 - margin.left - margin.right,
-			height = 900 - margin.top - margin.bottom;
+		let margin = { top: 40, right: 90, bottom: 30, left: 70 },
+			width = 1400 - margin.left - margin.right,
+			height = 940 - margin.top - margin.bottom;
 
 		let i = 0,
 			duration = 750;
@@ -62,7 +62,7 @@ export default function SchemaVisual() {
 			const nodes = treeData.descendants();
 
 			nodes.forEach(function (d) {
-				d.y = d.depth * 180;
+				d.y = d.depth * 380;
 			});
 
 			const node = g
@@ -115,7 +115,7 @@ export default function SchemaVisual() {
 				.attr("x", 0)
 				.attr("y", -10)
 				.attr("width", function (d) {
-					return d.parent ? 150 : 60;
+					return d.parent ? 210 : 100;
 				})
 				.attr("height", 20);
 
@@ -128,10 +128,10 @@ export default function SchemaVisual() {
 					}
 					return "rgb(39, 43, 77)";
 				})
-				.style("font", "10px sans-serif")
+				.style("font", "18px sans-serif")
 				.attr("dy", ".35em")
 				.attr("x", function (d) {
-					return d.parent ? 75 : 30;
+					return d.parent ? 105 : 50;
 				})
 				.attr("text-anchor", function (d) {
 					return "middle";

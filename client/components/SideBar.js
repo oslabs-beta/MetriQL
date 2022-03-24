@@ -1,71 +1,71 @@
-import { useState, useContext } from 'react'
-import * as FaIcons from 'react-icons/fa'
-import * as AiIcons from 'react-icons/ai'
-import classes from '../../styles/SideBar.module.css'
-import { QueryContext, SQLContext } from '../context/global-context';
-import { styled } from '@mui/material/styles';
-import Dialog from '@mui/material/Dialog';
-import Schema from './Schema';
-import SchemaVisual from './SchemaVisual'
+import { useState, useContext } from "react";
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
+import Dialog from "@mui/material/Dialog";
+import { styled } from "@mui/material/styles";
+
+import SchemaVisual from '../components/SchemaVisual'
+import Schema from "./Schema";
+import classes from "../../styles/SideBar.module.css";
+import { SidebarContext } from "../context/global-context";
+import { initialDisplayState } from "../context/global-reducer";
 
 function SideBar({ openDB }) {
-  const [showSidebar, setShowSidebar] = useState(false)
-  const { urlState, sqlState } = useContext(QueryContext);
+  const { displayState, displayDispatch, urlState } = useContext(SidebarContext);
 
   const openSidebar = () => {
-    setShowSidebar(true);
+    displayDispatch({
+      type: "UPDATE_SIDEBAR_DISPLAY",
+      payload: true,
+    });
   };
 
   const closeSidebar = () => {
-    setShowSidebar(false);
-  }
+    displayDispatch({
+      type: "UPDATE_SIDEBAR_DISPLAY",
+      payload: false,
+    });
+  };
 
   const openDBHandler = () => {
     return openDB();
-  }
-
-  const [openType, setOpenType] = useState(false);
-
-  const handleTypeOpen = () => {
-    setOpenType(true);
-  };
-  const handleTypeClose = () => {
-    setOpenType(false);
   };
 
-  
-  const [openResolver, setOpenResolver] = useState(false);
-
-  const handleResolverOpen = () => {
-    setOpenResolver(true);
-  };
-  const handleResolverClose = () => {
-    setOpenResolver(false);
+  const handleSchemaOpen = (value) => {
+    displayDispatch({
+      type: "UPDATE_SCHEMA_DISPLAY",
+      payload: value,
+    });
   };
 
-  const [openSchemaVis, setOpenSchemaVis] = useState(false);
+  const handleSchemaClose = () => {
+    displayDispatch({
+      type: "UPDATE_SCHEMA_DISPLAY",
+      payload: false,
+    });
+  };
 
   const handleSchemaVisOpen = () => {
-    setOpenSchemaVis(true);
+    displayDispatch({
+      type: "UPDATE_D3_DISPLAY",
+      payload: true,
+    });
+    console.log("handle open")
   };
+
   const handleSchemaVisClose = () => {
-    setOpenSchemaVis(false);
+    displayDispatch({
+      type: "UPDATE_D3_DISPLAY",
+      payload: false,
+    });
   };
-
-  const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-    '& .MuiDialogContent-root': {
-      padding: theme.spacing(2),
-    },
-    '& .MuiDialogActions-root': {
-      padding: theme.spacing(1),
-    },
-  }));
-
 
   return (
     <div>
-      <nav className={showSidebar ? classes.sidebarActive : classes.sidebar}>
-        <ul className={classes.sideMenu} onClick={closeSidebar} >
+      <nav
+        className={displayState.sidebar ? classes.sidebarActive : classes.sidebar}
+      >
+        <ul className={classes.sideMenu} onClick={closeSidebar}>
           <li className={classes.sidebarToggle}>
             <AiIcons.AiOutlineClose className={classes.closeSide} />
           </li>
@@ -73,40 +73,39 @@ function SideBar({ openDB }) {
             <a onClick={openDBHandler}>DB Entry</a>
           </li>
           <li className={classes.navText}>
-            <a  onClick={handleTypeOpen}>View Types</a>
-            <BootstrapDialog
-              onClose={handleTypeClose}
-              aria-labelledby="customized-dialog-title"
-              open={openType}
+            <a onClick={() => handleSchemaOpen("types")}>View Types</a>
+            <Dialog
+              onClose={handleSchemaClose}
+              open={displayState.schema === "types"}
             >
-              <Schema schema={urlState} view={'types'}/>
-            </BootstrapDialog>
+              <Schema schema={urlState} view={"types"} />
+            </Dialog>
           </li>
           <li className={classes.navText}>
-            <a onClick={handleResolverOpen}>View Resolvers</a>
-            <BootstrapDialog
-              onClose={handleResolverClose}
-              aria-labelledby="customized-dialog-title"
-              open={openResolver}
+            <a onClick={() => handleSchemaOpen("resolvers")}>View Resolvers</a>
+            <Dialog
+              onClose={handleSchemaClose}
+              open={displayState.schema === "resolvers"}
             >
-              <Schema schema={urlState} view={'resolvers'} />
-            </BootstrapDialog>
+              <Schema schema={urlState} view={"resolvers"} />
+            </Dialog>
           </li>
           <li className={classes.navText}>
-            <a onClick={handleSchemaVisOpen}>Schema Visualizer</a>
-            <BootstrapDialog
+            <a onClick={() => handleSchemaVisOpen("visuals")}>Schema Visualizer</a>
+            <Dialog
               onClose={handleSchemaVisClose}
-              aria-labelledby="customized-dialog-title"
-              open={openSchemaVis}
+              open={displayState.visuals}
+              fullWidth={true}
+              maxWidth={'xl'}
             >
-              <SchemaVisual visual={sqlState}/>
-            </BootstrapDialog>
+              <SchemaVisual visuals={urlState}/>
+            </Dialog>
           </li>
         </ul>
       </nav>
-      <FaIcons.FaBars className={classes.sidebarBar} onClick={openSidebar}/>
+      <FaIcons.FaBars className={classes.sidebarBar} onClick={openSidebar} />
     </div>
-  )
+  );
 }
 
 export default SideBar;

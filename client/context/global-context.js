@@ -15,8 +15,8 @@ export const GraphContext = createContext();
 
 export const URLContext = createContext();
 
-export const SQLContext = createContext();
+export const SidebarContext = createContext();
+
+export const HistoryContext = createContext();
 
 export {GlobalContext, GlobalDispatch};
-
-export const useSQLContext = () => useContext(QueryContext);
