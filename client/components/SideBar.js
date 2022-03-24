@@ -33,8 +33,7 @@ function SideBar({ openDB }) {
     setOpenType(false);
   };
 
-
-
+  
   const [openResolver, setOpenResolver] = useState(false);
 
   const handleResolverOpen = () => {
