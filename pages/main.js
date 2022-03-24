@@ -23,6 +23,7 @@ import QueryHistory from '../client/components/QueryHistory';
 
 
 
+
 function MainPage() {
 
   const [codeState, codeDispatch] = useReducer(codeReducer, initialCodeState);
@@ -85,6 +86,7 @@ function MainPage() {
                 speedUpdate,
                 speedState,
               }}>
+                
               <QueryInput />
             </QueryContext.Provider>
 
@@ -99,15 +101,19 @@ function MainPage() {
               <SchemaContext.Provider
                 value={{
                   codeState,
-                  codeDispatch
+                  codeDispatch,
+                  
+            
                 }}>
                 <Result />
+                
               </SchemaContext.Provider>
 
               <URLContext.Provider
                 value={{
                   urlState,
-                  urlDispatch
+                  urlDispatch,
+                 
                 }}>
                 <Dialog open={displayState.URIModal}>
                   <URILink closeHandler={handleClose} />

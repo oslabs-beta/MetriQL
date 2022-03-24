@@ -20,16 +20,16 @@ export const initialURLState = {
   resolvers: "",
   entryError: false,
   invalidError: false,
+  visuals: {},
 };
 
 export const initialDisplayState = {
   URIModal: true,
 	sidebar: false,
 	schema: false,
-	history: false
+	history: false,
+	visuals: false,
 };
-
-
 
 const globalReducer = (state, action) => {
 	switch (action.type) {
@@ -92,14 +92,19 @@ export const displayReducer = (state, action) => {
 			};
 		case 'UPDATE_SCHEMA_DISPLAY':
 			return {
-			...state,
-			schema: action.payload
+				...state,
+				schema: action.payload
 			};
 		case 'UPDATE_HISTORY_DISPLAY':
 			return {
 				...state,
 				history: action.payload
 			};
+		case 'UPDATE_D3_DISPLAY':
+			return {
+				...state,
+				visuals: action.payload
+			}
 	}
 };
 
@@ -116,6 +121,7 @@ export const urlReducer = (state, action) => {
         ...state,
         types: action.payload.types,
         resolvers: action.payload.resolvers,
+		visuals: action.payload.visuals
       };
     case "UPDATE_ENTRY_ERROR":
       return {
@@ -134,7 +140,6 @@ export const urlReducer = (state, action) => {
       };
   }
 	}
-
 
 
 

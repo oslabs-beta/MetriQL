@@ -4,6 +4,7 @@ import * as AiIcons from "react-icons/ai";
 import Dialog from "@mui/material/Dialog";
 import { styled } from "@mui/material/styles";
 
+import SchemaVisual from '../components/SchemaVisual'
 import Schema from "./Schema";
 import classes from "../../styles/SideBar.module.css";
 import { SidebarContext } from "../context/global-context";
@@ -44,6 +45,21 @@ function SideBar({ openDB }) {
     });
   };
 
+  const handleSchemaVisOpen = () => {
+    displayDispatch({
+      type: "UPDATE_D3_DISPLAY",
+      payload: true,
+    });
+    console.log("handle open")
+  };
+
+  const handleSchemaVisClose = () => {
+    displayDispatch({
+      type: "UPDATE_D3_DISPLAY",
+      payload: false,
+    });
+  };
+
   return (
     <div>
       <nav
@@ -72,6 +88,17 @@ function SideBar({ openDB }) {
               open={displayState.schema === "resolvers"}
             >
               <Schema schema={urlState} view={"resolvers"} />
+            </Dialog>
+          </li>
+          <li className={classes.navText}>
+            <a onClick={() => handleSchemaVisOpen("visuals")}>Schema Visualizer</a>
+            <Dialog
+              onClose={handleSchemaVisClose}
+              open={displayState.visuals}
+              fullWidth={true}
+              maxWidth={'xl'}
+            >
+              <SchemaVisual visuals={urlState}/>
             </Dialog>
           </li>
         </ul>

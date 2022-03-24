@@ -77,6 +77,7 @@ const URILink = ({ closeHandler }) => {
         payload: {
           types: jsonData.schema.types,
           resolvers: jsonData.schema.resolvers,
+          visuals: jsonData.visuals
         },
       });
       return closeHandler();
