@@ -39,23 +39,25 @@ const submitUserData = async (e) => {
 let result;
 result = await fetch("http://localhost:3001/login", requestOptions);
 result = await result.json();
-console.log(result)
+
 statusDispatch({
-    type: 'LOGIN',
+    type: 'UPDATE_STATUS',
     payload: {
-        isLoggedin: result.Loggedin,
-        username: user //or could also be deconstructed off of returned result 
+        isLoggedIn: result.loggedin,
+        username: result.username 
     }
   })
+  console.log(statusState)
   return closeModal();
 }
 
-
+//create conditional for box to dissapear or shake STYLE BUTTONS, Sign up modal
     return (
         <div className = {classes.modal} >
+          {/* <div class="min-h-screen flex justify-center items-center bg-white"> */}
           <Box 
             sx={{
-              backgroundColor: '#FAF9F6',
+              backgroundColor: '#white',
               width: 100,
               height: 500,
             }}
@@ -82,7 +84,7 @@ statusDispatch({
                 paddingBottom: 1
               }}
               label="Password Input"
-              type='text'
+              type='password'
               value={pass}
               placeholder='Password'
               onChange={(e) => updatePassword(e.target.value)}

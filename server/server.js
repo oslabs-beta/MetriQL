@@ -16,7 +16,7 @@ app.use(session({
   secret: 'secret',
   resave: true,
   //prevents a new session when a new proprety is added
-  saveUninitialized: false
+  saveUninitialized: false,
 }))
   
 app.use(express.json());

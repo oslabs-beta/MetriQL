@@ -90,7 +90,7 @@ export const statusReducer = (state, action) => {
 	switch(action.type) {
 		case 'UPDATE_STATUS':
 			return {
-				isLoggedin: action.pyaload.isLoggedin,
+				isLoggedIn: action.payload.isLoggedin,
 				username: action.payload.username
 			}
 	}

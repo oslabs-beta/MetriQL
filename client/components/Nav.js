@@ -1,17 +1,22 @@
 import React, { useContext, useState } from 'react';
-// import { GlobalContext, GlobalDispatch } from '../context/global-context';
+import { StatusContext } from '../context/global-context';
 // import GlobalState from '../context/GlobalState';
 // import { LOGIN, LOGOUT } from '../context/global-actions';
 // import Link from 'next/link'
 
 function Nav( {openModal} ) {
- 
+
+    const { statusState } = useContext(StatusContext);
+
+    const username = statusState.username;
+
     const openLoginModal = () => {
         return openModal()
     }
 
     return (
-        <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
+        
+        <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800 sticky top-0 z-50" >
             <div class="container flex flex-wrap justify-between items-center mx-auto">
                 <a href="/" class="flex items-center">
                     <img src="/metricql.png" class="mr-3 h-6 sm:h-10" alt="Flowbite Logo" />
@@ -31,8 +36,9 @@ function Nav( {openModal} ) {
                         <li>
                             <a href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Team</a>
                         </li>
-                        <li>
-                            <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log In</a>
+                        <li >
+                            {statusState.username === '' ? //login status persists, but not usernames
+                            <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log In</a> : <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Welcome Back, {username}! </a>}
                         </li>
                     </ul>
                 </div>

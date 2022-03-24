@@ -19,17 +19,18 @@ userController.verifyUser = (req, res, next) => {
     const queryString = 'SELECT * FROM users WHERE username = $1 AND password = $2';
     db.query(queryString, values)
         .then(data => {
-            console.log(data.rows)
+            // console.log(data.rows)
 
             if (data.rows.length) {
                 req.session.loggedin = true;
                 req.session.username = username;
-                console.log(req.session)
+                res.locals.user = true;
+                // console.log(res.locals.user)
                 return next();
             }
             else {
-                req.session.loggedin = false;
-                console.log(req.session)
+                res.locals.user = false;
+                return next();
             }
         })
         .catch(err => {

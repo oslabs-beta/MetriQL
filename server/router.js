@@ -15,21 +15,14 @@ router.post('/schema',
 )
 //routes for userstuff 
 router.post('/login', userController.verifyUser, (req, res) => {
-    res.redirect('/home');
-    // res.status(200).send(res.locals.user)
+    // res.redirect('/home');
+    res.status(200).send(req.session)
 })
 
 router.post('/signup',userController.checkUser, userController.addUser, (req, res) => {
     // res.status(200).send(res.locals.users);
-    res.redirect('/home');
+    res.status(200).send(req.session);
 });
-
-//personalized user page | not mantaining session on postman; use to send persnal pages
-router.use('/home', (req, res) => {
-    // res.status(200).send('Welcome Back,' + req.session.username + '!')
-    res.status(200).send(req.session)
-
-})
 // 
 
 
