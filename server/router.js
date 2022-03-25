@@ -21,8 +21,6 @@ router.post('/login', userController.verifyUser, (req, res) => {
 })
 
 router.get('/github/auth', (req, res) => {
-    //maybe the redirect url on github needs to be 3000
-    console.log('here')
     const url = 'https://github.com/login/oauth/authorize?client_id=' + process.env.OAUTH_GITHUB_CLIENT;
     return res.redirect(url);
 })

@@ -37,8 +37,8 @@ function Nav( {openModal} ) {
                             <a href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Team</a>
                         </li>
                         <li >
-                            {statusState.username === '' ? //login status persists, but not usernames
-                            <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log In</a> : <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Welcome Back, {username}! </a>}
+                            {statusState.loggedin ? //login status persists, but not usernames
+                            <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Welcome Back, {username}!</a> : <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log In</a>}
                         </li>
                     </ul>
                 </div>
