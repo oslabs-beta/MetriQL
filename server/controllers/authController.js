@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const authController = {};
 
-authController.getToken = async(req, res, next) => {
+authController.getToken = async (req, res, next) => {
     console.log('token running')
     const requestToken = req.query.code;
     console.log(req.query);
@@ -15,7 +15,9 @@ authController.getToken = async(req, res, next) => {
             url, 
             headers: { accept: 'application/json'},
         })
-        token = await JSON.stringify(token);
+        console.log(token)
+        token = JSON.stringify(token);
+        // token = await token.json();
         // console.log(token.access_token)
         res.locals.access_token = token.access_token;
         return next();

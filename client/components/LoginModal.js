@@ -107,8 +107,8 @@ statusDispatch({
               variant="contained" 
               value='SubmitOAuth' 
               //func to take do OAuth in onClik
-              href='http://localhost:3001/auth/github'
-              // onClick={submitUserData} 
+              // href='http://localhost:3001/github/auth'
+              onClick={() => location.href='http://localhost:3001/github/auth'} 
               class='p-2 flex rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200'
               >Github<GithubIcon/>
                </button>
