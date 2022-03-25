@@ -68,7 +68,7 @@ function QueryInput() {
 
   return (
     <div className='mt-4'>
-      <div className='flex justify-between w-[40rem]'>
+      <div className='flex justify-between w-[33vw]'>
         <p className=" text-white1 font-bold text-2xl">Query Input</p>
 
         <Stack spacing={2} direction="row">
@@ -90,7 +90,7 @@ function QueryInput() {
       <CodeMirror
         className='mt-3'
         value={codeState.queryInput}
-        height='44rem'
+        height='39vw'
         theme='dark'
         extensions={[javascript({ jsx: true })]}
         onChange={(e) => {

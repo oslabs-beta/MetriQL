@@ -10,9 +10,9 @@ export default function SchemaVisual({ visuals}) {
     console.log("should be json", visuals.visuals)
 	function visualTree() {
 
-		let margin = { top: 40, right: 90, bottom: 30, left: 70 },
-			width = 1400 - margin.left - margin.right,
-			height = 940 - margin.top - margin.bottom;
+		let margin = { top: 0, right: 90, bottom: 40, left: 70 },
+			width = 1200 - margin.left - margin.right,
+			height = 725 - margin.top - margin.bottom;
 
 		let i = 0,
 			duration = 750;

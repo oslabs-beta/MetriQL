@@ -83,7 +83,7 @@ function Metric() {
 }
     return (
       <div className='pb-3'>
-            <Line height={20} width={40} options={options} data={data}/>
+            <Line height='20vw' width='35vw' options={options} data={data}/>
       </div>
     )
   }

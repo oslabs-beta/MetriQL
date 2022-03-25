@@ -13,8 +13,8 @@ function Result() {
         <CodeMirror
           value = {codeState.result}
           autoFocus={true}
-          height='30rem'
-          width= '35rem'
+          height='25vw'
+          width= '30vw'
           theme='dark'
           extensions={[javascript({ jsx: true })]}
           editable={false}
