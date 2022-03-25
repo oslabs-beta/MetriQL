@@ -5,7 +5,7 @@ import Link from 'next/link';
 const AboutApp = (props) => {
     return (
         <div id="Container" className="relative">
-            <div id="TwoColumn" className="flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24 items-center">
+            <div id="TwoColumn" className="flex flex-col md:flex-row justify-between max-w-screen-2xl mx-auto py-20 md:py-24 items-center">
                 <div id="TextColumn" className="w-full max-w-md mx-auto md:max-w-none md:mx-0">
                     <div id="TContent" className="md:w-20/5 mt-16 md:mt-0 ">
                         <div id="TContentLeft" className="md:mr-12 lg:mr-16 md:order-first">
