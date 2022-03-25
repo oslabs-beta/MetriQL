@@ -43,18 +43,18 @@ result = await result.json();
 statusDispatch({
     type: 'UPDATE_STATUS',
     payload: {
+      //not persisting to statusState change 
         isLoggedIn: result.loggedin,
         username: result.username 
     }
   })
-  console.log(statusState)
+  console.log(result.loggedin, statusState)
   return closeModal();
 }
 
 //create conditional for box to dissapear or shake STYLE BUTTONS, Sign up modal
     return (
         <div className = {classes.modal} >
-          {/* <div class="min-h-screen flex justify-center items-center bg-white"> */}
           <Box 
             sx={{
               backgroundColor: '#white',
@@ -91,8 +91,8 @@ statusDispatch({
               className={classes.InputURI}
               ></TextField>
 
-            <div class='flex itms-center justify-center'>
-              <div class="p-2 flex">
+            <div class='flex space-x-4  justify-center'>
+              <div class="p-2 flex flex space-x-5">
             <button 
               sx={{width: 156}}
               variant="contained" 
@@ -107,15 +107,13 @@ statusDispatch({
               variant="contained" 
               value='SubmitOAuth' 
               //func to take do OAuth in onClik
-              onClick={submitUserData} 
+              href='http://localhost:3001/auth/github'
+              // onClick={submitUserData} 
               class='p-2 flex rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200'
               >Github<GithubIcon/>
                </button>
                </div>
             </div>
-
-                <br>
-                </br>
                <div class="flex itms-center justify-center border-t-[1px] border-t-slate-300 w-full relative">
                    <div class="-mt-1 font-bod bg-white px-5 absolute">Or</div>
                 </div>

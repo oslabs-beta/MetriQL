@@ -24,12 +24,11 @@ userController.verifyUser = (req, res, next) => {
             if (data.rows.length) {
                 req.session.loggedin = true;
                 req.session.username = username;
-                res.locals.user = true;
-                // console.log(res.locals.user)
+                console.log(req.session)
                 return next();
             }
             else {
-                res.locals.user = false;
+                req.session = false;
                 return next();
             }
         })

@@ -3,6 +3,7 @@ const router = express.Router();
 const postgreSQLController = require('./controllers/postgreSQLController');
 const generateResolver = require('./generator/generatorResolver')
 const userController = require('./controllers/userController');
+const authController = require('./controllers/authController');
 
 router.post('/schema',
     postgreSQLController.table,
@@ -14,6 +15,15 @@ router.post('/schema',
     }
 )
 //routes for userstuff 
+router.get('/github/auth', (req, res) => {
+    const url = 'https://github.com/login/oauth/authorize?client_id=' + process.env.OAUTH_GITHUB_CLIENT;
+    console.log(url)
+    return res.redirect(url);
+})
+router.get('/github/callback', authController.getToken, authController.getUserInfo, (req, res) => {
+    res.status(200).send('OAuth Done');
+})
+
 router.post('/login', userController.verifyUser, (req, res) => {
     // res.redirect('/home');
     res.status(200).send(req.session)

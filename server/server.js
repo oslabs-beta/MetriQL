@@ -29,6 +29,8 @@ app.use('/graphql',
   })
 );
 
+// app.use('/auth', authRouter);
+
 app.use('/', router)
 
 app.use('*', (req, res) => res.status(404).send('Wrong Page, something is not right'));
