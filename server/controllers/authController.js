@@ -1,8 +1,11 @@
+//authController handles authorizing/adding user with OAuth 
 const axios = require('axios');
+const db = require('../userModels.js');
 require('dotenv').config();
 
 const authController = {};
 
+//sends request token to github to authorize user 
 authController.getToken = async (req, res, next) => {
     console.log('token running')
     const requestToken = req.query.code;
@@ -16,8 +19,6 @@ authController.getToken = async (req, res, next) => {
             headers: { accept: 'application/json'},
         })
         token = token.data;
-        // token = await token.json();
-        // console.log(token.access_token)
         res.locals.access_token = token.access_token;
         return next();
     }
@@ -29,7 +30,7 @@ authController.getToken = async (req, res, next) => {
         })
     }
 }
-
+//gets user data from github to store for future use 
 authController.getUserInfo = async(req, res, next) => {
     const url = 'https://api.github.com/user';
     let userInfo;
@@ -42,9 +43,7 @@ authController.getUserInfo = async(req, res, next) => {
                 Authorization: 'token ' + res.locals.access_token
             }
         });
-        // userInfo = userInfo.json();
-        console.log(userInfo.data)
-        res.locals.userInfo = userInfo.data;
+        res.locals = userInfo.data;
         return next();
     }
     catch (err) {
@@ -56,25 +55,44 @@ authController.getUserInfo = async(req, res, next) => {
     }
 }
 
+//check if user exists in database 
 authController.checkUser = (req, res, next) => {
-    const {username} = req.body;
+    const {username} = res.locals.login
     const queryString = 'SELECT * FROM users WHERE username = $1'
     const params = [username];
     db.query(queryString, params)
       .then(data => {
-          console.log(data.rows)
-          //possibly add option to sign in 
-          if (data.rows.length) res.send('user already exists')
-          else return next();
+          (data.rows.length ? res.locals.exist=true : res.locals.exist = false);
+          return next();
       })
-      //clean up
+        
       .catch((err) => {
         return next({
-          log: `userController.checkUser: ERROR: ${err} `,
+          log: `authController.checkUser: ERROR: ${err} `,
           message: {
-            err: `${err} at userController.checkUser`
+            err: `${err} at authController.checkUser`
           }
         });
     })
+}
+
+//if user does not exist (as gathered from previous middleware, which is above) add to sql database
+authController.addUser = (req, res, next) => {
+    const {login, name} = res.locals;
+    const queryString = 'INSERT INTO users (username, firstname) VALUES ($1, $2)';
+    const params = [login, name];
+
+    db.query(queryString, params) 
+        .then(result => {
+            return next();
+        })
+        .catch(err => {
+            return next({
+                log: `authController.addUser: ERROR: ${err} `,
+                message: {
+                  err: `${err} at authController.addUser`
+                }
+              })
+        })
 }
 module.exports=authController;

@@ -24,7 +24,7 @@ router.get('/github/auth', (req, res) => {
     const url = 'https://github.com/login/oauth/authorize?client_id=' + process.env.OAUTH_GITHUB_CLIENT;
     return res.redirect(url);
 })
-router.get('/github/callback', authController.getToken, authController.getUserInfo, (req, res) => {
+router.get('/github/callback', authController.getToken, authController.getUserInfo, authController.checkUser, authController.addUser, (req, res) => {
     res.status(200).send('OAuth Done');
 })
 
