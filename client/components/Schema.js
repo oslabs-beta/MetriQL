@@ -12,8 +12,8 @@ function Schema({schema, view}) {
       <div>
         <CodeMirror
           value={viewMaterial ? types : resolvers}
-          height='50rem'
-          width='35rem'
+          height='45vw'
+          width='35vw'
           theme='dark'
           extensions={[javascript({ jsx: true })]}
           editable={false}

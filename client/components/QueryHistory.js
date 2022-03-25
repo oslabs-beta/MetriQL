@@ -62,7 +62,7 @@ const QueryHistory = () => {
     return (
       <div>
         <Accordion className='bg-dark1 rounded-lg mt-1 justify-center' expanded={displayState.history === `panel${index}`} onChange={handleChange(`panel${index}`)}>
-          <AccordionSummary className='flex rounded-lg bg-dark1 w-[18rem] justify-center'>
+          <AccordionSummary className='flex rounded-lg bg-dark1 w-[14vw] justify-center'>
             <Typography className='text-white1'>Query {index + 1}</Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -80,7 +80,7 @@ const QueryHistory = () => {
     )
   })
   return (
-    <div className='flex flex-col justify-start p-4 max-h-[50rem] overflow-auto'>
+    <div className='flex flex-col justify-start p-4 max-h-[45vw] overflow-auto'>
       {query}
     </div>
   )

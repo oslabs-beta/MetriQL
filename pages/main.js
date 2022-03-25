@@ -20,6 +20,7 @@ import QueryInput from '../client/components/QueryInput';
 import Result from '../client/components/Result';
 import URILink from '../client/components/URILink';
 import QueryHistory from '../client/components/QueryHistory';
+import Nav from '../client/components/Nav'
 
 
 
@@ -65,20 +66,20 @@ function MainPage() {
         </SidebarContext.Provider>
 
 
-        <div className='flex place-content-center mt-2 justify-evenly -ml-14'>
+        <div className='flex place-content-center mt-2 justify-evenly -ml-15 '>
           <HistoryContext.Provider
             value={{
               codeState,
               displayState,
               displayDispatch
             }}>
-        <div className='flex bg-dark2 rounded-lg w-[20rem]'>
-          <QueryHistory />
-          </div>
+            <div className='flex bg-dark2 rounded-lg w-[17vw]'>
+              <QueryHistory />
+            </div>
           </HistoryContext.Provider>
 
 
-          <div className='flex bg-dark2 p-5  rounded-lg' >
+          <div className='flex bg-dark2 p-5 rounded-lg' >
             <QueryContext.Provider
               value={{
                 codeState,
@@ -86,7 +87,6 @@ function MainPage() {
                 speedUpdate,
                 speedState,
               }}>
-                
               <QueryInput />
             </QueryContext.Provider>
 
@@ -102,18 +102,15 @@ function MainPage() {
                 value={{
                   codeState,
                   codeDispatch,
-                  
-            
                 }}>
                 <Result />
-                
+
               </SchemaContext.Provider>
 
               <URLContext.Provider
                 value={{
                   urlState,
                   urlDispatch,
-                 
                 }}>
                 <Dialog open={displayState.URIModal}>
                   <URILink closeHandler={handleClose} />
