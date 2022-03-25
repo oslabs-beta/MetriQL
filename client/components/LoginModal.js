@@ -39,7 +39,8 @@ const submitUserData = async (e) => {
 let result;
 result = await fetch("http://localhost:3001/login", requestOptions);
 result = await result.json();
-
+req.session.loggedin = true
+req.sssion.username = username;
 statusDispatch({
     type: 'UPDATE_STATUS',
     payload: {

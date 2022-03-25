@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import { GraphContext } from '../context/global-context';
 
 import {
@@ -31,9 +32,9 @@ ChartJS.register(
 //what is attached to main page rendering 
 function Metric() {
   const {speedState} = useContext(GraphContext)
-  // const labels = [1,2,3,4,5,6];
+
   const labels = speedState.speed.map((el, index) => { return index + 1 });
-  // console.log('inside metric', speedState.speed)
+
 
   const options = {
     responsive: true,
@@ -48,8 +49,23 @@ function Metric() {
       toolTip: {
         display: true, 
       }
+    },
+    scales: {
+      yAxes: [
+        {
+          gridLines: {
+            zeroLineColor: "white"
+          }
+        }
+      ],
+      xAxes: [
+        {
+          gridLines: {
+            zeroLinecolor: "white"
+          }
+        }
+      ]
     }
-  
   }
 
 //create data parameters object 
@@ -60,14 +76,14 @@ function Metric() {
       label: 'ms', 
       lineTension: 0.40,
       data: speedState.speed,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      borderColor: 'rgb(258, 34, 12)',
+      backgroundColor: 'rgba(253, 99, 132, 0.5)',
     }
   ]
 }
     return (
       <div className='pb-3'>
-            <Line height={20} width={40} options={options} data={data}/>
+            <Line height='20vw' width='35vw' options={options} data={data}/>
       </div>
     )
   }

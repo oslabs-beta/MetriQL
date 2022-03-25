@@ -1,128 +1,159 @@
-import React, { useContext, useState } from 'react';
-import { URLContext } from '../context/global-context';
+import React, { useContext, useState } from "react";
+import { URLContext } from "../context/global-context";
 
-import { secret } from '../../server/generator/testPSQL';
-import cryptoJs from 'crypto-js';
-import classes from '../../styles/URILink.module.css'
+import { secret } from "../../server/generator/testPSQL";
+import cryptoJs from "crypto-js";
+import classes from "../../styles/URILink.module.css";
 
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 
-const URILink = ({closeHandler}) => {
+const URILink = ({ closeHandler }) => {
+  const { urlState, urlDispatch } = useContext(URLContext);
 
-  const { urlDispatch } = useContext(URLContext);
-
-  const [errorNoEntry, setErrorNoEntry] = useState(false); // to test if user tries to submit without entering any text
-  const [errorInvalidResponse, setErroryInvalidResponse] = useState(false); // to test if user enters invalid URL
-
-  const [newUrl, setNewUrl] = useState('')
-
-  const handleChange = e => {
-    setNewUrl(e.target.value);
-    setErrorNoEntry(false);
-    setErroryInvalidResponse(false);
-  }
+  const handleChange = (e) => {
+    urlDispatch({
+      type: "UPDATE_INPUT_URL",
+      payload: e.target.value,
+    });
+    urlDispatch({
+      type: "UPDATE_ENTRY_ERROR",
+      payload: false,
+    });
+    urlDispatch({
+      type: "UPDATE_INVALID_ERROR",
+      payload: false,
+    });
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
     };
-    if (e.target.value === 'submitNew' || e.key === 'Enter') {
-      if (newUrl) {
+
+    if (e.target.value === "submitNew" || e.key === "Enter") {
+      if (urlState.inputURL) {
         // i think we should sanitize newUrl against SQL injections
-        let encryptedUrl = cryptoJs.AES.encrypt(newUrl, secret).toString();
+        let encryptedUrl = cryptoJs.AES.encrypt(
+          urlState.inputURL,
+          secret
+        ).toString();
         requestOptions.body = JSON.stringify({ uri: encryptedUrl });
+
         urlDispatch({
-          type: 'UPDATE_URL',
+          type: "UPDATE_URL",
           payload: {
-            url: encryptedUrl
-          }
+            url: encryptedUrl,
+          },
         });
       } else {
-        setErrorNoEntry(true);
-        return; // returning so that the rest of this function does not execute
+        return urlDispatch({
+          type: "UPDATE_ENTRY_ERROR",
+          payload: true,
+        });
       }
     }
+
     const result = await fetch("http://localhost:3001/schema", requestOptions);
     const jsonData = await result.json();
-    console.log('schema.types ', jsonData)
+
     if (!jsonData.schema) {
-      setNewUrl('');
-      setErroryInvalidResponse(true);
-    } else { 
-    urlDispatch({
-      type: 'UPDATE_SCHEMA',
-      payload: {
-        types: jsonData.schema.types,
-        resolvers: jsonData.schema.resolvers
-      }
-    })
-    return closeHandler();
-    };
+      urlDispatch({
+        type: "UPDATE_INPUT_URL",
+        payload: "",
+      });
+      urlDispatch({
+        type: "UPDATE_INVALID_ERROR",
+        payload: true,
+      });
+    } else {
+      urlDispatch({
+        type: "UPDATE_SCHEMA",
+        payload: {
+          types: jsonData.schema.types,
+          resolvers: jsonData.schema.resolvers,
+          visuals: jsonData.visuals
+        },
+      });
+      return closeHandler();
+    }
   };
 
   return (
-    <div className = {classes.modal} >
-      <Box 
+    <div className={classes.modal}>
+      <Box
         sx={{
-          backgroundColor: 'rgb(230, 230, 230)',
+          backgroundColor: "#f6f0ff",
           width: 400,
-          height: 250,
+          height: 350,
         }}
-        className='w-screen'
-        textAlign='center'
+        className="w-screen"
+        textAlign="center"
       >
-        {errorInvalidResponse ? 
-        <DialogTitle sx={{color: 'red'}}>Please submit a valid URL</DialogTitle> :
-        <DialogTitle>Enter your Database URL</DialogTitle> }
+        {urlState.invalidError ? (
+          <DialogTitle sx={{ color: "red" }}>
+            Please submit a valid URL
+          </DialogTitle>
+        ) : (
+          <DialogTitle>Enter your Database URL</DialogTitle>
+        )}
         <TextField
           sx={{
-            paddingBottom: 1
+            paddingBottom: 1,
           }}
           label="Database Link"
-          type='text'
-          value={newUrl}
-          placeholder='Your Database Link'
+          type="text"
+          value={urlState.inputURL}
+          placeholder="Your Database Link"
           onChange={handleChange}
           className={classes.InputURI}
           onKeyPress={(e) => {
             if (e.key === "Enter") {
               submitHandler(e);
-            }}}
-          ></TextField>
+            }
+          }}
+        ></TextField>
 
-        <Button 
-          sx={{width: 156}}
-          variant="contained" 
-          value='submitNew' 
-          onClick={submitHandler} 
-          >Submit URL</Button>
-          <hr />
-          {errorNoEntry ? 
-            <DialogContent sx={{marginTop: -3, color: 'red', font: 'sans-serif'}}>Press "Use Default DB" to use our default database</DialogContent>:
-            <DialogContent sx={{marginTop: -3, font: 'sans-serif'}}>Press "Use Default DB" to use our default database</DialogContent>}
-
-        {/* * * * * Disable Use Default DB button if user inputs text * * * * */}
-        {/* {newUrl ? 
-          <Button sx={{width: 156, marginTop: -2}} disabled>Use Default DB</Button> : 
-          <Button sx={{width: 156, marginTop: -2}} variant="contained" value='submitDefault' onClick={submitHandler} >Use Default DB</Button> 
-        } */}
-
-        {/* * * * * Remove Use Default DB button if user inputs text * * * * */}
-        {/* {!newUrl &&
-          <Button sx={{width: 156}} variant="contained" value='submitDefault' onClick={submitHandler} >Use Default DB</Button> 
-        } */}
-
-        {/* * * * * Always see Use Default DB button  * * * * */}
-        <Button sx={{width: 156, marginTop: -2}} variant="contained" value='submitDefault' onClick={submitHandler} >Use Default DB</Button> 
+        <button
+          sx={{ width: 156 }}
+          variant="contained"
+          value="submitNew"
+          onClick={submitHandler}
+          class="mb-6 bg-purple hover:bg-purple1 text-white font-bold py-2 px-4 rounded"
+        >
+          Submit URL
+        </button>
+        <br />
+        <hr />
+        <br />
+        {urlState.entryError ? (
+          <DialogContent
+            sx={{ marginTop: -3, color: "red", font: "sans-serif" }}
+          >
+            Press "Use Default DB" to use our default database
+          </DialogContent>
+        ) : (
+          <DialogContent sx={{ marginTop: -3, font: "sans-serif" }}>
+            Press "Use Default DB" to use our default database
+          </DialogContent>
+        )}
+        <button
+          sx={{ width: 156 }}
+          variant="contained"
+          value="submitDefault"
+          onClick={submitHandler}
+          class="bg-purple mb-6 hover:bg-purple1 text-white font-bold py-2 px-4 rounded"
+        >
+          Use Default DB
+        </button>
       </Box>
     </div>
-  )
+  );
 };
 
 export default URILink;

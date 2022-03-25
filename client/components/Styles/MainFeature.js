@@ -15,9 +15,9 @@ const AboutApp = (props) => {
                         </div>
                     </div>
                 </div>
-                <div class='w-full max-w-md mx-auto md:max-w-none md:mx-0'>
-                    <div class='md:w-9/12 flex-shrink-0 relative'>
-                        <img src='/metricql.png' alt="MetricQLvisualizer" class="w-5000 h-5000 bg-contain bg-center rounded"></img>
+                <div className='w-full max-w-md mx-auto md:max-w-none md:mx-0'>
+                    <div className='md:w-9/12 flex-shrink-0 relative'>
+                        <img src='/metricql.png' alt="MetricQLvisualizer" className="w-5000 h-5000 bg-contain bg-center rounded"></img>
                     </div>
                 </div>
             </div>

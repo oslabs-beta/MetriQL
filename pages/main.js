@@ -1,7 +1,17 @@
 import { useReducer, useState } from 'react';
-import { SchemaContext, QueryContext, GraphContext, URLContext } from '../client/context/global-context';
-import { initialCodeState, codeReducer, initialSpeedState, speedReducer, initialURLState, urlReducer } from '../client/context/global-reducer';
+import Dialog from '@mui/material/Dialog';
 
+import { SchemaContext, QueryContext, GraphContext, URLContext, SidebarContext, HistoryContext } from '../client/context/global-context';
+import {
+  initialCodeState,
+  codeReducer,
+  initialSpeedState,
+  speedReducer,
+  initialURLState,
+  urlReducer,
+  initialDisplayState,
+  displayReducer,
+} from "../client/context/global-reducer";
 import Header from '../client/components/Header';
 import SideBar from '../client/components/SideBar';
 import Metric from '../client/components/Metric';
@@ -10,7 +20,9 @@ import QueryInput from '../client/components/QueryInput';
 import Result from '../client/components/Result';
 import URILink from '../client/components/URILink';
 import QueryHistory from '../client/components/QueryHistory';
-import Dialog from '@mui/material/Dialog';
+import Nav from '../client/components/Nav'
+
+
 
 
 function MainPage() {
@@ -21,14 +33,20 @@ function MainPage() {
 
   const [urlState, urlDispatch] = useReducer(urlReducer, initialURLState);
 
-  const [open, setOpen] = useState(true);
+  const [displayState, displayDispatch] = useReducer(displayReducer, initialDisplayState);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    displayDispatch({
+      type: 'UPDATE_MODAL_DISPLAY',
+      payload: true
+    })
   };
 
   const handleClose = () => {
-    setOpen(false);
+    displayDispatch({
+      type: 'UPDATE_MODAL_DISPLAY',
+      payload: false
+    })
   };
 
 
@@ -38,33 +56,36 @@ function MainPage() {
       <div >
         <Meta title='Work Space' />
 
-        <QueryContext.Provider
+        <SidebarContext.Provider
           value={{
-            urlState
+            urlState,
+            displayState,
+            displayDispatch
           }}>
           <SideBar openDB={handleClickOpen} />
-        </QueryContext.Provider>
-        <div className='flex place-content-center mt-2 justify-evenly -ml-14'>
+        </SidebarContext.Provider>
 
-          <SchemaContext.Provider
+
+        <div className='flex place-content-center mt-2 justify-evenly -ml-15 '>
+          <HistoryContext.Provider
             value={{
               codeState,
-              codeDispatch
+              displayState,
+              displayDispatch
             }}>
-        <div className='flex bg-dark2 rounded-lg w-[20rem]'>
-          <QueryHistory />
-          </div>
-          </SchemaContext.Provider>
+            <div className='flex bg-dark2 rounded-lg w-[17vw]'>
+              <QueryHistory />
+            </div>
+          </HistoryContext.Provider>
 
 
-
-          <div className='flex bg-dark2 p-5  rounded-lg' >
+          <div className='flex bg-dark2 p-5 rounded-lg' >
             <QueryContext.Provider
               value={{
+                codeState,
                 codeDispatch,
                 speedUpdate,
                 speedState,
-                urlState
               }}>
               <QueryInput />
             </QueryContext.Provider>
@@ -80,17 +101,18 @@ function MainPage() {
               <SchemaContext.Provider
                 value={{
                   codeState,
-                  codeDispatch
+                  codeDispatch,
                 }}>
                 <Result />
+
               </SchemaContext.Provider>
 
               <URLContext.Provider
                 value={{
                   urlState,
-                  urlDispatch
+                  urlDispatch,
                 }}>
-                <Dialog open={open}>
+                <Dialog open={displayState.URIModal}>
                   <URILink closeHandler={handleClose} />
                 </Dialog>
               </URLContext.Provider>

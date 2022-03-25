@@ -9,9 +9,8 @@
   z-index: 999;
   left: -100%;
 }
-
-.sidebarActive{
-  background-color: rgba(231, 234, 246, 0.95);
+  .sidebarActive{
+  background-color: #1D1127;
   width: 250px;
   height: 100vh;
   display: flex;
@@ -19,20 +18,23 @@
   position: fixed;
   transition: 550ms;
   z-index: 999;
-  padding: 20px
-
+  padding: 20px;
+  border: 2px solid #130918
 }
 
 .sidebarBar {
   display: flex;
-  height: 100%
+  height: 100%;
+  color: white;
+  margin-left: 20px;
 }
 .sidebarBar:hover{
   cursor: pointer;
 }
 
 .closeSide{
-  color: #38598b;
+  color: rgb(207, 204, 204);
+  float: right;
 }
 
 .closeSide:hover {
@@ -50,7 +52,7 @@
 
 .navText a {
   text-decoration: none;
-  color:#38598b;
+  color: rgb(207, 204, 204);
   font-size: 18px;
   width: 95%;
   height: 100%; 

@@ -1,3 +1,5 @@
+//userController handles manual (non oAuth) user login
+
 const db = require('../userModels.js');
 const session = require('express-session');
 const bcrypt = require ('bcryptjs');
@@ -19,8 +21,6 @@ userController.verifyUser = (req, res, next) => {
     const queryString = 'SELECT * FROM users WHERE username = $1 AND password = $2';
     db.query(queryString, values)
         .then(data => {
-            // console.log(data.rows)
-
             if (data.rows.length) {
                 req.session.loggedin = true;
                 req.session.username = username;
