@@ -44,6 +44,8 @@ authController.getUserInfo = async(req, res, next) => {
             }
         });
         res.locals = userInfo.data;
+        req.session.loggedin = true;
+        console.log(req.session)
         return next();
     }
     catch (err) {
@@ -57,16 +59,23 @@ authController.getUserInfo = async(req, res, next) => {
 
 //check if user exists in database 
 authController.checkUser = (req, res, next) => {
-    const {username} = res.locals.login
+    const {login} = res.locals
+    console.log(login)
     const queryString = 'SELECT * FROM users WHERE username = $1'
-    const params = [username];
+    const params = [login];
     db.query(queryString, params)
       .then(data => {
-          (data.rows.length ? res.locals.exist=true : res.locals.exist = false);
-          return next();
+        //   console.log(data.rows)
+          if (data.rows.length) {
+              res.redirect('http://localhost:3000/main')
+          }
+          else {
+              return next();
+          }
       })
         
       .catch((err) => {
+        //   console.log('adding user')
         return next({
           log: `authController.checkUser: ERROR: ${err} `,
           message: {

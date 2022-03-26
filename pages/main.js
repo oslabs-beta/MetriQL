@@ -1,7 +1,7 @@
-import { useReducer, useState } from 'react';
+import { useReducer, useState, useContext } from 'react';
 import Dialog from '@mui/material/Dialog';
 
-import { SchemaContext, QueryContext, GraphContext, URLContext, SidebarContext, HistoryContext } from '../client/context/global-context';
+import { SchemaContext, QueryContext, GraphContext, URLContext, SidebarContext, HistoryContext, StatusContext } from '../client/context/global-context';
 import {
   initialCodeState,
   codeReducer,
@@ -22,11 +22,9 @@ import URILink from '../client/components/URILink';
 import QueryHistory from '../client/components/QueryHistory';
 import Nav from '../client/components/Nav'
 
-
-
-
 function MainPage() {
-
+  const {statusState} = useContext(StatusContext)
+  console.log(statusState)
   const [codeState, codeDispatch] = useReducer(codeReducer, initialCodeState);
 
   const [speedState, speedUpdate] = useReducer(speedReducer, initialSpeedState);

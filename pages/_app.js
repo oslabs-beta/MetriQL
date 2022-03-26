@@ -1,32 +1,46 @@
-import {
-    ApolloClient, 
-    InMemoryCache, 
-    ApolloProvider, 
-    HttpLink, 
-    from,
-    } from '@apollo/client';
+import React, { useReducer, useEffect } from 'react';
+import { StatusContext } from '../client/context/global-context';
+import { statusReducer, initialStatusState } from '../client/context/global-reducer';
 
 import App from '../client/components/App';
 // import { links } from './utils/links';
 import '../styles/globals.css'
 
-const link = from([
-    new HttpLink({ uri: "http://localhost:3000/graphql"})
-])
-//create apollo client for use in getting graphql data
-const client = new ApolloClient({
-    cache: new InMemoryCache(),
-    link: link
-})
-
 
 function MyApp({ Component, pageProps }) {
+
+    const [statusState, statusDispatch] = useReducer(statusReducer, initialStatusState);
+
+    const verifySession =  () => {
+        fetch('http://localhost:3001/session')
+         .then(data => {
+           statusDispatch({
+             type: 'UPDATE_STATUS',
+             payload: {
+                 isLoggedIn: data,
+             }
+           })
+           console.log(statusState)
+         })
+         .catch(err => console.log(`error occurred at verifySession, ${err}`))
+        
+   }
+   
+    useEffect(() => {
+        verifySession()
+    }, [])
+
     return (
-        <ApolloProvider client = {client}>
+        <StatusContext.Provider
+        value={{
+            statusState,
+            statusDispatch
+          }}
+            >
             <App>
                 <Component {...pageProps} />
             </App>
-        </ApolloProvider>
+        </StatusContext.Provider>
     )
 }
 

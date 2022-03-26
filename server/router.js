@@ -15,25 +15,31 @@ router.post('/schema',
         res.status(200).json({schema: res.locals.schema, visuals: res.locals.d3JSON})
     }
 )
-//routes for userstuff 
-router.post('/login', userController.verifyUser, (req, res) => {
-    // res.redirect('/home');
-    res.status(200).send(req.session)
-})
-
+//routers for OAuth
 router.get('/github/auth', (req, res) => {
     const url = 'https://github.com/login/oauth/authorize?client_id=' + process.env.OAUTH_GITHUB_CLIENT;
     return res.redirect(url);
 })
 router.get('/github/callback', authController.getToken, authController.getUserInfo, authController.checkUser, authController.addUser, (req, res) => {
-    res.status(200).send('OAuth Done');
+    res.redirect('http://localhost:3000/main')
+})
+//router for manual login
+router.post('/login', userController.verifyUser, (req, res) => {
+    res.status(200).send(req.session)
 })
 
+//router for sign-up
 router.post('/signup',userController.checkUser, userController.addUser, (req, res) => {
-    // res.status(200).send(res.locals.users);
     res.status(200).send(req.session);
 });
-// 
+// route to verify session from front-end
+router.get('/session', (req, res) => {
+    let loggedIn = false;
+    if (req.session.username) {
+        loggedIn = true;
+    }
+    res.status(200).send(loggedIn)
+})
 
 
 module.exports = router;

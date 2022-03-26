@@ -11,10 +11,12 @@ const PORT = 3001;
 
 app.use(cors());
 
+const oneDay = 1000 * 60 * 60 * 24;
 //initializing session for user 
 app.use(session({
   secret: 'secret',
-  resave: true,
+  resave: false,
+  cookie: { maxAge: oneDay },
   //prevents a new session when a new proprety is added
   saveUninitialized: false,
 }))
