@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import Link from 'next/link'
+import Router from 'next/router'
 import GithubIcon from './styles/assets/GithubIcon';
 import { StatusContext } from '../context/global-context';
 import classes from '../../styles/URILink.module.css'
@@ -12,12 +12,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 const LoginModal = ({closeModal}) => {
   
-  const openSignupModal = () => {
+  const openLoginModal = () => {
     return openSignup();
   }
-
+  
   const { statusState, statusDispatch } = useContext(StatusContext);
-  const [errorNoEntry, setErrorNoEntry] = useState(false); // to test if user tries to submit without entering any text
+  const [badEntry, setBadEntry] = useState(false); // to test if user tries to submit without entering any text
 
   const [user, setUsername] = useState('');
   const [pass, setPassword] = useState('');
@@ -29,8 +29,7 @@ const LoginModal = ({closeModal}) => {
         setPassword(username)
     }
 
-const submitUserData = async (e) => {
-  e.preventDefault();
+const submitUserData = async () => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -39,19 +38,23 @@ const submitUserData = async (e) => {
 let result;
 result = await fetch("http://localhost:3001/login", requestOptions);
 result = await result.json();
-req.session.loggedin = true
-req.sssion.username = username;
 statusDispatch({
     type: 'UPDATE_STATUS',
     payload: {
-      //not persisting to statusState change 
         isLoggedIn: result.loggedin,
         username: result.username 
     }
   })
-  console.log(result.loggedin, statusState)
-  return closeModal();
+if (user === '' || pass === '') setBadEntry(true)
+
+if (!badEntry) return closeModal();
 }
+
+//redirect page if user is verified and logged in
+if (statusState.isLoggedIn && !badEntry){
+  Router.push('http://localhost:3000/main')
+  console.log(statusState)
+} 
 
 //create conditional for box to dissapear or shake STYLE BUTTONS, Sign up modal
     return (
@@ -65,8 +68,8 @@ statusDispatch({
             className='w-screen'
             textAlign='center'
           >
-            {errorNoEntry ? 
-            <DialogTitle sx={{color: 'red'}}>Please enter your login information</DialogTitle> :
+            {badEntry ? 
+            <DialogTitle sx={{color: 'red'}}>Username/Password Incorrect. Try Again</DialogTitle> :
             <DialogTitle></DialogTitle> }
             <TextField
               sx={{
@@ -122,7 +125,7 @@ statusDispatch({
               sx={{width: 156}}
               variant="contained" 
               value='submitNew' 
-              onClick={openSignupModal} 
+              onClick={openLoginModal} 
               class='rounded-2xl border-b-2 border-b-gray-300 bg-purple1 py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200'
               >Sign Up Here</button>
           </Box>

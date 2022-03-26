@@ -1,6 +1,6 @@
 const { makeExecutableSchema } = require('graphql-tools');
 const { Pool } = require('pg');
-const PG_URI = 'postgres://hgokvgqx:8y0x9A3vgaIFSSCZMLDieF-LgoWlh_mi@castor.db.elephantsql.com/hgokvgqx';
+const PG_URI = 'postgres://sugmjzbp:wvcZ6SvHu61w8qdmDYBb1uvdnqtLZ_82@suleiman.db.elephantsql.com:5432/sugmjzbp';
 
 const pool = new Pool({
   connectionString: PG_URI

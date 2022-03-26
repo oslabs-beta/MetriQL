@@ -148,21 +148,20 @@ export const urlReducer = (state, action) => {
         ...state,
         inputURL: action.payload,
       };
-  }
-	}
-		case 'UPDATE_SCHEMA':
+
+	case 'UPDATE_SCHEMA':
 			return {
 				...state,
 				types: action.payload.types,
 				resolvers: action.payload.resolvers
 			}
-		}
+	}
 }
 export const statusReducer = (state, action) => {
 	switch(action.type) {
 		case 'UPDATE_STATUS':
 			return {
-				isLoggedIn: action.payload.isLoggedin,
+				isLoggedIn: action.payload.isLoggedIn,
 				username: action.payload.username
 			}
 	}

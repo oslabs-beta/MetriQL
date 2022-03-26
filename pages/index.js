@@ -39,9 +39,6 @@ function HomePage() {
         <Dialog open={open}>
             <LoginModal closeModal={handleClose}/>
         </Dialog>
-        {/* <Dialog open={open}>
-            <SignupModal closeModal={handleClose} openSignup={handleClickOpen}/>
-        </Dialog> */}
       </StatusContext.Provider>
     </div>
   )

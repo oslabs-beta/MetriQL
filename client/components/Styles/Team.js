@@ -76,7 +76,7 @@ const Team = (props) => {
                         </div>
                     </div>
                     <div className="mt-24 w-full sm:w-1/2 lg:w-1/3 flex flex-col items-center">
-                        <img src="https://media-exp1.licdn.com/dms/image/C4D03AQE99sLMyKpDqA/profile-displayphoto-shrink_800_800/0/1517072415081?e=1652918400&v=beta&t=XG12PkGgbdZaqCIm6DrPRWECRAZyg4C4oACqk-nfusE" alt="Rehema Armorer" width="100" height="100" className="w-64 h-64 bg-contain bg-center rounded"></img>
+                        <img src="/rehema.jpg" alt="Rehema Armorer" width="100" height="100" className="w-64 h-64 bg-contain bg-center rounded"></img>
                         <div className="flex flex-col items-center mt-6">
                         <h3 className="uppercase font-bold tracking-widest text-xs text-purple"> Software Engineer </h3>
                         <h1 className="mt-1 text-xl font-medium text-gray"> Rehema Armorer </h1>

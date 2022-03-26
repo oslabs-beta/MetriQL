@@ -28,7 +28,8 @@ userController.verifyUser = (req, res, next) => {
                 return next();
             }
             else {
-                req.session = false;
+                req.session.loggedin = false;
+                req.session.username = '';
                 return next();
             }
         })
