@@ -17,6 +17,8 @@ export const URLContext = createContext();
 
 export const StatusContext = createContext();
 
+export const SidebarContext = createContext();
+
 export const HistoryContext = createContext();
 
 export {GlobalContext, GlobalDispatch};
