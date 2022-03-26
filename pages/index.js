@@ -4,16 +4,45 @@ import AboutApp from '../client/components/Styles/MainFeature';
 import SecondFeature from '../client/components/Styles/SecondFeature';
 import Features from '../client/components/Styles/Features';
 import ThirdFeature from '../client/components/Styles/ThirdFeature';
+import Dialog from '@mui/material/Dialog';
+import LoginModal from '../client/components/LoginModal';
+import SignupModal from '../client/components/SignUpModal';
+import { useState, useReducer } from 'react';
+import { statusReducer, initialStatusState } from '../client/context/global-reducer';
+import { StatusContext } from '../client/context/global-context';
 
 function HomePage() {
+  const [statusState, statusDispatch] = useReducer(statusReducer, initialStatusState);
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+   setOpen(true)
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
-      <Nav />
+      <StatusContext.Provider
+        value={{
+          statusState, 
+          statusDispatch
+        }}
+        >
+      <Nav openModal={handleClickOpen}/>
       <AboutApp />
       <SecondFeature />
       <ThirdFeature />
       <Features />
       <Team />
+        <Dialog open={open}>
+            <LoginModal closeModal={handleClose}/>
+        </Dialog>
+        {/* <Dialog open={open}>
+            <SignupModal closeModal={handleClose} openSignup={handleClickOpen}/>
+        </Dialog> */}
+      </StatusContext.Provider>
     </div>
   )
 }

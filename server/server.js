@@ -4,11 +4,20 @@ const path = require('path');
 const router = require('./router')
 const { graphqlHTTP } = require('express-graphql')
 const schema = require('./graphQLServer/schema');
+const session = require('express-session');
 
 const app = express();
 const PORT = 3001;
 
 app.use(cors());
+
+//initializing session for user 
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  //prevents a new session when a new proprety is added
+  saveUninitialized: false,
+}))
   
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,11 +29,14 @@ app.use('/graphql',
   })
 );
 
+// app.use('/auth', authRouter);
+
 app.use('/', router)
 
 app.use('*', (req, res) => res.status(404).send('Wrong Page, something is not right'));
 
 app.use((err, req, res, next) => {
+  console.log(err)
     const defaultErr = {
       log: 'Express error handler in unknown middleware error',
       status: 500,

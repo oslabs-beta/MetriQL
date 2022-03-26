@@ -31,6 +31,11 @@ export const initialDisplayState = {
 	visuals: false,
 };
 
+export const initialStatusState = {
+	isLoggedin: false,
+	username: ''
+}
+
 const globalReducer = (state, action) => {
 	switch (action.type) {
 		case LOGIN:
@@ -46,6 +51,11 @@ const globalReducer = (state, action) => {
 				isLoggedIn: false,
 				username: '',
 				password: ''
+			}
+		case OPEN_LOGIN:
+			return {
+				...state,
+				open: true
 			}
 
 		default:
@@ -140,6 +150,23 @@ export const urlReducer = (state, action) => {
       };
   }
 	}
+		case 'UPDATE_SCHEMA':
+			return {
+				...state,
+				types: action.payload.types,
+				resolvers: action.payload.resolvers
+			}
+		}
+}
+export const statusReducer = (state, action) => {
+	switch(action.type) {
+		case 'UPDATE_STATUS':
+			return {
+				isLoggedIn: action.payload.isLoggedin,
+				username: action.payload.username
+			}
+	}
+}
 
 
 

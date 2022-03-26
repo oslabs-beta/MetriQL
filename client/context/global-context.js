@@ -15,7 +15,7 @@ export const GraphContext = createContext();
 
 export const URLContext = createContext();
 
-export const SidebarContext = createContext();
+export const StatusContext = createContext();
 
 export const HistoryContext = createContext();
 
