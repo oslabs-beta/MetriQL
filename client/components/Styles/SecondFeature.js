@@ -6,7 +6,7 @@ const SecondFeature = (props) => {
   return (
     // container
     <div className='relative'>
-      <div className='flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24 items-center'>
+      <div className='flex flex-col md:flex-row justify-between max-w-screen-2xl mx-auto py-20 md:py-24 items-center'>
         <div className='w-full max-w-md mx-auto md:max-w-none md:mx-0'>
           <div className='md:w-9/12 flex-shrink-0 relative'>
             <img src='/demophoto.png' alt="MetricQLvisualizer" className="w-5000 h-5000 bg-contain bg-center rounded"></img>
