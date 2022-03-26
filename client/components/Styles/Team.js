@@ -7,7 +7,7 @@ import LinkedinIcon from './assets/LinkedinIcon';
 const Team = (props) => {
     return (
         <div>
-            <div className="relative max-w-screen-xl mx-auto py-20 lg:py-24">
+            <div className="relative max-w-screen-2xl mx-auto py-20 lg:py-24">
                 <div className="container flex justify-center mx-auto pt-12">
                     <div>
                         <h5 className="font-bold text-purple flex justify-center">Our Team</h5>
