@@ -7,12 +7,18 @@ import ThirdFeature from '../client/components/Styles/ThirdFeature';
 import Dialog from '@mui/material/Dialog';
 import LoginModal from '../client/components/LoginModal';
 import SignupModal from '../client/components/SignUpModal';
-import { useState, useReducer } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { statusReducer, initialStatusState } from '../client/context/global-reducer';
 import { StatusContext } from '../client/context/global-context';
 
 function HomePage() {
-  const [statusState, statusDispatch] = useReducer(statusReducer, initialStatusState);
+
+  const {verifySession} = useContext(StatusContext);
+
+  useEffect(() => {
+    verifySession()
+  }, [])
+  
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -24,12 +30,12 @@ function HomePage() {
 
   return (
     <div>
-      <StatusContext.Provider
+      {/* <StatusContext.Provider
         value={{
           statusState, 
           statusDispatch
         }}
-        >
+        > */}
       <Nav openModal={handleClickOpen}/>
       <AboutApp />
       <SecondFeature />
@@ -39,7 +45,7 @@ function HomePage() {
         <Dialog open={open}>
             <LoginModal closeModal={handleClose}/>
         </Dialog>
-      </StatusContext.Provider>
+      {/* </StatusContext.Provider> */}
     </div>
   )
 }

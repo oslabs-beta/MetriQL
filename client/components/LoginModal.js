@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useReducer } from 'react';
 import Router from 'next/router'
 import GithubIcon from './styles/assets/GithubIcon';
 import { StatusContext } from '../context/global-context';
@@ -16,7 +16,7 @@ const LoginModal = ({closeModal}) => {
     return openSignup();
   }
   
-  const { statusState, statusDispatch } = useReducer(StatusContext);
+  const { status, statusState, statusDispatch } = useReducer(StatusContext);
   const [badEntry, setBadEntry] = useState(false); // to test if user tries to submit without entering any text
 
   const [user, setUsername] = useState('');
@@ -51,10 +51,11 @@ if (!badEntry) return closeModal();
 }
 
 //redirect page if user is verified and logged in
-if (statusState.isLoggedIn && !badEntry){
+if (status && !badEntry){
   Router.push('http://localhost:3000/main')
   console.log(statusState)
 } 
+
 
 //create conditional for box to dissapear or shake STYLE BUTTONS, Sign up modal
     return (
@@ -94,18 +95,19 @@ if (statusState.isLoggedIn && !badEntry){
               onChange={(e) => updatePassword(e.target.value)}
               className={classes.InputURI}
               ></TextField>
-
+          
             <div class='flex space-x-4  justify-center'>
               <div class="p-2 flex flex space-x-5">
+            
             <button 
               sx={{width: 156}}
               variant="contained" 
               value='submitNew' 
               onClick={submitUserData} 
               class="rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-700 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200"
-              >
-                Log In</button>
+              >Log In</button> 
              
+            
             <button 
               sx={{width: 180}}
               variant="contained" 
@@ -114,13 +116,16 @@ if (statusState.isLoggedIn && !badEntry){
               class='p-2 flex rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200'
               >Github<GithubIcon/>
                </button>
+
                </div>
-            </div>
-               <div class="flex itms-center justify-center border-t-[1px] border-t-slate-300 w-full relative">
-                   <div class="-mt-1 font-bod bg-white px-5 absolute">Or</div>
+                  </div>
+                    <div class="flex itms-center justify-center border-t-[1px] border-t-slate-300 w-full relative">
+                  <div class="-mt-1 font-bod bg-white px-5 absolute">Or</div>
                 </div>
+
                 <br>
                 </br>
+                
                <button 
               sx={{width: 156}}
               variant="contained" 

@@ -28,6 +28,13 @@ router.post('/login', userController.verifyUser, (req, res) => {
     res.status(200).send(req.session)
 })
 
+//router for logout
+router.get('/logout', (req,res) => {
+    console.log('logout route reached')
+    req.session.destroy();
+    res.redirect('http://localhost:3000');
+});
+
 //router for sign-up
 router.post('/signup',userController.checkUser, userController.addUser, (req, res) => {
     res.status(200).send(req.session);
@@ -35,7 +42,7 @@ router.post('/signup',userController.checkUser, userController.addUser, (req, re
 // route to verify session 
 router.get('/session', (req, res) => {
     let loggedIn = false;
-    if (req.session.username) {
+    if (req.session !== undefined) {
         loggedIn = true;
     }
     res.status(200).send(loggedIn)

@@ -6,23 +6,11 @@ import { StatusContext } from '../context/global-context';
 
 function Nav( {openModal} ) {
 
-    const { statusState } = useContext(StatusContext);
-
-      const [status, setStatus] = useState(false);
-
-    const verifySession =  () => {
-        fetch('http://localhost:3001/session')
-        .then(data => {
-            setStatus(data)
-        })
-        .catch(err => console.log(`error occurred at verifySession, ${err}`))
-        }     
+    const { status, verifySession } = useContext(StatusContext);  
     
     useEffect(() => {
         verifySession()
     }, [])
-
-    const username = statusState.username;
 
     const openLoginModal = () => {
         return openModal()
@@ -52,7 +40,7 @@ function Nav( {openModal} ) {
                         </li>
                         <li >
                             {status ? //login status persists, but not usernames
-                            <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Welcome Back!</a> : <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log In</a>}
+                             <a onClick={() => location.href='http://localhost:3001/logout'} href='#' class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log Out</a> : <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log In</a>}
                         </li>
                     </ul>
                 </div>
