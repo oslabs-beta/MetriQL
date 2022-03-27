@@ -12,48 +12,64 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 const LoginModal = ({closeModal}) => {
   
-  const openLoginModal = () => {
-    return openSignup();
+  const { statusState, statusDispatch } = useContext(StatusContext);
+
+
+  // const [user, setUsername] = useState('');
+  // const [pass, setPassword] = useState('');
+
+  const updateUsername = (username) => {
+    statusDispatch({
+      type: 'UPDATE_USERNAME',
+      payload: {
+          username: username
+      }
+    })
   }
-  
-  const { status, statusState, statusDispatch } = useReducer(StatusContext);
-  const [badEntry, setBadEntry] = useState(false); // to test if user tries to submit without entering any text
 
-  const [user, setUsername] = useState('');
-  const [pass, setPassword] = useState('');
-
-  const updateUsername = (password) => {
-    setUsername(password)
-    }
-  const updatePassword = (username) => {
-        setPassword(username)
-    }
+  const updatePassword = (password) => {
+    statusDispatch({
+      type: 'UPDATE_PASSWORD',
+      payload: {
+          password: password
+      }
+    })
+  }
 
 const submitUserData = async () => {
-  const requestOptions = {
+
+if (statusState.username === '' || statusState.password === '') {
+    statusDispatch({
+      type: 'UPDATE_ENTRY_ERROR',
+      payload: {
+        entryError: true
+      }
+    })
+  }
+const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({"username": user, "password": pass })
+    body: JSON.stringify({"username": statusState.username, "password": statusState.password })
   };
 let result;
 result = await fetch("http://localhost:3001/login", requestOptions);
 result = await result.json();
+
 statusDispatch({
     type: 'UPDATE_STATUS',
     payload: {
         isLoggedIn: result.loggedin,
-        username: result.username 
     }
   })
-if (user === '' || pass === '') setBadEntry(true)
 
-if (!badEntry) return closeModal();
+  if (!statusState.entryError) return closeModal();
+
 }
 
 //redirect page if user is verified and logged in
-if (status && !badEntry){
-  Router.push('http://localhost:3000/main')
+if (statusState.isLoggedIn && !statusState.entryError){
   console.log(statusState)
+  Router.push('http://localhost:3000/main')
 } 
 
 
@@ -69,7 +85,7 @@ if (status && !badEntry){
             className='w-screen'
             textAlign='center'
           >
-            {badEntry ? 
+            {statusState.entryError ? 
             <DialogTitle sx={{color: 'red'}}>Username/Password Incorrect. Try Again</DialogTitle> :
             <DialogTitle></DialogTitle> }
             <TextField
@@ -78,9 +94,9 @@ if (status && !badEntry){
               }}
               label="Username input"
               type='text'
-              value={user}
+              value={statusState.username}
               placeholder='Username'
-              onChange={(e) => updateUsername(e.target.value)}
+              onChange={(e) => updateUsername(e)}
               className={classes.InputURI}
               ></TextField>
 
@@ -90,9 +106,10 @@ if (status && !badEntry){
               }}
               label="Password Input"
               type='password'
-              value={pass}
+              value={statusState.password}
               placeholder='Password'
-              onChange={(e) => updatePassword(e.target.value)}
+              onChange={(e) => updatePassword(e)}
+              // onChange={updatePassword}
               className={classes.InputURI}
               ></TextField>
           
@@ -130,7 +147,7 @@ if (status && !badEntry){
               sx={{width: 156}}
               variant="contained" 
               value='submitNew' 
-              onClick={openLoginModal} 
+              // onClick={openLoginModal} 
               class='rounded-2xl border-b-2 border-b-gray-300 bg-purple1 py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200'
               >Sign Up Here</button>
           </Box>

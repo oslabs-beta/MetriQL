@@ -13,7 +13,7 @@ import { StatusContext } from '../client/context/global-context';
 
 function HomePage() {
 
-  const {verifySession} = useContext(StatusContext);
+  const {verifySession, status} = useContext(StatusContext);
 
   useEffect(() => {
     verifySession()

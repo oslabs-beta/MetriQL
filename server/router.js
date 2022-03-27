@@ -4,6 +4,7 @@ const postgreSQLController = require('./controllers/postgreSQLController');
 const generateResolver = require('./generator/generatorResolver')
 const userController = require('./controllers/userController');
 const authController = require('./controllers/authController');
+// const sessionController = require('./controllers/sessionController');
 
 router.post('/schema',
     postgreSQLController.table,
@@ -29,10 +30,12 @@ router.post('/login', userController.verifyUser, (req, res) => {
 })
 
 //router for logout
+
+//this is being reached then overwritten somehow
 router.get('/logout', (req,res) => {
-    console.log('logout route reached')
-    req.session.destroy();
-    res.redirect('http://localhost:3000');
+    req.session = req.session.destroy();
+    // res.redirect('http://localhost:3000');
+   res.send('logout route reached')
 });
 
 //router for sign-up
@@ -40,9 +43,11 @@ router.post('/signup',userController.checkUser, userController.addUser, (req, re
     res.status(200).send(req.session);
 });
 // route to verify session 
+//changed to username because a session will always be prsent (just a new one)
 router.get('/session', (req, res) => {
+    console.log(req.session.username)
     let loggedIn = false;
-    if (req.session !== undefined) {
+    if (req.session.username !== undefined) {
         loggedIn = true;
     }
     res.status(200).send(loggedIn)

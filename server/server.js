@@ -17,7 +17,6 @@ app.use(session({
   secret: 'secret',
   resave: false,
   cookie: { maxAge: oneDay },
-  //prevents a new session when a new proprety is added
   saveUninitialized: false,
 }))
   

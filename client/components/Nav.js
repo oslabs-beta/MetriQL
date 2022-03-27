@@ -6,15 +6,12 @@ import { StatusContext } from '../context/global-context';
 
 function Nav( {openModal} ) {
 
-    const { status, verifySession } = useContext(StatusContext);  
-    
-    useEffect(() => {
-        verifySession()
-    }, [])
+    const { status } = useContext(StatusContext);  
 
     const openLoginModal = () => {
         return openModal()
     }
+
 
     return (
         

@@ -1,7 +1,6 @@
 //userController handles manual (non oAuth) user login
 
 const db = require('../userModels.js');
-const session = require('express-session');
 const bcrypt = require ('bcryptjs');
 const saltRounds = 10;
 const userController = {};
@@ -24,7 +23,6 @@ userController.verifyUser = (req, res, next) => {
             if (data.rows.length) {
                 req.session.loggedin = true;
                 req.session.username = username;
-                console.log(req.session)
                 return next();
             }
             else {
@@ -67,7 +65,6 @@ userController.addUser = (req, res, next) => {
 
     db.query(queryString, params) 
         .then(result => {
-            // res.locals.user = result.rows[0]
             res.session.Loggedin = true;
             res.session.username = username;
             return next();

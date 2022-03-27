@@ -32,8 +32,11 @@ export const initialDisplayState = {
 };
 
 export const initialStatusState = {
-	isLoggedin: false,
-	username: ''
+	username: '',
+	password: '',
+	entryError: false,
+	isLoggedIn: false,
+
 }
 
 const globalReducer = (state, action) => {
@@ -158,10 +161,25 @@ export const urlReducer = (state, action) => {
 }
 export const statusReducer = (state, action) => {
 	switch(action.type) {
-		case 'UPDATE_STATUS':
+		case 'UPDATE_USERNAME':
 			return {
-				isLoggedIn: action.payload.isLoggedIn,
+				...state,
 				username: action.payload.username
+			};
+		case 'UPDATE_PASSWORD':
+			return {
+				...state,
+				username: action.payload.password
+			};
+		case 'UPDATE_ENTRY_ERROR': 
+			return {
+				...state,
+				entryError: action.payload.entryError
+			}
+		case 'UPDATE_STATUS': 
+			return {
+				...state, 
+				isLoggedIn: action.payload.isLoggedIn
 			}
 	}
 }
