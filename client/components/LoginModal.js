@@ -16,7 +16,7 @@ const LoginModal = ({closeModal}) => {
     return openSignup();
   }
   
-  const { statusState, statusDispatch } = useContext(StatusContext);
+  const { statusState, statusDispatch } = useReducer(StatusContext);
   const [badEntry, setBadEntry] = useState(false); // to test if user tries to submit without entering any text
 
   const [user, setUsername] = useState('');

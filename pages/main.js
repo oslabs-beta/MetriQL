@@ -23,15 +23,26 @@ import QueryHistory from '../client/components/QueryHistory';
 import Nav from '../client/components/Nav'
 
 function MainPage() {
-  const {statusState} = useContext(StatusContext)
-  console.log(statusState)
+
   const [codeState, codeDispatch] = useReducer(codeReducer, initialCodeState);
-
   const [speedState, speedUpdate] = useReducer(speedReducer, initialSpeedState);
-
   const [urlState, urlDispatch] = useReducer(urlReducer, initialURLState);
-
   const [displayState, displayDispatch] = useReducer(displayReducer, initialDisplayState);
+
+  // const [status, setStatus] = useState(false);
+
+  // const verifySession =  () => {
+  //     fetch('http://localhost:3001/session')
+  //      .then(data => {
+  //        setStatus(data)
+  //      })
+  //      .catch(err => console.log(`error occurred at verifySession, ${err}`))
+  //   }     
+ 
+  // useEffect(() => {
+  //     verifySession()
+  // }, [])
+
 
   const handleClickOpen = () => {
     displayDispatch({

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { StatusContext } from '../context/global-context';
 // import GlobalState from '../context/GlobalState';
 // import { LOGIN, LOGOUT } from '../context/global-actions';
@@ -7,6 +7,20 @@ import { StatusContext } from '../context/global-context';
 function Nav( {openModal} ) {
 
     const { statusState } = useContext(StatusContext);
+
+      const [status, setStatus] = useState(false);
+
+    const verifySession =  () => {
+        fetch('http://localhost:3001/session')
+        .then(data => {
+            setStatus(data)
+        })
+        .catch(err => console.log(`error occurred at verifySession, ${err}`))
+        }     
+    
+    useEffect(() => {
+        verifySession()
+    }, [])
 
     const username = statusState.username;
 
@@ -37,8 +51,8 @@ function Nav( {openModal} ) {
                             <a href="#" className="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Team</a>
                         </li>
                         <li >
-                            {statusState.isLoggedIn ? //login status persists, but not usernames
-                            <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Welcome Back, {username}!</a> : <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log In</a>}
+                            {status ? //login status persists, but not usernames
+                            <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Welcome Back!</a> : <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log In</a>}
                         </li>
                     </ul>
                 </div>

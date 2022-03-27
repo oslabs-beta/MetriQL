@@ -32,7 +32,7 @@ router.post('/login', userController.verifyUser, (req, res) => {
 router.post('/signup',userController.checkUser, userController.addUser, (req, res) => {
     res.status(200).send(req.session);
 });
-// route to verify session from front-end
+// route to verify session 
 router.get('/session', (req, res) => {
     let loggedIn = false;
     if (req.session.username) {
