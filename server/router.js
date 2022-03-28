@@ -34,8 +34,7 @@ router.post('/login', userController.verifyUser, (req, res) => {
 //this is being reached then overwritten somehow
 router.get('/logout', (req,res) => {
     req.session = req.session.destroy();
-    // res.redirect('http://localhost:3000');
-   res.send('logout route reached')
+    res.redirect('http://localhost:3000');
 });
 
 //router for sign-up
@@ -45,7 +44,6 @@ router.post('/signup',userController.checkUser, userController.addUser, (req, re
 // route to verify session 
 //changed to username because a session will always be prsent (just a new one)
 router.get('/session', (req, res) => {
-    console.log(req.session.username)
     let loggedIn = false;
     if (req.session.username !== undefined) {
         loggedIn = true;

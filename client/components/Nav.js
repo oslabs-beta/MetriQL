@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { StatusContext } from '../context/global-context';
 // import GlobalState from '../context/GlobalState';
 // import { LOGIN, LOGOUT } from '../context/global-actions';
@@ -6,7 +6,12 @@ import { StatusContext } from '../context/global-context';
 
 function Nav( {openModal} ) {
 
-    const { status } = useContext(StatusContext);  
+    const { statusState, verifySession } = useContext(StatusContext);  
+    
+    //unable to get log in/log out to conditionally render correctly on homepage reload 
+    useEffect(()=> {
+        verifySession
+    }, [])
 
     const openLoginModal = () => {
         return openModal()
@@ -36,7 +41,7 @@ function Nav( {openModal} ) {
                             <a href="#" className="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Team</a>
                         </li>
                         <li >
-                            {status ? //login status persists, but not usernames
+                            {statusState.isLoggedIn ? //login status persists, but not usernames
                              <a onClick={() => location.href='http://localhost:3001/logout'} href='#' class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log Out</a> : <a onClick={openLoginModal} href="#" class="mt-4 lg:mt-0 transition duration-300 font-medium pb-1 mr-12 text-gray-700 border-gray hocus:text-gary">Log In</a>}
                         </li>
                     </ul>

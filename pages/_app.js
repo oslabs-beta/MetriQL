@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { StatusContext } from '../client/context/global-context';
 import { statusReducer, initialStatusState } from '../client/context/global-reducer';
 
@@ -10,24 +10,27 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }) {
     
     const [statusState, statusDispatch] = useReducer(statusReducer, initialStatusState);
-    const [status, setStatus] = useState(false);
     
     const verifySession = async () => {
         await fetch('http://localhost:3001/session')
         .then(data => data.json())
         .then(data => {
-            setStatus(data)
+            console.log(data)
+            statusDispatch({
+                type: 'UPDATE_STATUS',
+                payload: {
+                    isLoggedIn: data
+                }
+            })
         })
         .catch(err => console.log(`error occurred at verifySession, ${err}`))
         }
-          
         
     return (
         <StatusContext.Provider 
             value={{
             statusState,
-            statusDispatch,
-            status, 
+            statusDispatch, 
             verifySession}}>
                 <App>
                     <Component {...pageProps} />

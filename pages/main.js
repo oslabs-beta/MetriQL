@@ -24,12 +24,6 @@ import Nav from '../client/components/Nav'
 
 function MainPage() {
 
-  const {verifySession} = useContext(StatusContext);
-
-  useEffect(() => {
-    verifySession()
-  }, [])
-
   const [codeState, codeDispatch] = useReducer(codeReducer, initialCodeState);
   const [speedState, speedUpdate] = useReducer(speedReducer, initialSpeedState);
   const [urlState, urlDispatch] = useReducer(urlReducer, initialURLState);

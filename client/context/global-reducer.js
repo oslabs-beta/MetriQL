@@ -36,7 +36,6 @@ export const initialStatusState = {
 	password: '',
 	entryError: false,
 	isLoggedIn: false,
-
 }
 
 const globalReducer = (state, action) => {
@@ -169,7 +168,7 @@ export const statusReducer = (state, action) => {
 		case 'UPDATE_PASSWORD':
 			return {
 				...state,
-				username: action.payload.password
+				password: action.payload.password
 			};
 		case 'UPDATE_ENTRY_ERROR': 
 			return {

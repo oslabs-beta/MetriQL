@@ -38,7 +38,16 @@ const LoginModal = ({closeModal}) => {
 
 const submitUserData = async () => {
 
-if (statusState.username === '' || statusState.password === '') {
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({"username": statusState.username, "password": statusState.password })
+    };
+  let result;
+  result = await fetch("http://localhost:3001/login", requestOptions);
+  result = await result.json();
+
+  if (statusState.username === '' || statusState.password === '' || result.loggedin === false) {
     statusDispatch({
       type: 'UPDATE_ENTRY_ERROR',
       payload: {
@@ -46,24 +55,31 @@ if (statusState.username === '' || statusState.password === '') {
       }
     })
   }
-const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({"username": statusState.username, "password": statusState.password })
-  };
-let result;
-result = await fetch("http://localhost:3001/login", requestOptions);
-result = await result.json();
 
-statusDispatch({
+  else {
+    statusDispatch({
+      type: 'UPDATE_STATUS',
+      payload: {
+          isLoggedIn: result.loggedin,
+      }
+    })
+    statusDispatch({
+      type: 'UPDATE_ENTRY_ERROR',
+      payload: {
+        entryError: false
+        }
+      })
+    }
+  
+}
+
+const submitOAuthData = () => {
+  statusDispatch({
     type: 'UPDATE_STATUS',
     payload: {
-        isLoggedIn: result.loggedin,
+        isLoggedIn: true,
     }
   })
-
-  if (!statusState.entryError) return closeModal();
-
 }
 
 //redirect page if user is verified and logged in
@@ -72,8 +88,6 @@ if (statusState.isLoggedIn && !statusState.entryError){
   Router.push('http://localhost:3000/main')
 } 
 
-
-//create conditional for box to dissapear or shake STYLE BUTTONS, Sign up modal
     return (
         <div className = {classes.modal} >
           <Box 
@@ -96,7 +110,7 @@ if (statusState.isLoggedIn && !statusState.entryError){
               type='text'
               value={statusState.username}
               placeholder='Username'
-              onChange={(e) => updateUsername(e)}
+              onChange={(e) => updateUsername(e.target.value)}
               className={classes.InputURI}
               ></TextField>
 
@@ -108,8 +122,7 @@ if (statusState.isLoggedIn && !statusState.entryError){
               type='password'
               value={statusState.password}
               placeholder='Password'
-              onChange={(e) => updatePassword(e)}
-              // onChange={updatePassword}
+              onChange={(e) => updatePassword(e.target.value)}
               className={classes.InputURI}
               ></TextField>
           
@@ -129,7 +142,7 @@ if (statusState.isLoggedIn && !statusState.entryError){
               sx={{width: 180}}
               variant="contained" 
               value='SubmitOAuth' 
-              onClick={() => location.href='http://localhost:3001/github/auth'} 
+              onClick={() => location.href='http://localhost:3001/github/auth', submitOAuthData} 
               class='p-2 flex rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200'
               >Github<GithubIcon/>
                </button>
@@ -148,7 +161,7 @@ if (statusState.isLoggedIn && !statusState.entryError){
               variant="contained" 
               value='submitNew' 
               // onClick={openLoginModal} 
-              class='rounded-2xl border-b-2 border-b-gray-300 bg-purple1 py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200'
+              class='rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200'
               >Sign Up Here</button>
           </Box>
         </div>
