@@ -85,7 +85,7 @@ export default function SchemaVisual({ visuals}) {
 				.attr("class", "node")
 				.attr("r", 1e-6)
 				.style("fill", function (d) {
-					return d.parent ? "rgb(39, 43, 77)" : "#fe6e9e";
+					return d.parent ? "#1D1127" : "#fe6e9e";
 				})
 
 			nodeEnter
@@ -262,7 +262,7 @@ export default function SchemaVisual({ visuals}) {
 	useEffect(visualTree, [])
 
 	return (
-		<div style={{ background: "rgb(39, 43, 77" }}>
+		<div style={{ background: "#1D1127" }}>
 			<svg id='visualDisplay'></svg>
 		</div>
 	)
