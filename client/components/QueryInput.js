@@ -42,7 +42,7 @@ function QueryInput() {
     };
 
     const start = performance.now();
-    const result = await fetch("http://localhost:3001/graphql", requestOptions) //create toggle between /schema and schema-user
+    const result = await fetch("http://localhost:8080/graphql", requestOptions) //create toggle between /schema and schema-user
     const jsonData = await result.json();
     const cleanResponse = JSON.stringify(jsonData, null, 2)
     const end = performance.now();

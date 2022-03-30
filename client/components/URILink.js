@@ -59,7 +59,7 @@ const URILink = ({ closeHandler }) => {
       }
     }
 
-    const result = await fetch("http://localhost:3001/schema", requestOptions);
+    const result = await fetch("http://localhost:8080/schema", requestOptions);
     const jsonData = await result.json();
 
     if (!jsonData.schema) {

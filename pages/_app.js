@@ -7,13 +7,13 @@ import {
     } from '@apollo/client';
 
 import App from '../client/components/App';
-// import { links } from './utils/links';
+
 import '../styles/globals.css'
 
 const link = from([
-    new HttpLink({ uri: "http://localhost:3000/graphql"})
+    new HttpLink({ uri: "http://localhost:8080/graphql"})
 ])
-//create apollo client for use in getting graphql data
+//create apollo client to get graphql data
 const client = new ApolloClient({
     cache: new InMemoryCache(),
     link: link

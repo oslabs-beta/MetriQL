@@ -7,7 +7,7 @@ const schema = require('./graphQLServer/schema');
 const session = require('express-session');
 
 const app = express();
-const PORT = 3001;
+const PORT = 8080 || process.env.PORT;
 
 app.use(cors());
 
