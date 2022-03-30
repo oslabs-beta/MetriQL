@@ -85,7 +85,7 @@ export default function SchemaVisual({ visuals}) {
 				.attr("class", "node")
 				.attr("r", 1e-6)
 				.style("fill", function (d) {
-					return d.parent ? "#1D1127" : "#fe6e9e";
+					return d.parent ? "#5304EE" : "#fe6e9e";
 				})
 
 			nodeEnter

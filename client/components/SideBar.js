@@ -12,7 +12,7 @@ import { initialDisplayState } from "../context/global-reducer";
 import StorageIcon from '@mui/icons-material/Storage';
 import FeaturedPlayListIcon from '@mui/icons-material/FeaturedPlayList';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
-import SaveAltOutlinedIcon from '@mui/icons-material/SaveAltOutlined';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
 function SideBar({ openDB }) {
     const { displayState, displayDispatch, urlState } = useContext(SidebarContext);
@@ -65,7 +65,7 @@ function SideBar({ openDB }) {
 
                         <li className={classes.menuItemOne}>
                             <a onClick={openDBHandler} className={classes.menuA}>
-                            <StorageIcon style={{fill: '#6415FF'}}/>
+                            <StorageIcon style={{fill: '#cac5d4'}}/>
                                 <div className={classes.menuTxtHld}>
                                     <i className={classes.menuIcon}></i>
                                     <span className={classes.menuTxt}>Change Database</span>
@@ -75,7 +75,7 @@ function SideBar({ openDB }) {
 
                         <li className={classes.menuItem}>
                             <a onClick={() => handleSchemaOpen("types")} className={classes.menuA}>
-                                <FeaturedPlayListIcon style={{fill: '#6415FF'}}/>
+                                <FeaturedPlayListIcon style={{fill: '#cac5d4'}}/>
                                 <div className={classes.menuTxtHld}>
                                     <i className={classes.menuIcon} class="fa=solid fa-igloo"></i> 
                                     <span className={classes.menuTxt}>View Types</span>
@@ -92,7 +92,7 @@ function SideBar({ openDB }) {
 
                         <li className={classes.menuItem}>
                             <a onClick={() => handleSchemaOpen("resolvers")} className={classes.menuA}>
-                                <FeaturedPlayListIcon style={{fill: '#6415FF'}}/>
+                                <FeaturedPlayListIcon style={{fill: '#cac5d4'}}/>
                                 <div className={classes.menuTxtHld}>
                                     <i className={classes.menuIcon}></i>
                                     <span className={classes.menuTxt}>View Resolvers</span>
@@ -109,7 +109,7 @@ function SideBar({ openDB }) {
 
                         <li className={classes.menuItem}>
                             <a onClick={() => handleSchemaVisOpen("visuals")} className={classes.menuA}>
-                               <InsertPhotoIcon style={{fill: '#6415FF'}}/>
+                               <InsertPhotoIcon style={{fill: '#cac5d4'}}/>
                                 <div className={classes.menuTxtHld}>
                                     <i className={classes.menuIcon}></i>
                                     <span className={classes.menuTxt}>Visualizer</span>
@@ -128,7 +128,7 @@ function SideBar({ openDB }) {
 
                         <li className={classes.menuItem}>
                             <a href="https://github.com/oslabs-beta/MetriQL" className={classes.menuA} target='_blank'>
-                               <SaveAltOutlinedIcon style={{fill: '#6415FF'}}/>
+                               <SaveAltIcon style={{fill: '#cac5d4'}}/>
                                 <div className={classes.menuTxtHld}>
                                     <i className={classes.menuIcon}></i>
                                     <span className={classes.menuTxt}>Download</span>

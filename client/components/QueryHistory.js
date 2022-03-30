@@ -54,15 +54,15 @@ const QueryHistory = () => {
 
   const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     padding: theme.spacing(2),
-    borderTop: '1px solid rgba(0, 0, 0, .125)',
+    borderTop: '1px solid #5304EE',
   }));
 
 
   const query = codeState.query.map((query, index) => {
     return (
       <div>
-        <Accordion className='bg-dark1 rounded-lg mt-1 justify-center' expanded={displayState.history === `panel${index}`} onChange={handleChange(`panel${index}`)}>
-          <AccordionSummary className='flex rounded-lg bg-dark1 w-[14vw] justify-center'>
+        <Accordion className='bg-darkGrey rounded-3xl mt-1 justify-center' expanded={displayState.history === `panel${index}`} onChange={handleChange(`panel${index}`)}>
+          <AccordionSummary className='flex rounded-lg bg-purple2 w-[15.5vw] justify-center'>
             <Typography className='text-white1'>Query {index + 1} <br></br>Speed : {speedState.speed[index].toFixed()}ms</Typography>
           </AccordionSummary>
           <AccordionDetails>

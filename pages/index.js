@@ -47,7 +47,7 @@ function MainPage() {
 
 
   return (
-    <div className='bg-dark3 h-screen'>
+    <div className='bg-backgroundGrey h-screen'>
       <Header />
       <div >
         <Meta />
@@ -70,13 +70,13 @@ function MainPage() {
               displayDispatch,
               speedState
             }}>
-            <div className='flex bg-dark2 rounded-lg w-[17vw]'>
+            <div className='flex bg-navBarGrey rounded-lg w-[17vw]'>
               <QueryHistory />
             </div>
           </HistoryContext.Provider>
 
 
-          <div className='flex bg-dark2 p-5 rounded-lg' >
+          <div className='flex bg-navBarGrey p-5 rounded-lg' >
             <QueryContext.Provider
               value={{
                 codeState,

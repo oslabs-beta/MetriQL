@@ -5,15 +5,15 @@
 .sidebar {
     background-color: rgba(231, 234, 246, 0.01);
     width: 60px;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     position: fixed;
     z-index: 999;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    border-radius: 5px;
+    left: 18px;
+    top: 56px;
+    border-radius: 10px;
+    margin-right: 18px;
   }
 
 .mainMenu {
@@ -71,7 +71,6 @@
 .menuIcon {
     display: block;
     font-size: 1.5rem;
-    color: #bdbdbd;
     position: relative;
     z-index: 100;
     transition: 400ms;
@@ -83,7 +82,16 @@
     min-width: 40px;
     padding: 0px 20px;
     transition-delay: 0s;
-    color: #979595;
+    color: #e4e4e4;
+}
+
+.menuItemOne:hover .menuTxt {
+    opacity: 1;
+    width: 100%;
+    min-width: 40px;
+    padding: 0px 20px;
+    transition-delay: 0s;
+    color: #e4e4e4;
 }
 
 .menuTxtHld {
@@ -104,10 +112,14 @@
 
 .menuItem:hover .menuTxtHld {
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.07);
-    background: #1D1127;
+    background: #5304EE;
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition-delay: 0ms;
 }
-.active .menuIcon {
-    color: #03A9F4;
+
+.menuItemOne:hover .menuTxtHld {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.07);
+    background: #5304EE;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition-delay: 0ms;
 }
