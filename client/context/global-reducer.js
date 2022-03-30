@@ -9,6 +9,7 @@ export const initialCodeState = {
 
 export const initialSpeedState = {
 	speed: [],
+	firstQuery: true,
 };
 
 export const initialURLState = {
@@ -48,8 +49,15 @@ export const codeReducer = (state, action) => {
 export const speedReducer = (state, action) => {
 	switch (action.type) {
 		case 'UPDATE_SPEED':
+			console.log(action.payload.speed);
 			return {
+				...state,
 				speed: action.payload.speed
+			};
+		case 'UPDATE_FIRST_QUERY':
+			return {
+				...state,
+				firstQuery: action.payload
 			}
 	}
 }

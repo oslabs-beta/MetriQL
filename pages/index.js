@@ -67,7 +67,8 @@ function MainPage() {
             value={{
               codeState,
               displayState,
-              displayDispatch
+              displayDispatch,
+              speedState
             }}>
             <div className='flex bg-dark2 rounded-lg w-[17vw]'>
               <QueryHistory />

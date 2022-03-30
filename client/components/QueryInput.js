@@ -1,15 +1,11 @@
-import { useState, useContext } from 'react'
-import CodeMirror from '@uiw/react-codemirror';
+import { useContext } from 'react'
+import CodeMirror, {placeholder} from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
 import { QueryContext } from '../context/global-context';
-//   import('codemirror/addon/hint/show-hint');
-//   import('codemirror/addon/lint/lint');
-//   import('codemirror-graphql/hint');
-//   import('codemirror-graphql/lint');
-//   import('codemirror-graphql/mode');
+
 
 function QueryInput() {
 
@@ -40,6 +36,18 @@ function QueryInput() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query: `${codeState.queryInput}` })
     };
+
+    if (speedState.firstQuery) {
+      const firstRun = await fetch("http://localhost:8080/graphql", requestOptions)
+
+      speedUpdate({
+        type: 'UPDATE_FIRST_QUERY',
+        payload: false
+      });
+
+    };
+
+
 
     const start = performance.now();
     const result = await fetch("http://localhost:8080/graphql", requestOptions) //create toggle between /schema and schema-user
@@ -77,6 +85,7 @@ function QueryInput() {
             variant="contained"
             color='success'
             onClick={submitHandler}
+            disabled={codeState.queryInput.length === 0}
           >Submit</Button>
 
           <Button
@@ -92,7 +101,7 @@ function QueryInput() {
         value={codeState.queryInput}
         height='39vw'
         theme='dark'
-        extensions={[javascript({ jsx: true })]}
+        extensions={[javascript({ jsx: true }), placeholder('Please enter your query here.')]}
         onChange={(e) => {
           queryChangeHandler(e);
         }}

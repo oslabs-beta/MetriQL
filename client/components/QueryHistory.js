@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { styled } from '@mui/material/styles';
@@ -12,7 +12,7 @@ import { HistoryContext } from '../context/global-context'
 
 const QueryHistory = () => {
 
-  const { codeState, displayState, displayDispatch } = useContext(HistoryContext)
+  const { codeState, displayState, displayDispatch, speedState } = useContext(HistoryContext)
 
   const handleChange = (panel) => (event, newExpanded) => {
     displayDispatch({
@@ -63,7 +63,7 @@ const QueryHistory = () => {
       <div>
         <Accordion className='bg-dark1 rounded-lg mt-1 justify-center' expanded={displayState.history === `panel${index}`} onChange={handleChange(`panel${index}`)}>
           <AccordionSummary className='flex rounded-lg bg-dark1 w-[14vw] justify-center'>
-            <Typography className='text-white1'>Query {index + 1}</Typography>
+            <Typography className='text-white1'>Query {index + 1} <br></br>Speed : {speedState.speed[index].toFixed()}ms</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
