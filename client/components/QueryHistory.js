@@ -61,7 +61,7 @@ const QueryHistory = () => {
   const query = codeState.query.map((query, index) => {
     return (
       <div>
-        <Accordion className='bg-darkGrey rounded-3xl mt-1 justify-center' expanded={displayState.history === `panel${index}`} onChange={handleChange(`panel${index}`)}>
+        <Accordion className='bg-darkGrey rounded-lg mt-1 justify-center' expanded={displayState.history === `panel${index}`} onChange={handleChange(`panel${index}`)}>
           <AccordionSummary className='flex rounded-lg bg-purple2 w-[15.5vw] justify-center'>
             <Typography className='text-white1'>Query {index + 1} <br></br>Speed : {speedState.speed[index].toFixed()}ms</Typography>
           </AccordionSummary>

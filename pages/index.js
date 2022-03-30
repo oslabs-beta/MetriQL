@@ -62,7 +62,7 @@ function MainPage() {
         </SidebarContext.Provider>
 
 
-        <div className='flex place-content-center mt-2 justify-evenly -ml-15 '>
+        <div className='flex place-content-stretch mt-2 justify-evenly -ml-20 '>
           <HistoryContext.Provider
             value={{
               codeState,
