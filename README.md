@@ -1,4 +1,4 @@
-# MetriQL
+# MetricQL
 A GraphQL Migration Tool
 
 Table of Contents
