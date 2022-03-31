@@ -44,6 +44,8 @@ Export or highlight and copy the auto-generated GraphQL code that displays benea
 Visit the sidebar on the left to view GraphQL Types and Resolvers
 Click on Export or highlight and copy/paste
 
+![](/public/schema.gif)
+
 ### ER Visualizer*
 
 The PostgreSQL entity-relational diagram is also accessible via the sidebar on the left, simply click on “View Visualizer” to manipulate and analyze relationships
