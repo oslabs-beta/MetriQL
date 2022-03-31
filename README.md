@@ -17,10 +17,10 @@
 ### About MetricQL
 MetricQL is a migration assistance tool that facilitates the transition from REST to GraphQL. Generate, customize, and export GraphQL schemas from existing PostgreSQL databases and visualize performance metrics.
 
-Transform existing PostgresQL databases into GraphQL code, including query resolvers and types
-Visualize PostgresQL entity-relational diagrams to view and analyze database relationships 
-Edit, test and compare queries with the code playground and query history panel
-Analyze query response times to optimize GraphQL performance
+Transform existing PostgresQL databases into GraphQL code, including query resolvers and types.
+Visualize PostgresQL entity-relational diagrams to view and analyze database relationships. 
+Edit, test and compare queries with the code playground and query history panel.
+Analyze query response times to optimize GraphQL performance.
 
 
 
@@ -29,31 +29,44 @@ Accelerated by OS Labs.
 ### Getting Started is Easy!
 
 
-Visit metricql.com for easy access. Navigate to the ‘Generate Schema’ page to access our URL input form. Copy a relational database link (i.e., PostgresQL) and paste into the input box. After clicking submit, you will see your GraphQL types on the left, and your resolvers on the right. For access to the full host of MetricQL’s features, fork & clone our repo for an easy spin-up
+Visit metricql.com for easy access. Navigate to the ‘Generate Schema’ page to access our URL input form. Copy a relational database link (i.e., PostgresQL) and paste into the input box. After clicking submit, you will see your GraphQL types on the left, and your resolvers on the right. For access to the full host of MetricQL’s features, fork & clone our repo for an easy spin-up.
 
 
 ### Database Connection
 
-Connect to MetricQL by inputting an existing PostgreSQL URI to auto-populate data, or use our sample database to test our utilities
+Connect to MetricQL by inputting an existing PostgreSQL URI to auto-populate data, or use our sample database to test our utilities.
+
+![](/public/demo.gif)
 
 ### Accessing Customized GraphQL Code*
 
-Input your specific query under Query Input (code playground) and click Submit to generate customized GraphQL code based on your needs
-Access query history via the left panel 
-Export or highlight and copy the auto-generated GraphQL code that displays beneath the performance graph
-Visit the sidebar on the left to view GraphQL Types and Resolvers
-Click on Export or highlight and copy/paste
+Input your specific query under Query Input (code playground) and click Submit to generate customized GraphQL code based on your needs.
+
+![](/public/gif-4.gif)
+
+Access query history via the left panel.
+
+![](/public/query-history.gif)
+
+Export or highlight and copy the auto-generated GraphQL code that displays beneath the performance graph.
+Visit the sidebar on the left to view GraphQL Types and Resolvers.
+Click on Export or highlight and copy/paste.
 
 ![](/public/schema.gif)
 
 ### ER Visualizer*
 
-The PostgreSQL entity-relational diagram is also accessible via the sidebar on the left, simply click on “View Visualizer” to manipulate and analyze relationships
+The PostgreSQL entity-relational diagram is also accessible via the sidebar on the left, simply click on “View Visualizer” to manipulate and analyze relationships.
+
+![](/public/visualizer.gif)
 
 ### Performance*
 
-Easily view performance metrics on the top right panel and start analyzing and comparing the efficiency of your GraphQL queries 
-Contributions
+Easily view performance metrics on the top right panel and start analyzing and comparing the efficiency of your GraphQL queries.
+
+![](/public/graph.gif)
+
+### Contributions
 MetricQL greatly welcomes any contributions from the open source community! Please click here to view our contribution FAQ page. A big thank you for your interest and passion in contributing to MetricQL!
 
 
