@@ -106,9 +106,13 @@ MetricQL was built using the following frameworks and libraries:
 ### Contributors
 
 Rehema Armorer 
+
 Diana Li
+
 Raymond Huang
+
 Eric Rodgers
+
 Alfonso Zamarripa
 
 Acknowledgments
