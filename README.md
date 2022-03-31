@@ -101,3 +101,17 @@ MetricQL was built using the following frameworks and libraries:
     PostgreSQL
     Jest
     Supertest
+    
+
+### Contributors
+
+Rehema Armorer 
+Diana Li
+Raymond Huang
+Eric Rodgers
+Alfonso Zamarripa
+
+Acknowledgments
+A big thank you to the tech accelerator Open Source Labs for their continued support and sponsorship throughout this whole process.
+
+This project is licensed under the MIT License - see the License.MD file for details
