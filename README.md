@@ -24,12 +24,12 @@ Analyze query response times to optimize GraphQL performance
 
 
 
-Accelerated by OS Labs. (does this comment belong here?)
+Accelerated by OS Labs. 
 
 Getting Started is Easy!
 
 
-Visit metricql.com for easy access. Navigate to the ‘Generate Your Schema’ page to access our URL input form. Copy a relational database link (i.e., postgres) and paste into the input box. After clicking submit, you will see your GraphQL types on the left, and your resolvers on the right. For access to the full host of MetricQL’s features, fork & clone our repo for an easy spin-up
+Visit metricql.com for easy access. Navigate to the ‘Generate Schema’ page to access our URL input form. Copy a relational database link (i.e., PostgresQL) and paste into the input box. After clicking submit, you will see your GraphQL types on the left, and your resolvers on the right. For access to the full host of MetricQL’s features, fork & clone our repo for an easy spin-up
 
 
 Database Connection
@@ -41,7 +41,8 @@ Accessing Customized GraphQL Code*
 Input your specific query under Query Input (code playground) and click Submit to generate customized GraphQL code based on your needs
 Access query history via the left panel 
 Export or highlight and copy the auto-generated GraphQL code that displays beneath the performance graph
-Visit the sidebar on the left to view GraphQL Types and ResolversClick on Export or highlight and copy/paste
+Visit the sidebar on the left to view GraphQL Types and Resolvers
+Click on Export or highlight and copy/paste
 
 ER Visualizer*
 
@@ -64,7 +65,7 @@ Please follow these steps for a seamless contribution experience:
 There are 3 npm actions you need to run before working:
 npm install
 npm run build
-npm run dev (to launch website) (can we put all these things in code blocks?)
+npm run dev (to launch website) 
 Reporting Bugs and Adding New Features
 All code changes happen through Github Pull Requests and we actively welcome them! To submit your pull request, follow the steps below:
 
@@ -82,7 +83,7 @@ Pull Requests
 Fork the repo and create your branch from dev
 If you've added code that should be tested, add tests.
 If you've changed APIs, please update the documentation.
-Ensure the tests pass by running npm run tests ←—- can we put this in a code block too?
+Ensure the tests pass by running npm run tests
 Make sure your code lints.
 Submit a pull request.
 To-Dos
