@@ -1,0 +1,113 @@
+
+@import url('https://fonts.googleapis.com/css?family=Manjari:100,400,700&display=swap');
+
+
+.sidebar {
+    background-color: rgba(37, 187, 34, 0.01);
+    width: 60px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+  }
+
+.mainMenu {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menuItem {
+    list-style: none;
+    position: relative;
+    width: 85px;
+    height: 65px;
+    margin-bottom: 80px;
+}
+
+.menuItemOne {
+    list-style: none;
+    position: relative;
+    width: 85px;
+    height: 65px;
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+
+.menuTxt {
+    opacity: 0;
+    width: 0px;
+    min-width: 0px;
+    overflow: hidden;
+    transition: 300ms linear;
+    transition-delay: 250ms;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.menuA {
+    padding: 35px 33.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.menuIcon {
+    display: block;
+    font-size: 1.5rem;
+    color: #bdbdbd;
+    position: relative;
+    z-index: 100;
+    transition: 400ms;
+}
+
+.menuItem:hover .menuTxt {
+    opacity: 1;
+    width: 100%;
+    min-width: 40px;
+    padding: 0px 20px;
+    transition-delay: 0s;
+    color: #979595;
+}
+
+.menuTxtHld {
+    position: absolute;
+    z-index: 99;
+    background: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 38px;
+    font-size: .94rem;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0);
+    padding: 9.5px 8px;
+    transition: 250ms linear;
+    display: flex;
+    align-items: center;
+    left: 20px;
+    transition-delay: 300ms;
+}
+
+.menuItem:hover .menuTxtHld {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.07);
+    background: #5304EE;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition-delay: 0ms;
+}
+.active .menuIcon {
+    color: #03A9F4;
+}

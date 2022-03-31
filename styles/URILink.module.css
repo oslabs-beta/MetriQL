@@ -1,0 +1,9 @@
+.modal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.InputURI {
+    width: 90%;
+};
