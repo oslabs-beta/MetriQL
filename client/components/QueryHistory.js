@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { styled } from '@mui/material/styles';
@@ -18,9 +18,9 @@ const QueryHistory = () => {
     displayDispatch({
       type: 'UPDATE_HISTORY_DISPLAY',
       payload: newExpanded ? panel : false
-  });
-}
-    
+    });
+  }
+
   const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
   ))(({ theme }) => ({
@@ -37,12 +37,12 @@ const QueryHistory = () => {
     <MuiAccordionSummary
       expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
       {...props}
+      style={{
+        backgroundColor: "#5304EE"
+      }}
     />
   ))(({ theme }) => ({
-    backgroundColor:
-      theme.palette.mode === 'dark'
-        ? 'rgba(255, 255, 255, .05)'
-        : 'rgba(0, 0, 0, .03)',
+    backgroundColor: '#5304EE',
     flexDirection: 'row-reverse',
     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
       transform: 'rotate(90deg)',
@@ -54,16 +54,16 @@ const QueryHistory = () => {
 
   const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     padding: theme.spacing(2),
-    borderTop: '1px solid #5304EE',
+    borderTop: '1px solid rgba(0, 0, 0, .125)',
   }));
 
 
   const query = codeState.query.map((query, index) => {
     return (
       <div>
-        <Accordion className='bg-darkGrey rounded-lg mt-1 justify-center' expanded={displayState.history === `panel${index}`} onChange={handleChange(`panel${index}`)}>
-          <AccordionSummary className='flex rounded-lg bg-purple2 w-[15.5vw] justify-center'>
-            <Typography className='text-white1'>Query {index + 1} <br></br>Speed : {speedState.speed[index].toFixed()}ms</Typography>
+        <Accordion style={{ backgroundColor: '#282C34' }} className='bg-darkGrey rounded-3xl mt-1 justify-center' expanded={displayState.history === `panel${index}`} onChange={handleChange(`panel${index}`)}>
+          <AccordionSummary style={{ backgroundColor: '#5304EE' }} className='flex rounded-3xl bg-purple2 w-[15vw] justify-center'>
+            <Typography className='text-white1'>Query {index + 1}<br></br>Speed : {speedState.speed[index].toFixed()}ms</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
@@ -80,7 +80,7 @@ const QueryHistory = () => {
     )
   })
   return (
-    <div className='flex flex-col justify-start p-4 max-h-[45vw] overflow-auto'>
+    <div className='flex-col flex-auto justify-start p-4 max-h-[45vw] overflow-auto'>
       {query}
     </div>
   )

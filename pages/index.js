@@ -15,7 +15,6 @@ import {
 import Header from '../client/components/Header';
 import SideBar from '../client/components/SideBar';
 import Metric from '../client/components/Metric';
-import Meta from '../client/components/Meta';
 import QueryInput from '../client/components/QueryInput';
 import Result from '../client/components/Result';
 import URILink from '../client/components/URILink';
@@ -50,7 +49,6 @@ function MainPage() {
     <div className='bg-backgroundGrey h-screen'>
       <Header />
       <div >
-        <Meta />
 
         <SidebarContext.Provider
           value={{
@@ -62,7 +60,7 @@ function MainPage() {
         </SidebarContext.Provider>
 
 
-        <div className='flex place-content-stretch mt-2 justify-evenly -ml-20 '>
+        <div className='flex place-content-stretch mt-2 justify-evenly -ml-13 '>
           <HistoryContext.Provider
             value={{
               codeState,
@@ -70,13 +68,13 @@ function MainPage() {
               displayDispatch,
               speedState
             }}>
-            <div className='flex bg-navBarGrey rounded-lg w-[17vw]'>
+            <div className='flex bg-navBarGrey rounded-3xl w-[17vw]'>
               <QueryHistory />
             </div>
           </HistoryContext.Provider>
 
 
-          <div className='flex bg-navBarGrey p-5 rounded-lg' >
+          <div className='flex bg-navBarGrey p-5 rounded-3xl' >
             <QueryContext.Provider
               value={{
                 codeState,

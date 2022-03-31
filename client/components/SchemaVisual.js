@@ -3,11 +3,11 @@ import * as d3 from 'd3';
 
 import { URLContext } from '../context/global-context';
 
-export default function SchemaVisual({ visuals}) {
+export default function SchemaVisual({ visuals }) {
 	// const { urlState  } = useContext(URLContext);
 
 	const treeData = visuals.visuals;
-    console.log("should be json", visuals.visuals)
+	console.log("should be json", visuals.visuals)
 	function visualTree() {
 
 		let margin = { top: 0, right: 90, bottom: 40, left: 70 },
@@ -22,7 +22,7 @@ export default function SchemaVisual({ visuals}) {
 			.attr("width", width + margin.right + margin.left)
 			.attr("height", height + margin.top + margin.bottom)
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-            
+
 
 		const g = svg.append('g')
 
@@ -85,7 +85,7 @@ export default function SchemaVisual({ visuals}) {
 				.attr("class", "node")
 				.attr("r", 1e-6)
 				.style("fill", function (d) {
-					return d.parent ? "#5304EE" : "#fe6e9e";
+					return d.parent ? "#0C131F" : "#5304EE";
 				})
 
 			nodeEnter
@@ -251,10 +251,10 @@ export default function SchemaVisual({ visuals}) {
 				update(d);
 			}
 
-            d3.selectAll('path')
-            .attr('fill', 'none')
-            .attr('stroke', 'rgb(55,68,105)')
-            .attr('stroke-width', 1)
+			d3.selectAll('path')
+				.attr('fill', 'none')
+				.attr('stroke', 'rgb(55,68,105)')
+				.attr('stroke-width', 1)
 
 		}
 	}
@@ -262,7 +262,7 @@ export default function SchemaVisual({ visuals}) {
 	useEffect(visualTree, [])
 
 	return (
-		<div style={{ background: "#1D1127" }}>
+		<div style={{ background: "#0C131F" }}>
 			<svg id='visualDisplay'></svg>
 		</div>
 	)

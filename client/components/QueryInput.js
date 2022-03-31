@@ -1,5 +1,5 @@
-import { useContext } from 'react'
-import CodeMirror, {placeholder} from '@uiw/react-codemirror';
+import { useState, useContext } from 'react'
+import CodeMirror, { placeholder } from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -38,7 +38,7 @@ function QueryInput() {
     };
 
     if (speedState.firstQuery) {
-      const firstRun = await fetch("http://localhost:8080/graphql", requestOptions)
+      const firstRun = await fetch("https://mql-back.herokuapp.com/graphql", requestOptions)
 
       speedUpdate({
         type: 'UPDATE_FIRST_QUERY',
@@ -47,10 +47,8 @@ function QueryInput() {
 
     };
 
-
-
     const start = performance.now();
-    const result = await fetch("http://localhost:8080/graphql", requestOptions) //create toggle between /schema and schema-user
+    const result = await fetch("https://mql-back.herokuapp.com/graphql", requestOptions) //create toggle between /schema and schema-user
     const jsonData = await result.json();
     const cleanResponse = JSON.stringify(jsonData, null, 2)
     const end = performance.now();
@@ -77,10 +75,13 @@ function QueryInput() {
   return (
     <div className='mt-4'>
       <div className='flex justify-between w-[33vw]'>
-        <p className=" text-white1 font-bold text-2xl">Query Input</p>
+        <p className=" text-white1 font-roboto text-2xl">Query Input</p>
 
         <Stack spacing={2} direction="row">
           <Button
+            style={{
+              backgroundColor: "#6415FF"
+            }}
             className='text-white1 bg-purple hover:text-white hover:bg-purple1'
             variant="contained"
             color='success'
@@ -101,7 +102,7 @@ function QueryInput() {
         value={codeState.queryInput}
         height='39vw'
         theme='dark'
-        extensions={[javascript({ jsx: true }), placeholder('Please enter your query here.')]}
+        extensions={[javascript({ jsx: true })]}
         onChange={(e) => {
           queryChangeHandler(e);
         }}
