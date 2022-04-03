@@ -92,10 +92,10 @@ We will review Pull Requests on an ongoing basis.
 
 ### Pull Requests
 
-Fork the repo and create your branch from dev
+Fork the repo and create your branch from dev.
 If you've added code that should be tested, add tests.
 If you've changed APIs, please update the documentation.
-Ensure the tests pass by running npm run tests
+Ensure the tests pass by running npm run tests.
 Make sure your code lints.
 Submit a pull request.
 To-Dos
@@ -112,7 +112,7 @@ MetricQL was built using the following frameworks and libraries:
     React ContextAPI
     GraphQL
     Node.js
-    Express.js
+    Express
     PostgreSQL
     Jest
     Supertest
