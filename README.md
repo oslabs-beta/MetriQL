@@ -130,7 +130,7 @@ Eric Rodgers
 
 Alfonso Zamarripa
 
-Acknowledgments
+### Acknowledgments
 
 A big thank you to the tech accelerator Open Source Labs for their continued support and sponsorship throughout this whole process.
 
