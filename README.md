@@ -109,10 +109,10 @@ MetricQL was built using the following frameworks and libraries:
 
     Next.js
     React
-    Context API
+    React ContextAPI
     GraphQL
     Node.js
-    Express
+    Express.js
     PostgreSQL
     Jest
     Supertest
@@ -131,6 +131,7 @@ Eric Rodgers
 Alfonso Zamarripa
 
 Acknowledgments
+
 A big thank you to the tech accelerator Open Source Labs for their continued support and sponsorship throughout this whole process.
 
 This project is licensed under the MIT License - see the License.MD file for details
