@@ -36,7 +36,7 @@ Visit metricql.com for easy access. Navigate to the ‘Generate Schema’ page t
 * Bullet list Clone our repo onto your personal machine
 * Once the file has been cloned and opened, run 'npm install' in your CLI
 * After installation, run 'npm build' 
-    * Nested bullet If you run into any issues with the option to install with "--legacy-peer-deps", do so 
+    * If you run into any issues with the option to install with "--legacy-peer-deps", do so 
 * Once the build is complete, use the 'npm run dev' command to spin up the application, accessing it through localhost:3000
 
 
