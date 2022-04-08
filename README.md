@@ -29,10 +29,10 @@ Accelerated by OS Labs.
 ### Getting Started is Easy!
 You can access our tool's URL input in-browser, or download the application for access to all additional features. Initial instructions for both methods are detailed below: 
 
-## Heading 2 ## In-Browser
+#### In-Browser ####
 Visit metricql.com for easy access. Navigate to the ‘Generate Schema’ page to access our URL input form. Copy a relational database link (i.e., PostgresQL) and paste into the input box. After clicking submit, you will see your GraphQL types on the left, and your resolvers on the right. For access to the full host of MetricQL’s features, fork & clone our repo for an easy spin-up.
 
-## Heading 2 ## Optional Download (for additional features)
+#### Download (optional, for access additional features) #### 
 * Bullet list Clone our repo onto your personal machine
 * Once the file has been cloned and opened, run 'npm install' in your CLI
 * After installation, run 'npm build' 
