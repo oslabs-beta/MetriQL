@@ -23,12 +23,8 @@ const postgreSQLController = {};
 
 postgreSQLController.table = async (req, res, next) => {
     let postURI;
-    // postURI = decryptURI(req.body.uri)
-    // req.body.uri ? (postURI = req.body.uri) : (postURI = PG_URI_STARWARS)
-    // let postURI = req.body.uri;
     req.body.uri ? (postURI = decryptURI(req.body.uri)) : (postURI = PG_URI_STARWARS)
-    // req.body.uri ? (postURI = (req.body.uri)) : (postURI = PG_URI_STARWARS)
-    //post test:"uri" "uri"
+
 
     res.locals.URI = postURI;
     const db = new Pool({ connectionString: postURI });
