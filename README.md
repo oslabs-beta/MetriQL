@@ -33,7 +33,7 @@ You can access our tool's URL input in-browser, or download the application for 
 Visit metricql.com for easy access. Navigate to the ‘Generate Schema’ page to access our URL input form. Copy a relational database link (i.e., PostgresQL) and paste into the input box. After clicking submit, you will see your GraphQL types on the left, and your resolvers on the right. For access to the full host of MetricQL’s features, fork & clone our repo for an easy spin-up.
 
 #### Download Instructions #### 
-* Bullet list Clone our repo onto your personal machine
+* Clone our repo onto your personal machine
 * Once the file has been cloned and opened, run 'npm install' in your CLI
 * After installation, run 'npm build' 
     * If you run into any issues with the option to install with "--legacy-peer-deps", do so 
